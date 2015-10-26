@@ -7,6 +7,8 @@
 /Debug/*
 /cuperplusplus/Debug/*
 /cuperplusplus/cuperplusplus/Debug/*
+/cuperplusplus/ipch/*
+/cuperplusplus/cuperplusplus/ipch/*
 
 # Precompiled Headers
 *.gch
