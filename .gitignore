@@ -4,6 +4,10 @@
 *.o
 *.obj
 
+/Object/*
+/cuperplusplus/Object/*
+/cuperplusplus/cuperplusplus/Object/*
+
 # Precompiled Headers
 *.gch
 *.pch
