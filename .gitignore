@@ -4,9 +4,9 @@
 *.o
 *.obj
 
-/Object/*
-/cuperplusplus/Object/*
-/cuperplusplus/cuperplusplus/Object/*
+/Debug/*
+/cuperplusplus/Debug/*
+/cuperplusplus/cuperplusplus/Debug/*
 
 # Precompiled Headers
 *.gch
