@@ -82,7 +82,6 @@
     <ClInclude Include="Character.h" />
     <ClInclude Include="Dungeon.h" />
     <ClInclude Include="DungeonGenerator.h" />
-    <ClInclude Include="DungeonLayer.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Map.h" />
@@ -97,7 +96,6 @@
     <ClCompile Include="cuperplusplus.cpp" />
     <ClCompile Include="Dungeon.cpp" />
     <ClCompile Include="DungeonGenerator.cpp" />
-    <ClCompile Include="DungeonLayer.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Map.cpp" />

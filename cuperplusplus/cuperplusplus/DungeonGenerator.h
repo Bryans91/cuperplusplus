@@ -1,6 +1,4 @@
 #include "Dungeon.h"
-#include "Room.h"
-#include "DungeonLayer.h"
 
 class DungeonGenerator
 {
