@@ -79,6 +79,8 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Dungeon.h" />
+    <ClInclude Include="DungeonGenerator.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="GameItem.h" />
     <ClInclude Include="Map.h" />
@@ -90,10 +92,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cuperplusplus.cpp" />
+    <ClCompile Include="Dungeon.cpp" />
+    <ClCompile Include="DungeonGenerator.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="GameItem.cpp" />
+    <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Room.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Trap.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

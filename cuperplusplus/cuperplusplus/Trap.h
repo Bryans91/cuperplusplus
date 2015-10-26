@@ -8,10 +8,3 @@ private:
 
 };
 
-Trap::Trap()
-{
-}
-
-Trap::~Trap()
-{
-}

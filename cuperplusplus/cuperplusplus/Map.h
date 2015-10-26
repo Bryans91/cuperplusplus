@@ -7,11 +7,3 @@ public:
 private:
 
 };
-
-Map::Map()
-{
-}
-
-Map::~Map()
-{
-}
