@@ -3,6 +3,9 @@
 *.lo
 *.o
 *.obj
+*.suo
+*.sdf
+*.opensdf
 
 /Debug/*
 /cuperplusplus/Debug/*
