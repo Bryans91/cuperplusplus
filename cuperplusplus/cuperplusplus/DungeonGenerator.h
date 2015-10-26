@@ -1,12 +1,20 @@
 #include "Dungeon.h"
+#include "Room.h"
+#include "DungeonLayer.h"
 
 class DungeonGenerator
 {
 public:
 	DungeonGenerator();
 	~DungeonGenerator();
-	Dungeon GenerateDungeon();
+	Dungeon* GenerateDungeon(int height, int width);
+	
 
 private:
+	int dungeonWidth, dungeonHeight;
+	int RandomNumberGenerator(int lowest, int highest);
+	Room GenerateRoom();
+	std::pair<int, int>* exitRoom;
+	vector<vector<Room>> GenerateLayer(int layer);
 
 };
