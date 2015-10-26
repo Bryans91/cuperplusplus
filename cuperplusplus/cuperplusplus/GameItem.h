@@ -8,10 +8,3 @@ private:
 
 };
 
-GameItem::GameItem()
-{
-}
-
-GameItem::~GameItem()
-{
-}

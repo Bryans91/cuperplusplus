@@ -7,11 +7,3 @@ public:
 private:
 
 };
-
-Room::Room()
-{
-}
-
-Room::~Room()
-{
-}
