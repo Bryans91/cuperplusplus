@@ -43,6 +43,13 @@ namespace Utils{
 		std::cout << std::endl;
 	};
 
+	std::string ReadString()
+	{
+		std::string returnz;
+		std::cin >> returnz;
+		return returnz;
+	}
+
 	int ReadLine()
 	{
 		int inputz;

@@ -1,6 +1,7 @@
-#include <vector>
+#include <map>
 #include "Room.h"
-using std::vector;
+#include "DungeonLayer.h"
+using std::map;
 
 
 class Dungeon
@@ -8,10 +9,10 @@ class Dungeon
 public:
 	Dungeon(int height, int width);
 	~Dungeon();
-	void setLevel(int level, vector<vector<Room>> layer);
+	void setLevel(int level, DungeonLayer* layer);
 
 private:
-	vector<vector<vector<Room>>> dungeonArray3D;
+	map<int, DungeonLayer> Levels;
 
 
 };
