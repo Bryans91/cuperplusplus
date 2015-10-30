@@ -36,10 +36,10 @@ DungeonLayer* DungeonGenerator::GenerateLayer(int layer){
 	std::vector<Room*> allRooms;
 	std::pair<int, int> startRoom;
 	std::pair<int, int> endRoom;
-	startRoom.first = RandomNumberGenerator(0, dungeonWidth-1);
-	startRoom.second = RandomNumberGenerator(0, dungeonHeight-1);
-	endRoom.first = RandomNumberGenerator(0, dungeonWidth-1);
-	endRoom.second = RandomNumberGenerator(0, dungeonHeight-1);
+	startRoom.first = RandomNumberGenerator(0, dungeonHeight-1);
+	startRoom.second = RandomNumberGenerator(0, dungeonWidth - 1);
+	endRoom.first = RandomNumberGenerator(0, dungeonHeight - 1);
+	endRoom.second = RandomNumberGenerator(0, dungeonWidth - 1);
 	levelArray.resize(dungeonHeight);
 	for (int i = 0; i < dungeonHeight; i++){
 		levelArray[i].resize(dungeonWidth);
