@@ -11,22 +11,22 @@ public:
 
 	enum Size
 	{
-		SMALL =1, MEDIUM = 2, LARGE = 3
+		SMALL, MEDIUM, LARGE
 	};
 
 	enum State
 	{
-		NEAT = 1, DIRTY = 2
+		NEAT, DIRTY
 	};
 
 	enum Furniture
 	{
-		TABLE = 1, BED = 2, EMPTY = 3
+		TABLE, BED, EMPTY
 	};
 
 	enum Lighting
 	{
-		CANDLE = 1, TORCH = 2, FIRE = 3
+		CANDLE, TORCH, FIRE
 	};
 
 private:

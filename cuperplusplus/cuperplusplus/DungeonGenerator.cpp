@@ -31,10 +31,26 @@ Dungeon* DungeonGenerator::GenerateDungeon(int height, int width){
 DungeonLayer* DungeonGenerator::GenerateLayer(int layer){
 	DungeonLayer* dlevel = new DungeonLayer();
 	std::vector<std::vector<Room*>> levelArray;
+	std::vector<Room*> allRooms;
+	std::pair<int, int> startRoom;
+	std::pair<int, int> endRoom;
+	startRoom.first = RandomNumberGenerator(0, dungeonWidth);
+	startRoom.second = RandomNumberGenerator(0, dungeonHeight);
+	endRoom.first = RandomNumberGenerator(0, dungeonWidth);
+	endRoom.second = RandomNumberGenerator(0, dungeonHeight);
 	levelArray.resize(dungeonHeight);
 	for (int i = 0; i < dungeonHeight; i++){
 		levelArray[i].resize(dungeonWidth);
 	}
+	for (int i = 0; i < dungeonHeight; i++){
+		for (int j = 0; j < dungeonWidth; j++){
+			levelArray[i][j] = new Room();
+			allRooms.push_back(levelArray[i][j]);
+		}
+	}
+	dlevel->setEnd(levelArray[endRoom.first][endRoom.second]);
+	dlevel->setStart(levelArray[startRoom.first][startRoom.second]);
+	dlevel->setRooms(allRooms);
 	return dlevel;
 }
 

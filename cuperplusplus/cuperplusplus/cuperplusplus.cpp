@@ -5,14 +5,15 @@
 #include <stdlib.h>
 #include <crtdbg.h>
 #include <windows.h>
-#include "Game.h"
+#include "Game.cpp"
 #define _CRTDBG_MAP_ALLOC
+
 
 
 int _tmain(int argc, _TCHAR* argv[])
 {
 	MoveWindow(GetConsoleWindow(), 0, 0, 660, 660, TRUE);
-	Game* currentGame = new Game();
+	Game *currentGame = new Game();
 	_CrtDumpMemoryLeaks();
 	return 0;
 }

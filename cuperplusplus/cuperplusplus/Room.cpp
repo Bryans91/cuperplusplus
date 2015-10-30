@@ -2,6 +2,8 @@
 #include "stdafx.h"
 #include "Room.h"
 #include "DungeonGenerator.h"
+#include "Utils.h"
+#define stringify( name ) # name
 
 Room::Room(){
 	//Size switch
@@ -46,7 +48,7 @@ Room::Room(){
 	default: lighting = Lighting::TORCH;
 		break;
 	}
-
+	Utils::PrintLine("Room created");
 }
 
 

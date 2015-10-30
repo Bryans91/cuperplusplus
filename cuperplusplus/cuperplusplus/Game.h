@@ -2,9 +2,8 @@
 #include "Utils.h"
 #include "Dungeon.h"
 #include "Player.h"
-#include <vector>
-#include "ActionFactory.h"
-#include "Action.h"
+#include "string"
+
 
 class Game
 {
@@ -12,11 +11,12 @@ public:
 	Game();
 	~Game();
 private:
-	bool playing();
-	void startGame();
+
 	Dungeon* dungeon;
+	bool playing;
 	Player* player;
-	std::vector<Action *> actions;
+	std::string actions;
+	void startGame();
 
 };
 
