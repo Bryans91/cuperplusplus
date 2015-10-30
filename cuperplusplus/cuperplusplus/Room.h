@@ -8,7 +8,8 @@ public:
 	Room();
 	~Room();
 	std::list<std::string> getPossibleActions();
-
+	std::string getRoomInfo();
+	
 	enum Size
 	{
 		SMALL, MEDIUM, LARGE
@@ -35,5 +36,9 @@ private:
 	Furniture furniture;
 	Lighting lighting;
 	std::vector<Room> adjacentRooms;
+	const char * getTextForSize();
+	const char * getTextForState();
+	const char * getTextForFurniture();
+	const char * getTextForLighting();
 
 };

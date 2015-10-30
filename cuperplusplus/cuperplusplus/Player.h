@@ -18,7 +18,6 @@ public:
 	Player(std::string aName);//, Map *map
 	~Player();
 	//void Move(Room *_room){ this->currentRoom = _room; _room->setVisited(); };
-	Room *getCurrentRoom(){ return currentRoom; };
 	enum Action
 	{
 		eflee = 1,

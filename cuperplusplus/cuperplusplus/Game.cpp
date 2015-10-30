@@ -12,8 +12,9 @@ Game::Game()
 	std::string name = Utils::ReadString();
 	player = new Player(name);
 	generateDungeon();
-	
-	Game::startGame();
+	dungeon->loadLevel(1);
+	player->setCurrentRoom(dungeon->getFirstRoom());
+	startGame();
 }
 
 void Game::generateDungeon(){
@@ -29,11 +30,10 @@ void Game::startGame() {
 		//Utils::cClear();
 
 		// TODO: Draw map with currentroom
-		Room* currentRoom = new Room();
 		// Print all actions
-
+		Utils::PrintLine(player->getCurrentRoom()->getRoomInfo());
 		actions = "|";
-		for (std::string actionString : currentRoom->getPossibleActions()) {
+		for (std::string actionString : player->getCurrentRoom()->getPossibleActions()) {
 			actions += "  " + actionString + "  |";
 		}
 		Utils::PrintLine(actions);
