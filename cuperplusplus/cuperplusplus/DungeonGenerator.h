@@ -1,4 +1,5 @@
 #include "Dungeon.h"
+#include "DungeonLayer.h"
 
 class DungeonGenerator
 {
@@ -6,13 +7,13 @@ public:
 	DungeonGenerator();
 	~DungeonGenerator();
 	Dungeon* GenerateDungeon(int height, int width);
+	static int RandomNumberGenerator(int lowest, int highest);
 	
 
 private:
 	int dungeonWidth, dungeonHeight;
-	int RandomNumberGenerator(int lowest, int highest);
 	Room GenerateRoom();
-	std::pair<int, int>* exitRoom;
-	vector<vector<Room>> GenerateLayer(int layer);
+	Room* exitRoom;
+	DungeonLayer* GenerateLayer(int layer);
 
 };

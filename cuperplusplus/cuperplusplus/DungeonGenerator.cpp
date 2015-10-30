@@ -28,13 +28,19 @@ Dungeon* DungeonGenerator::GenerateDungeon(int height, int width){
 
 }
 
-vector<vector<Room>> DungeonGenerator::GenerateLayer(int layer){
-
+DungeonLayer* DungeonGenerator::GenerateLayer(int layer){
+	DungeonLayer* dlevel = new DungeonLayer();
+	std::vector<std::vector<Room*>> levelArray;
+	levelArray.resize(dungeonHeight);
+	for (int i = 0; i < dungeonHeight; i++){
+		levelArray[i].resize(dungeonWidth);
+	}
+	return dlevel;
 }
 
 
 
-int RandomNumberGenerator(int lowest, int highest){
-	return (rand() % highest + lowest);
+int DungeonGenerator::RandomNumberGenerator(int lowest, int highest){
+	return (lowest + rand() % (highest - lowest + 1));
 
 }
