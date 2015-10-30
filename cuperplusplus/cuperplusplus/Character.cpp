@@ -22,3 +22,11 @@ bool Character::hit(int dmg)
 Character::~Character()
 {
 }
+
+void Character::setCurrentRoom(Room* r){
+	currentRoom = r;
+}
+
+Room* Character::getCurrentRoom(){
+	return currentRoom;
+}

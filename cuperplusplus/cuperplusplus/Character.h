@@ -3,6 +3,7 @@
 #include "string"
 #include "Item.h"
 #include "Utils.h"
+#include "Room.h"
 
 class Character
 {
@@ -14,6 +15,7 @@ protected:
 	int attackPower;
 	int defencePower;
 	std::list<Item *> items;
+	Room* currentRoom;
 
 public:
 	Character();
@@ -35,6 +37,9 @@ public:
 	};
 	bool isFullyRestored(){ return (healthPoints == maxHealthPoints); }
 	bool checkAlive(){ return (healthPoints > 0); };
+
+	virtual void setCurrentRoom(Room* r);
+	virtual Room* getCurrentRoom();
 };
 
 

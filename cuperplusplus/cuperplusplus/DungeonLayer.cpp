@@ -28,3 +28,12 @@ void DungeonLayer::setRooms(std::vector<Room*> rms){
 	roomList = rms;
 }
 
+Room* DungeonLayer::getStart(){
+	return start;
+}
+
+Room* DungeonLayer::getEnd(){
+	return end;
+}
+
+

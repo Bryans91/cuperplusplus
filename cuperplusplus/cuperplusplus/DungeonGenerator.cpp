@@ -14,7 +14,7 @@ DungeonGenerator::~DungeonGenerator(){
 }
 
 Dungeon* DungeonGenerator::GenerateDungeon(int height, int width){
-	Dungeon* d = new Dungeon(height, width);
+	Dungeon* d = new Dungeon();
 	dungeonHeight = height;
 	dungeonWidth = width;
 	exitRoom = nullptr;

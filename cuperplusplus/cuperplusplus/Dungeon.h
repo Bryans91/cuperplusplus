@@ -8,11 +8,15 @@ using std::map;
 class Dungeon
 {
 public:
-	Dungeon(int height, int width);
+	Dungeon();
 	~Dungeon();
 	void setLevel(int level, DungeonLayer* layer);
+	void loadLevel(int level);
+	Room* getFirstRoom();
+	Room* getLastRoom();
 
 private:
+	int level;
 	map<int, DungeonLayer> Levels;
 
 
