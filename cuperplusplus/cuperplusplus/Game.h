@@ -1,8 +1,8 @@
 #pragma once
 #include "Utils.h"
-#include "Map.h"
+#include "Dungeon.h"
 #include "Player.h"
-#include "list"
+#include <vector>
 #include "ActionFactory.h"
 #include "Action.h"
 
@@ -14,8 +14,9 @@ public:
 private:
 	bool playing();
 	void startGame();
-	Map* map;
+	Dungeon* dungeon;
 	Player* player;
-	std::list<Action *> actions;
+	std::vector<Action *> actions;
+
 };
 
