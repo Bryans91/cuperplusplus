@@ -2,6 +2,7 @@
 #include "list"
 #include "string"
 #include "Item.h"
+#include "Utils.h"
 
 class Character
 {
@@ -36,5 +37,4 @@ public:
 	bool checkAlive(){ return (healthPoints > 0); };
 };
 
-};
 
