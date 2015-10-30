@@ -17,6 +17,7 @@ private:
 	Player* player;
 	std::string actions;
 	void startGame();
+	void generateDungeon();
 
 };
 

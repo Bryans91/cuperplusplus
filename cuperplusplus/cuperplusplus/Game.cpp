@@ -11,15 +11,15 @@ Game::Game()
 	Utils::PrintLine("This story is all about you. What was your name again?");
 	std::string name = Utils::ReadString();
 	player = new Player(name);
-	DungeonGenerator* dgen = new DungeonGenerator();
-	Utils::PrintLine("What size do you want your dungeon? e.g. \"5:4\" will create a dungeon that is 5 wide and 4 high");
-	std::string size = Utils::ReadString();
-	std::string width = size.substr(0, size.find(":"));
-	std::string height = size.substr(1, size.find(":"));
-	dungeon = dgen->GenerateDungeon(5, 5);
-	delete(dgen);
+	generateDungeon();
 	
 	Game::startGame();
+}
+
+void Game::generateDungeon(){
+	DungeonGenerator* dgen = new DungeonGenerator();
+	dungeon = dgen->GenerateDungeon(dgen->RandomNumberGenerator(4,6), dgen->RandomNumberGenerator(4,6));
+	delete(dgen);
 }
 
 void Game::startGame() {
