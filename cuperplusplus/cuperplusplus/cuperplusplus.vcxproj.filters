@@ -13,12 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\Actions">
-      <UniqueIdentifier>{ed7dbd5a-31d1-465c-b172-7ec931505143}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Actions">
-      <UniqueIdentifier>{cf60285a-c76b-4a98-a6c5-9be07b0f9a68}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Characters">
       <UniqueIdentifier>{432c3ecb-5d86-459e-9e77-bd2e1721373d}</UniqueIdentifier>
     </Filter>
@@ -60,15 +54,6 @@
     <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Run.h">
-      <Filter>Header Files\Actions</Filter>
-    </ClInclude>
-    <ClInclude Include="Fight.h">
-      <Filter>Header Files\Actions</Filter>
-    </ClInclude>
-    <ClInclude Include="CheckMap.h">
-      <Filter>Header Files\Actions</Filter>
-    </ClInclude>
     <ClInclude Include="Character.h">
       <Filter>Header Files\Characters</Filter>
     </ClInclude>
@@ -78,17 +63,11 @@
     <ClInclude Include="Enemy.h">
       <Filter>Header Files\Characters</Filter>
     </ClInclude>
-    <ClInclude Include="CheckInventory.h">
-      <Filter>Header Files\Actions</Filter>
+    <ClInclude Include="DungeonLayer.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CheckStats.h">
-      <Filter>Header Files\Actions</Filter>
-    </ClInclude>
-    <ClInclude Include="ActionFactory.h">
-      <Filter>Header Files\Actions</Filter>
-    </ClInclude>
-    <ClInclude Include="Action.h">
-      <Filter>Header Files\Actions</Filter>
+    <ClInclude Include="Game.cpp">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -119,18 +98,6 @@
     <ClCompile Include="Utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Fight.cpp">
-      <Filter>Source Files\Actions</Filter>
-    </ClCompile>
-    <ClCompile Include="Run.cpp">
-      <Filter>Source Files\Actions</Filter>
-    </ClCompile>
-    <ClCompile Include="CheckMap.cpp">
-      <Filter>Source Files\Actions</Filter>
-    </ClCompile>
     <ClCompile Include="Character.cpp">
       <Filter>Source Files\Characters</Filter>
     </ClCompile>
@@ -140,17 +107,8 @@
     <ClCompile Include="Player.cpp">
       <Filter>Source Files\Characters</Filter>
     </ClCompile>
-    <ClCompile Include="CheckInventory.cpp">
-      <Filter>Source Files\Actions</Filter>
-    </ClCompile>
-    <ClCompile Include="CheckStats.cpp">
-      <Filter>Source Files\Actions</Filter>
-    </ClCompile>
-    <ClCompile Include="ActionFactory.cpp">
-      <Filter>Source Files\Actions</Filter>
-    </ClCompile>
-    <ClCompile Include="Action.cpp">
-      <Filter>Source Files\Actions</Filter>
+    <ClCompile Include="DungeonLayer.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
