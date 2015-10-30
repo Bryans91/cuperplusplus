@@ -9,6 +9,7 @@ class Game
 public:
 	Game();
 	~Game();
+	void endGame();
 private:
 	bool playing;
 	Map* map;
