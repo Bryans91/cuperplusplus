@@ -3,7 +3,7 @@
 #include "DungeonGenerator.h"
 #include "stdlib.h"
 #include "time.h"
-#include <utility>
+#include "Utils.h"
 
 DungeonGenerator::DungeonGenerator(){
 	srand(time(NULL));
@@ -21,6 +21,8 @@ Dungeon* DungeonGenerator::GenerateDungeon(int height, int width){
 	int level = 1;
 	while (level < 11){
 		d->setLevel(level, GenerateLayer(level));
+		Utils::PrintLine("Layer " + std::to_string(level) + " created");
+		level++;
 	}
 
 
@@ -34,14 +36,15 @@ DungeonLayer* DungeonGenerator::GenerateLayer(int layer){
 	std::vector<Room*> allRooms;
 	std::pair<int, int> startRoom;
 	std::pair<int, int> endRoom;
-	startRoom.first = RandomNumberGenerator(0, dungeonWidth);
-	startRoom.second = RandomNumberGenerator(0, dungeonHeight);
-	endRoom.first = RandomNumberGenerator(0, dungeonWidth);
-	endRoom.second = RandomNumberGenerator(0, dungeonHeight);
+	startRoom.first = RandomNumberGenerator(0, dungeonWidth-1);
+	startRoom.second = RandomNumberGenerator(0, dungeonHeight-1);
+	endRoom.first = RandomNumberGenerator(0, dungeonWidth-1);
+	endRoom.second = RandomNumberGenerator(0, dungeonHeight-1);
 	levelArray.resize(dungeonHeight);
 	for (int i = 0; i < dungeonHeight; i++){
 		levelArray[i].resize(dungeonWidth);
 	}
+	allRooms.resize(dungeonHeight * dungeonWidth);
 	for (int i = 0; i < dungeonHeight; i++){
 		for (int j = 0; j < dungeonWidth; j++){
 			levelArray[i][j] = new Room();
