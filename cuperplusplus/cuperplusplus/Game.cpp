@@ -2,14 +2,6 @@
 #include "Game.h"
 
 
-Game::Game()
-{
-	Utils::PrintLine("This story is all about you. What was your name again?");
-	std::string name = Utils::ReadString();
-	player = new Player(name);
-	
-	startGame();
-}
 
 void Game::startGame() {
 	bool playing = true;
@@ -20,7 +12,7 @@ void Game::startGame() {
 		// TODO: Draw map with currentroom
 		Room* currentRoom = new Room();
 		// Print all actions
-		std::string actions = "|";
+		actions = "|";
 		for (std::string actionString : currentRoom->getPossibleActions()) {
 			actions += "  " + actionString + "  |";
 		}
@@ -32,6 +24,16 @@ void Game::startGame() {
 
 	}
 }
+
+Game::Game()
+{
+	Utils::PrintLine("This story is all about you. What was your name again?");
+	std::string name = Utils::ReadString();
+	player = new Player(name);
+	
+	Game::startGame();
+}
+
 
 
 

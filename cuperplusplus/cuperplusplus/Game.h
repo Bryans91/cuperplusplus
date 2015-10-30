@@ -3,8 +3,7 @@
 #include "Map.h"
 #include "Player.h"
 #include "list"
-#include "ActionFactory.h"
-#include "Action.h"
+#include "string"
 
 class Game
 {
@@ -12,10 +11,10 @@ public:
 	Game();
 	~Game();
 private:
-	bool playing();
-	void startGame();
+	bool playing;
 	Map* map;
 	Player* player;
-	std::list<Action *> actions;
+	std::string actions;
+	void startGame();
 };
 
