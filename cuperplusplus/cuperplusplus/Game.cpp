@@ -1,7 +1,14 @@
 #include "stdafx.h"
 #include "Game.h"
 
+Game::Game()
+{
+	Utils::PrintLine("This story is all about you. What was your name again?");
+	std::string name = Utils::ReadString();
+	player = new Player(name);
 
+	Game::startGame();
+}
 
 void Game::startGame() {
 	bool playing = true;
@@ -19,24 +26,10 @@ void Game::startGame() {
 		Utils::PrintLine(actions);
 		Utils::PrintLine("Please enter your choice below.");
 		std::string choice = Utils::ReadString();
-		//ActionFactory::createAction(choice);
 
 
 	}
 }
-
-Game::Game()
-{
-	Utils::PrintLine("This story is all about you. What was your name again?");
-	std::string name = Utils::ReadString();
-	player = new Player(name);
-	
-	Game::startGame();
-}
-
-
-
-
 Game::~Game()
 {
 }

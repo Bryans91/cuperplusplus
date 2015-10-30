@@ -1,3 +1,4 @@
+#pragma once
 #include "Dungeon.h"
 #include "DungeonLayer.h"
 
