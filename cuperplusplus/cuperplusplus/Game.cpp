@@ -20,8 +20,11 @@ void Game::startGame() {
 		// TODO: Draw map with currentroom
 		Room* currentRoom = new Room();
 		// Print all actions
-		actions = ActionFactory::getAllPossibleActions(currentRoom);
-		Utils::PrintLine("|   Run   |  Fight  |   Inv   |  Stats  |   Map   |");
+		std::string actions = "|";
+		for (std::string actionString : currentRoom->getPossibleActions()) {
+			actions += "  " + actionString + "  |";
+		}
+		Utils::PrintLine(actions);
 		Utils::PrintLine("Please enter your choice below.");
 		std::string choice = Utils::ReadString();
 		//ActionFactory::createAction(choice);
