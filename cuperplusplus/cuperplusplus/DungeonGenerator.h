@@ -12,7 +12,6 @@ public:
 
 private:
 	int dungeonWidth, dungeonHeight;
-	static bool seeded;
 	Room GenerateRoom();
 	Room* exitRoom;
 	DungeonLayer* GenerateLayer(int layer);

@@ -10,6 +10,6 @@ Dungeon::~Dungeon(){
 
 }
 
-void Dungeon::setLevel(int level, DungeonLayer layer){
-	Levels[level] = layer;
+void Dungeon::setLevel(int level, DungeonLayer* layer){
+	Levels[level] = *layer;
 }

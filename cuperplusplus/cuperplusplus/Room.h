@@ -1,6 +1,7 @@
 #pragma once
 #include "list"
 #include "string"
+#include <vector>
 class Room
 {
 public:
@@ -10,28 +11,28 @@ public:
 
 	enum Size
 	{
-		SMALL, MEDIUM, LARGE
+		SMALL =1, MEDIUM = 2, LARGE = 3
 	};
 
 	enum State
 	{
-		NEAT, DIRTY
+		NEAT = 1, DIRTY = 2
 	};
 
-	enum Furnature
+	enum Furniture
 	{
-		TABLE, BED, EMPTY
+		TABLE = 1, BED = 2, EMPTY = 3
 	};
 
 	enum Lighting
 	{
-		CANDLE, TORCH, FIRE
+		CANDLE = 1, TORCH = 2, FIRE = 3
 	};
 
 private:
 	Size size;
 	State state;
-	Furnature furnature;
+	Furniture furniture;
 	Lighting lighting;
 	std::vector<Room> adjacentRooms;
 

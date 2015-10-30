@@ -6,7 +6,7 @@
 #include <utility>
 
 DungeonGenerator::DungeonGenerator(){
-	seeded = false;
+	srand(time(NULL));
 }
 
 DungeonGenerator::~DungeonGenerator(){
@@ -29,17 +29,18 @@ Dungeon* DungeonGenerator::GenerateDungeon(int height, int width){
 }
 
 DungeonLayer* DungeonGenerator::GenerateLayer(int layer){
-	DungeonLayer* level = new DungeonLayer();
-
+	DungeonLayer* dlevel = new DungeonLayer();
+	std::vector<std::vector<Room*>> levelArray;
+	levelArray.resize(dungeonHeight);
+	for (int i = 0; i < dungeonHeight; i++){
+		levelArray[i].resize(dungeonWidth);
+	}
+	return dlevel;
 }
 
 
 
 int DungeonGenerator::RandomNumberGenerator(int lowest, int highest){
-	if (!seeded){
-		srand(time(NULL));
-		seeded = true;
-	}
 	return (lowest + rand() % (highest - lowest + 1));
 
 }
