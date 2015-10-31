@@ -19,6 +19,7 @@ Dungeon* DungeonGenerator::GenerateDungeon(int height, int width){
 	dungeonHeight = height;
 	dungeonWidth = width;
 	int level = 1;
+	Utils::PrintLine(std::to_string(dungeonWidth));
 	while (level < 11){
 		d->setLevel(level, GenerateLayer(level));
 		Utils::PrintLine("Layer " + std::to_string(level) + " created");
@@ -54,8 +55,10 @@ DungeonLayer* DungeonGenerator::GenerateLayer(int layer){
 		}
 	}
 	//link the rooms
+
 	for (int i = 0; i < dungeonHeight; i++){
 		int downLinksNeeded = 2;
+		int downLinksCreated = 0;
 
 		for (int j = 0; j < dungeonWidth; j++){
 
@@ -66,21 +69,25 @@ DungeonLayer* DungeonGenerator::GenerateLayer(int layer){
 				levelArray[i][j]->addAdjacentRoom(Direction::EAST, levelArray[i][j + 1]);
 			}
 			if (i < dungeonHeight - 1){ // room to bottom
-				if (i + downLinksNeeded == dungeonWidth - 1){// room to bottom needed
+				// 
+
+				if (downLinksCreated < downLinksNeeded && i==dungeonWidth-(downLinksNeeded-downLinksCreated)){// room to bottom needed
+					Utils::PrintLine("<<" + std::to_string(i) + "::" + std::to_string(downLinksCreated));
 					levelArray[i][j]->addAdjacentRoom(Direction::SOUTH, levelArray[i + 1][j]);
 					levelArray[i + 1][j]->addAdjacentRoom(Direction::NORTH, levelArray[i][j]);
-					downLinksNeeded--;
+					downLinksCreated++;
 				}
 				else{
 					if (RandomNumberGenerator(1, 2) == 1){// 1/2 chance of getting room to top
 						levelArray[i][j]->addAdjacentRoom(Direction::SOUTH, levelArray[i + 1][j]);
 						levelArray[i + 1][j]->addAdjacentRoom(Direction::NORTH, levelArray[i][j]);
-						downLinksNeeded--;
+						downLinksCreated++;
 					}
 				}
 			}
-
+			
 		}
+		Utils::PrintLine("Downlinks created: " + std::to_string(downLinksCreated) + "for row:" + std::to_string(i));
 	}
 	//create enemies
 	int amountOfEnemies = layer * 5;
