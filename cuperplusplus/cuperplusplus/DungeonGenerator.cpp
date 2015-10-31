@@ -4,6 +4,7 @@
 #include "stdlib.h"
 #include "time.h"
 #include "Utils.h"
+#include "Enemy.h"
 
 DungeonGenerator::DungeonGenerator(){
 	srand(time(NULL));
@@ -17,7 +18,6 @@ Dungeon* DungeonGenerator::GenerateDungeon(int height, int width){
 	Dungeon* d = new Dungeon();
 	dungeonHeight = height;
 	dungeonWidth = width;
-	exitRoom = nullptr;
 	int level = 1;
 	while (level < 11){
 		d->setLevel(level, GenerateLayer(level));
@@ -53,6 +53,7 @@ DungeonLayer* DungeonGenerator::GenerateLayer(int layer){
 			allRooms.push_back(levelArray[i][j]);
 		}
 	}
+	//link the rooms
 	for (int i = 0; i < dungeonHeight; i++){
 		int downLinksNeeded = 2;
 
@@ -78,8 +79,28 @@ DungeonLayer* DungeonGenerator::GenerateLayer(int layer){
 					}
 				}
 			}
+
 		}
 	}
+	//create enemies
+	int amountOfEnemies = layer * 5;
+	for (int i = 0; i < amountOfEnemies; i++){
+		Enemy* e = new Enemy(layer);
+
+		std::pair<int, int> eRoom;
+		eRoom.first = RandomNumberGenerator(0, dungeonHeight - 1);
+		eRoom.second = RandomNumberGenerator(0, dungeonWidth - 1);
+		while (eRoom == startRoom){
+			eRoom.first = RandomNumberGenerator(0, dungeonHeight - 1);
+			eRoom.second = RandomNumberGenerator(0, dungeonWidth - 1);
+		}
+		levelArray[eRoom.first][eRoom.second]->addEnemy(e);
+
+	}
+	if (layer == 10){//boss creation
+		levelArray[endRoom.first][endRoom.second]->addEnemy(new Enemy(layer, true));
+	}
+
 	dlevel->setEnd(levelArray[endRoom.first][endRoom.second]);
 	dlevel->setStart(levelArray[startRoom.first][startRoom.second]);
 	dlevel->setRooms(allRooms);

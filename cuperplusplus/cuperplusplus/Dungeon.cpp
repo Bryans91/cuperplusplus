@@ -7,11 +7,11 @@ Dungeon::Dungeon(){
 }
 
 Dungeon::~Dungeon(){
-
+	Levels.clear();
 }
 
 void Dungeon::setLevel(int level, DungeonLayer* layer){
-	Levels[level] = *layer;
+	Levels[level] = layer;
 }
 
 void Dungeon::loadLevel(int _level){
@@ -20,7 +20,7 @@ void Dungeon::loadLevel(int _level){
 
 Room* Dungeon::getFirstRoom(){
 	if (level != 0){
-		return Levels[level].getStart();
+		return Levels[level]->getStart();
 	}
 	else {
 		return nullptr;
@@ -29,7 +29,7 @@ Room* Dungeon::getFirstRoom(){
 
 Room* Dungeon::getLastRoom(){
 	if (level != 0){
-		return Levels[level].getEnd();
+		return Levels[level]->getEnd();
 	}
 	else {
 		return nullptr;

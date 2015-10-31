@@ -1,6 +1,7 @@
 #pragma once
 #include "stdafx.h"
 #include "Enemy.h"
+#include "DungeonGenerator.h"
 
 Enemy::Enemy(int lvl)
 {
@@ -9,33 +10,33 @@ Enemy::Enemy(int lvl)
 
 	std::string Types[7] = { "Duck", "Turtle", "Cow", "Unicorn", "Barbarian", "Spider", "Dragon" };
 	int rank = 0;
-	int type = Utils::Random(0, (sizeof(Types) / sizeof(*Types)) - 1);
+	int type = DungeonGenerator::RandomNumberGenerator(0, (sizeof(Types) / sizeof(*Types)) - 1);
 	switch (lvl) {
 		case 0:
 		case 1:
-			rank = Utils::Random(0, 1);
+			rank = DungeonGenerator::RandomNumberGenerator(0, 1);
 			break;
 		case 2:
 		case 3:
-			rank = Utils::Random(1, 2);
+			rank = DungeonGenerator::RandomNumberGenerator(1, 2);
 			break;
 		case 4:
-			rank = Utils::Random(1, 3);
+			rank = DungeonGenerator::RandomNumberGenerator(1, 3);
 			break;
 		case 5:
-			rank = Utils::Random(2, 3);
+			rank = DungeonGenerator::RandomNumberGenerator(2, 3);
 			break;
 		case 6:
-			rank = Utils::Random(2, 4);
+			rank = DungeonGenerator::RandomNumberGenerator(2, 4);
 			break;
 		case 7:
-			rank = Utils::Random(3, 4);
+			rank = DungeonGenerator::RandomNumberGenerator(3, 4);
 			break;
 		case 8:
-			rank = Utils::Random(3, 5);
+			rank = DungeonGenerator::RandomNumberGenerator(3, 5);
 			break;
 		case 9:
-			rank = Utils::Random(4, 5);
+			rank = DungeonGenerator::RandomNumberGenerator(4, 5);
 			break;
 		case 10:
 			rank = 5;
@@ -43,7 +44,7 @@ Enemy::Enemy(int lvl)
 			break;
 
 	}
-	this->rank = static_cast<ranks>(rank);
+	this->rank = static_cast<Ranks>(rank);
 
 	//
 	name = ToString(this->rank) + " " + Types[type];

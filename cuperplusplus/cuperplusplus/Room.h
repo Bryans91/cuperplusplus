@@ -2,7 +2,9 @@
 #include "list"
 #include "string"
 #include <vector>
-#include "map"
+#include <map>
+
+class Enemy;
 
 enum Size
 {
@@ -38,6 +40,7 @@ public:
 	std::list<std::string> getPossibleActions();
 	std::string getRoomInfo();
 	
+	void addEnemy(Enemy* e);
 	std::map<Direction, Room*> getAdjacentRooms();
 	void addAdjacentRoom(Direction d, Room* r);
 	inline std::string ToString(Direction d)
@@ -58,6 +61,7 @@ private:
 	Furniture furniture;
 	Lighting lighting;
 	std::map<Direction, Room*> adjacentRooms;
+	std::vector<Enemy*> enemies;
 	const char * getTextForSize();
 	const char * getTextForState();
 	const char * getTextForFurniture();

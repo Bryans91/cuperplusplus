@@ -17,7 +17,7 @@ public:
 
 private:
 	int level;
-	map<int, DungeonLayer> Levels;
+	map<int, DungeonLayer*> Levels;
 
 
 };
