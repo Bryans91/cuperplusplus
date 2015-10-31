@@ -1,6 +1,10 @@
 #pragma once
 #include "stdafx.h"
 #include "Game.h"
+#include "DungeonGenerator.h"
+
+
+
 
 Game::Game()
 {
@@ -8,18 +12,27 @@ Game::Game()
 	std::string name = Utils::ReadString();
 	player = new Player(name);
 	playing = true;
-	Game::startGame();
+	generateDungeon();
+	dungeon->loadLevel(1);
+	player->setCurrentRoom(dungeon->getFirstRoom());
+	startGame();
+}
+
+void Game::generateDungeon(){
+	DungeonGenerator* dgen = new DungeonGenerator();
+	dungeon = dgen->GenerateDungeon(dgen->RandomNumberGenerator(4,6), dgen->RandomNumberGenerator(4,6));
+	delete(dgen);
 }
 
 void Game::startGame() {
 	while (playing) {
-		Utils::cClear();
+		//Utils::cClear();
 
 		// TODO: Draw map with currentroom
-		Room* currentRoom = new Room();
 		// Print all actions
+		Utils::PrintLine(player->getCurrentRoom()->getRoomInfo());
 		actions = "|";
-		for (std::string actionString : currentRoom->getPossibleActions()) {
+		for (std::string actionString : player->getCurrentRoom()->getPossibleActions()) {
 			actions += "  " + actionString + "  |";
 		}
 		Utils::PrintLine(actions);
@@ -38,3 +51,7 @@ void Game::endGame() {
 Game::~Game()
 {
 }
+
+
+
+

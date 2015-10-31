@@ -10,6 +10,8 @@ public:
 	void setStart(Room* s);
 	Room* getStart();
 	Room* getEnd();
+	void setMap(std::vector<std::vector<Room*>> map);
+	void setRooms(std::vector<Room*> rooms);
 
 
 private:

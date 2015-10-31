@@ -1,8 +1,9 @@
 #pragma once
 #include "Utils.h"
-#include "Map.h"
+#include "Dungeon.h"
 #include "Player.h"
 #include "string"
+
 
 class Game
 {
@@ -11,10 +12,13 @@ public:
 	~Game();
 	void endGame();
 private:
+
+	Dungeon* dungeon;
 	bool playing;
-	Map* map;
 	Player* player;
 	std::string actions;
 	void startGame();
+	void generateDungeon();
+
 };
 

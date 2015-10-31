@@ -2,11 +2,12 @@
 //
 
 #include "stdafx.h"
-#define _CRTDBG_MAP_ALLOC
 #include <stdlib.h>
 #include <crtdbg.h>
 #include <windows.h>
 #include "Game.cpp"
+#define _CRTDBG_MAP_ALLOC
+
 
 
 int _tmain(int argc, _TCHAR* argv[])
