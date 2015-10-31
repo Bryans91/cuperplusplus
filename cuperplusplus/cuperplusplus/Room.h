@@ -29,13 +29,14 @@ public:
 	{
 		CANDLE, TORCH, FIRE
 	};
+	void addAdjacentRoom(Room* r);
 
 private:
 	Size size;
 	State state;
 	Furniture furniture;
 	Lighting lighting;
-	std::vector<Room> adjacentRooms;
+	std::vector<Room*> adjacentRooms;
 	const char * getTextForSize();
 	const char * getTextForState();
 	const char * getTextForFurniture();

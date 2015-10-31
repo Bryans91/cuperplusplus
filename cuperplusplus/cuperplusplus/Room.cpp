@@ -90,3 +90,7 @@ std::string Room::getRoomInfo(){
 	allInfo += temp;
 	return allInfo;
 }
+
+void Room::addAdjacentRoom(Room* r){
+	adjacentRooms.push_back(r);
+}
