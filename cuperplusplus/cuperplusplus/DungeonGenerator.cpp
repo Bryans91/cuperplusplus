@@ -51,34 +51,33 @@ DungeonLayer* DungeonGenerator::GenerateLayer(int layer){
 		for (int j = 0; j < dungeonWidth; j++){
 			levelArray[i][j] = new Room();
 			allRooms.push_back(levelArray[i][j]);
+		}
+	}
+	for (int i = 0; i < dungeonHeight; i++){
+		int downLinksNeeded = 2;
+
+		for (int j = 0; j < dungeonWidth; j++){
+
 			if (j > 0){ // room to left
 				levelArray[i][j]->addAdjacentRoom(levelArray[i][j - 1]);
 			}
 			if (j < dungeonWidth - 1){ // room to the right
 				levelArray[i][j]->addAdjacentRoom(levelArray[i][j + 1]);
 			}
-			if (i> 0){// room to top
-				if (i + topLinksNeeded == dungeonWidth - 1){// chance of 
-					levelArray[i][j]->addAdjacentRoom(levelArray[i - 1][j]);
-				}
-				else{
-					if (RandomNumberGenerator(1, 2) == 1){// 1/2 chance of getting room to top
-						levelArray[i][j]->addAdjacentRoom(levelArray[i - 1][j]);
-					}
-				}
-			}
 			if (i < dungeonHeight - 1){ // room to bottom
 				if (i + downLinksNeeded == dungeonWidth - 1){// chance of 
 					levelArray[i][j]->addAdjacentRoom(levelArray[i + 1][j]);
+					levelArray[i + 1][j]->addAdjacentRoom(levelArray[i][j]);
+					downLinksNeeded--;
 				}
 				else{
 					if (RandomNumberGenerator(1, 2) == 1){// 1/2 chance of getting room to top
 						levelArray[i][j]->addAdjacentRoom(levelArray[i + 1][j]);
+						levelArray[i + 1][j]->addAdjacentRoom(levelArray[i][j]);
+						downLinksNeeded--;
 					}
 				}
 			}
-
-			
 		}
 	}
 	dlevel->setEnd(levelArray[endRoom.first][endRoom.second]);
