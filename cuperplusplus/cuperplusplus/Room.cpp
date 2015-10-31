@@ -91,6 +91,6 @@ std::string Room::getRoomInfo(){
 	return allInfo;
 }
 
-void Room::addAdjacentRoom(Room* r){
-	adjacentRooms.push_back(r);
+void Room::addAdjacentRoom(Direction d, Room* r){
+	adjacentRooms.insert(std::pair<Direction, Room*>(d,r));
 }

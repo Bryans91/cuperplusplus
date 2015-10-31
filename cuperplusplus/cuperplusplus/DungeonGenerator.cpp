@@ -59,21 +59,21 @@ DungeonLayer* DungeonGenerator::GenerateLayer(int layer){
 		for (int j = 0; j < dungeonWidth; j++){
 
 			if (j > 0){ // room to left
-				levelArray[i][j]->addAdjacentRoom(levelArray[i][j - 1]);
+				levelArray[i][j]->addAdjacentRoom(Direction::WEST, levelArray[i][j - 1]);
 			}
 			if (j < dungeonWidth - 1){ // room to the right
-				levelArray[i][j]->addAdjacentRoom(levelArray[i][j + 1]);
+				levelArray[i][j]->addAdjacentRoom(Direction::EAST, levelArray[i][j + 1]);
 			}
 			if (i < dungeonHeight - 1){ // room to bottom
-				if (i + downLinksNeeded == dungeonWidth - 1){// chance of 
-					levelArray[i][j]->addAdjacentRoom(levelArray[i + 1][j]);
-					levelArray[i + 1][j]->addAdjacentRoom(levelArray[i][j]);
+				if (i + downLinksNeeded == dungeonWidth - 1){// room to bottom needed
+					levelArray[i][j]->addAdjacentRoom(Direction::SOUTH, levelArray[i + 1][j]);
+					levelArray[i + 1][j]->addAdjacentRoom(Direction::NORTH, levelArray[i][j]);
 					downLinksNeeded--;
 				}
 				else{
 					if (RandomNumberGenerator(1, 2) == 1){// 1/2 chance of getting room to top
-						levelArray[i][j]->addAdjacentRoom(levelArray[i + 1][j]);
-						levelArray[i + 1][j]->addAdjacentRoom(levelArray[i][j]);
+						levelArray[i][j]->addAdjacentRoom(Direction::SOUTH, levelArray[i + 1][j]);
+						levelArray[i + 1][j]->addAdjacentRoom(Direction::NORTH, levelArray[i][j]);
 						downLinksNeeded--;
 					}
 				}
