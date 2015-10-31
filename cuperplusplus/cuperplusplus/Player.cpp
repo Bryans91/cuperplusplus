@@ -16,6 +16,29 @@ Player::Player(std::string aName)
 	//items.push_back();
 }
 
+void Player::goDirection(std::string direction){
+	if (direction == "north") {
+		if (getCurrentRoom()->getAdjacentRooms().find(Direction::NORTH)->second != NULL) {
+			setCurrentRoom(getCurrentRoom()->getAdjacentRooms().find(Direction::NORTH)->second);
+		}
+	}
+	else if (direction == "east") {
+		if (getCurrentRoom()->getAdjacentRooms().find(Direction::EAST)->second != NULL) {
+			setCurrentRoom(getCurrentRoom()->getAdjacentRooms().find(Direction::EAST)->second);
+		}
+	}
+	else if (direction == "west") {
+		if (getCurrentRoom()->getAdjacentRooms().find(Direction::WEST)->second != NULL) {
+			setCurrentRoom(getCurrentRoom()->getAdjacentRooms().find(Direction::WEST)->second);
+		}
+	}
+	else if (direction == "south") {
+		if (getCurrentRoom()->getAdjacentRooms().find(Direction::SOUTH)->second != NULL) {
+			setCurrentRoom(getCurrentRoom()->getAdjacentRooms().find(Direction::SOUTH)->second);
+		}
+	}
+}
+
 
 Player::~Player()
 {

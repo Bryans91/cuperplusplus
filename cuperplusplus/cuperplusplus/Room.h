@@ -2,6 +2,7 @@
 #include "list"
 #include "string"
 #include <vector>
+#include "map"
 
 enum Size
 {
@@ -37,8 +38,19 @@ public:
 	std::list<std::string> getPossibleActions();
 	std::string getRoomInfo();
 	
-
+	std::map<Direction, Room*> getAdjacentRooms();
 	void addAdjacentRoom(Direction d, Room* r);
+	inline std::string ToString(Direction d)
+	{
+		switch (d)
+		{
+		case Direction::NORTH: return "North";
+		case Direction::EAST: return "East";
+		case Direction::WEST: return "West";
+		case Direction::SOUTH: return "South";
+		default: return "MissingNo";
+		}
+	}
 	
 private:
 	Size size;

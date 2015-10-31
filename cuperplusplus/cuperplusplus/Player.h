@@ -17,7 +17,7 @@ private:
 public:
 	Player(std::string aName);//, Map *map
 	~Player();
-	//void Move(Room *_room){ this->currentRoom = _room; _room->setVisited(); };
+	void goDirection(std::string);
 	enum Action
 	{
 		eflee = 1,
