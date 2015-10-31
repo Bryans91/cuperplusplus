@@ -72,10 +72,13 @@ void Game::handleInput(std::string input) {
 
 void Game::endGame() {
 	playing = false;
+
 }
 
 Game::~Game()
 {
+	delete dungeon;
+	delete player;
 }
 
 

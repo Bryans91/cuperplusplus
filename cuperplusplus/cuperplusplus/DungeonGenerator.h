@@ -13,7 +13,6 @@ public:
 
 private:
 	int dungeonWidth, dungeonHeight;
-	Room* exitRoom;
 	DungeonLayer* GenerateLayer(int layer);
 
 };

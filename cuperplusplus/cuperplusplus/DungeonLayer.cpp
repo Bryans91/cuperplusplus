@@ -10,6 +10,10 @@ DungeonLayer::DungeonLayer()
 
 DungeonLayer::~DungeonLayer()
 {
+	roomList.clear();
+	mapLayout.clear();
+	delete start;
+	delete end;
 }
 
 void DungeonLayer::setEnd(Room* r){

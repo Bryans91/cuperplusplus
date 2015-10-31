@@ -2,8 +2,9 @@
 #include "list"
 #include "string"
 #include <vector>
-#include "Enemy.h"
 #include <map>
+
+class Enemy;
 
 enum Size
 {

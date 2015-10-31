@@ -2,6 +2,7 @@
 #include "stdafx.h"
 #include "Room.h"
 #include "DungeonGenerator.h"
+#include "Enemy.h"
 
 static const char * sizeStrings[] = { "small", "medium", "large" };
 static const char * stateStrings[] = { "neat", "dirty" };
@@ -79,7 +80,8 @@ std::list<std::string> Room::getPossibleActions() {
 }
 
 Room::~Room(){
-
+	enemies.clear();
+	adjacentRooms.clear();
 }
 
 std::string Room::getRoomInfo(){
@@ -96,4 +98,9 @@ std::string Room::getRoomInfo(){
 
 void Room::addAdjacentRoom(Direction d, Room* r){
 	adjacentRooms.insert(std::pair<Direction, Room*>(d,r));
+}
+
+void Room::addEnemy(Enemy* e){
+	enemies.push_back(e);
+	e->setCurrentRoom(this);
 }
