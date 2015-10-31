@@ -40,7 +40,7 @@ public:
 	std::string getRoomInfo();
 	
 	void addEnemy(Enemy* e);
-
+	std::map<Direction, Room*> getAdjacentRooms();
 	void addAdjacentRoom(Direction d, Room* r);
 	inline std::string ToString(Direction d)
 	{
