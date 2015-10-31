@@ -70,6 +70,9 @@ const char * Room::getTextForLighting(){
 	return  lightStrings[lighting];
 }
 
+std::map<Direction, Room*> Room::getAdjacentRooms() {
+	return adjacentRooms;
+}
 
 std::list<std::string> Room::getPossibleActions() {
 	return std::list < std::string > {"Run", "Fight", "Inv", "Map", "Stats"};

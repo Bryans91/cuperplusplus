@@ -3,6 +3,7 @@
 #include "string"
 #include <vector>
 #include "Enemy.h"
+#include <map>
 
 enum Size
 {
@@ -39,7 +40,19 @@ public:
 	std::string getRoomInfo();
 	
 	void addEnemy(Enemy* e);
+
 	void addAdjacentRoom(Direction d, Room* r);
+	inline std::string ToString(Direction d)
+	{
+		switch (d)
+		{
+		case Direction::NORTH: return "North";
+		case Direction::EAST: return "East";
+		case Direction::WEST: return "West";
+		case Direction::SOUTH: return "South";
+		default: return "MissingNo";
+		}
+	}
 	
 private:
 	Size size;

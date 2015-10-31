@@ -2,7 +2,10 @@
 #include "Utils.h"
 #include "Dungeon.h"
 #include "Player.h"
+#include "Room.h"
+#include "map"
 #include "string"
+#include "DungeonGenerator.h"
 
 
 class Game
@@ -18,6 +21,7 @@ private:
 	Player* player;
 	std::string actions;
 	void startGame();
+	void handleInput(std::string);
 	void generateDungeon();
 
 };
