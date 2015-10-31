@@ -36,7 +36,7 @@ public:
 		healthPoints = (((healthPoints + ammount) > maxHealthPoints) ? this->maxHealthPoints : (healthPoints + ammount));
 	};
 	bool isFullyRestored(){ return (healthPoints == maxHealthPoints); }
-	bool checkAlive(){ return (healthPoints > 0); };
+	bool checkAlive(){ return (healthPoints > 0); }
 
 	virtual void setCurrentRoom(Room* r);
 	virtual Room* getCurrentRoom();
