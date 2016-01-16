@@ -35,3 +35,7 @@ Room* Dungeon::getLastRoom(){
 		return nullptr;
 	}
 }
+
+DungeonLayer* Dungeon::getCurrentLayer(){
+	return Levels[level];
+}

@@ -14,6 +14,7 @@ Game::Game()
 	generateDungeon();
 	dungeon->loadLevel(1);
 	player->setCurrentRoom(dungeon->getFirstRoom());
+	dungeon->getFirstRoom()->Visited();
 	startGame();
 }
 
@@ -24,15 +25,17 @@ void Game::generateDungeon(){
 }
 
 void Game::startGame() {
+	Utils::cClear();
 	while (playing) {
-		Utils::cClear();
+		
 
 		// TODO: Draw map with currentroom
+		Utils::Print(dungeon->getCurrentLayer()->getDungeonMap(false, player->getCurrentRoom()));
 		// Print all actions
 		if (player->getCurrentRoom() == dungeon->getFirstRoom()) {
 			Utils::PrintLine("This is the first room of this layer.");
 		} else if (player->getCurrentRoom() == dungeon->getLastRoom()) {
-			Utils::PrintLine("You have found the last room in this layer! Do you wish to go up, further into the dungeon?");
+			Utils::PrintLine("You have found the last room in this layer! Do you wish to go down, further into the dungeon?");
 		}
 		Utils::PrintLine(player->getCurrentRoom()->getRoomInfo());
 		
@@ -45,7 +48,10 @@ void Game::startGame() {
 		Utils::PrintLine(actions);
 		Utils::PrintLine("Please enter your choice below.");
 		std::string choice = Utils::ReadString();
+		Utils::cClear(); // TODO Find a good place for this one, after handle input it clears the map, here it clears after you typed run, will print the 
 		handleInput(choice);
+
+
 	}
 }
 
@@ -67,6 +73,9 @@ void Game::handleInput(std::string input) {
 	}
 	if (input == std::string("endgame")) {
 		endGame();
+	}
+	if (input == std::string("cheat")){
+		Utils::Print(dungeon->getCurrentLayer()->getDungeonMap(true, player->getCurrentRoom()));
 	}
 }
 

@@ -12,6 +12,7 @@ public:
 	Room* getEnd();
 	void setMap(std::vector<std::vector<Room*>> map);
 	void setRooms(std::vector<Room*> rooms);
+	std::string getDungeonMap(bool, Room*);
 
 
 private:

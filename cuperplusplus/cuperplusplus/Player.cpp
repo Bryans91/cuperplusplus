@@ -37,6 +37,7 @@ void Player::goDirection(std::string direction){
 			setCurrentRoom(getCurrentRoom()->getAdjacentRooms().find(Direction::SOUTH)->second);
 		}
 	}
+	getCurrentRoom()->Visited();
 }
 
 

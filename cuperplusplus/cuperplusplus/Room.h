@@ -54,6 +54,8 @@ public:
 		default: return "MissingNo";
 		}
 	}
+	void Visited(){ visited = true; };
+	bool isVisited(){ return visited; }
 	
 private:
 	Size size;
@@ -62,6 +64,7 @@ private:
 	Lighting lighting;
 	std::map<Direction, Room*> adjacentRooms;
 	std::vector<Enemy*> enemies;
+	bool visited = false;
 	const char * getTextForSize();
 	const char * getTextForState();
 	const char * getTextForFurniture();

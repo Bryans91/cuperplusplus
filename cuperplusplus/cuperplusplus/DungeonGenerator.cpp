@@ -21,7 +21,6 @@ Dungeon* DungeonGenerator::GenerateDungeon(int height, int width){
 	int level = 1;
 	while (level < 11){
 		d->setLevel(level, GenerateLayer(level));
-		Utils::PrintLine("Layer " + std::to_string(level) + " created");
 		level++;
 	}
 
@@ -106,6 +105,7 @@ DungeonLayer* DungeonGenerator::GenerateLayer(int layer){
 	dlevel->setEnd(levelArray[endRoom.first][endRoom.second]);
 	dlevel->setStart(levelArray[startRoom.first][startRoom.second]);
 	dlevel->setRooms(allRooms);
+	dlevel->setMap(levelArray);
 
 	return dlevel;
 }

@@ -32,8 +32,8 @@ public:
 	std::string getStatus(){ return std::to_string(healthPoints) + "hp"; };
 	void setCreature();
 	bool hit(int dmg);
-	void heal(int ammount){
-		healthPoints = (((healthPoints + ammount) > maxHealthPoints) ? this->maxHealthPoints : (healthPoints + ammount));
+	void heal(int amount){
+		healthPoints = (((healthPoints + amount) > maxHealthPoints) ? this->maxHealthPoints : (healthPoints + amount));
 	};
 	bool isFullyRestored(){ return (healthPoints == maxHealthPoints); }
 	bool checkAlive(){ return (healthPoints > 0); }

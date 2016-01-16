@@ -14,6 +14,7 @@ public:
 	void loadLevel(int level);
 	Room* getFirstRoom();
 	Room* getLastRoom();
+	DungeonLayer* getCurrentLayer();
 
 private:
 	int level;
