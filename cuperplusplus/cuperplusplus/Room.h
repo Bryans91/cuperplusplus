@@ -30,6 +30,11 @@ enum Direction
 	NORTH, EAST, SOUTH, WEST
 };
 
+enum Trap
+{
+	TRIPWIRE, FAKEBUTTON, NONE
+};
+
 class Room
 {
 public:
@@ -62,6 +67,7 @@ private:
 	State state;
 	Furniture furniture;
 	Lighting lighting;
+	Trap trap;
 	std::map<Direction, Room*> adjacentRooms;
 	std::vector<Enemy*> enemies;
 	bool visited = false;
@@ -69,5 +75,6 @@ private:
 	const char * getTextForState();
 	const char * getTextForFurniture();
 	const char * getTextForLighting();
+	const char * getTextForTrap();
 
 };
