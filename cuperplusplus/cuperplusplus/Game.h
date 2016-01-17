@@ -25,7 +25,7 @@ private:
 	std::string actions;
 	void startGame();
 	void handleInput(std::string);
-	void generateDungeon(std::string);
+	void generateDungeon(std::string, std::string);
 
 };
 

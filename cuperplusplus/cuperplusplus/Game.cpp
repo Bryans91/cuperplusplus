@@ -14,16 +14,18 @@ Game::Game()
 	playing = true;
 	Utils::PrintLine("What kind of dungeon do you want? small(4-6), medium(8-10) or large(12-14)? Info: Typo's or nothing will make a medium dungeon");
 	std::string size = Utils::ReadString();
-	generateDungeon(size);
+	Utils::PrintLine("What difficulty do you want? normal, hard or insane");
+	std::string difficulty = Utils::ReadString();
+	generateDungeon(size, difficulty);
 	dungeon->loadLevel(1);
 	player->setCurrentRoom(dungeon->getFirstRoom());
 	dungeon->getFirstRoom()->Visited();
 	startGame();
 }
 
-void Game::generateDungeon(std::string size){
+void Game::generateDungeon(std::string size, std::string difficulty){
 	DungeonGenerator* dgen = new DungeonGenerator();
-	dungeon = dgen->GenerateDungeon(size);
+	dungeon = dgen->GenerateDungeon(size, difficulty);
 	delete(dgen);
 }
 
@@ -38,6 +40,7 @@ void Game::startGame() {
 				Utils::PrintLine("\nWhat do you want to do?\nAttack | Run | Use Potion | Use Item");
 				std::string choice = Utils::ReadString();
 				handleInput(choice);
+				Utils::cClear();
 			}
 			else {
 				Utils::PrintLine("You defeated the enemy.");
@@ -69,6 +72,13 @@ void Game::startGame() {
 		for (std::string actionString : player->getCurrentRoom()->getPossibleActions()) {
 			actions += "  " + actionString + "  |";
 		}
+		if (player->getCurrentRoom() == dungeon->getLastRoom()){
+			actions += "  Down |";
+		}
+		else if (player->getCurrentRoom() == dungeon->getFirstRoom()){
+			actions += "  Up |";
+		}
+		actions += "  Quit |";
 		Utils::PrintLine(actions);
 		Utils::PrintLine("Please enter your choice below.");
 		std::string choice = Utils::ReadString();
@@ -118,7 +128,8 @@ void Game::handleInput(std::string input) {
 	}
 	else if (input == std::string("attack")){
 		// currentroom has more enemies
-		if (player->getCurrentRoom()->hasEnemies() > 1){
+
+		if (player->getCurrentRoom()->hasEnemies() > 1 && fighting){
 			Utils::PrintLine("Which monster do you wanna attack?");
 			int monsterno = std::stoi(Utils::ReadString());
 
@@ -129,7 +140,7 @@ void Game::handleInput(std::string input) {
 		}
 		else { // only 1;
 
-			player->getCurrentRoom()->AttackEnemy(1, player);
+			player->getCurrentRoom()->AttackEnemy(0, player);
 		}
 		player->getCurrentRoom()->EnemiesAttack(player);
 	}
@@ -143,13 +154,25 @@ void Game::handleInput(std::string input) {
 		showStats = true;
 	}
 	else if (input == std::string("quit")){
-		//save player leven and progress on name, in name.txt
+		//save player stats and progress on name, in name.txt
 		Utils::PrintLine("Are you sure your wanna quit? Y/N");
 		std::string q = Utils::ReadString();
 		std::transform(q.begin(), q.end(), q.begin(), ::tolower);
 		if (q == "y"){
 			playing = false;
 		}
+	}
+	else if(input == std::string("rest")){
+		player->heal(5);
+		showStats = true;
+	}
+	else if (input == std::string("down")){
+		if (player->getCurrentRoom() == dungeon->getLastRoom() && player->getCurrentRoom()->hasEnemies() ==0){
+			dungeon->loadNextLevel();
+			player->setCurrentRoom(dungeon->getFirstRoom());
+			player->getCurrentRoom()->Visited();
+		}
+
 	}
 	else {
 		Utils::PrintLine("The input " + input + " is not known, try again.");

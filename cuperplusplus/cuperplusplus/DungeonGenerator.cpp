@@ -15,9 +15,10 @@ DungeonGenerator::~DungeonGenerator(){
 
 }
 
-Dungeon* DungeonGenerator::GenerateDungeon(std::string size){
+Dungeon* DungeonGenerator::GenerateDungeon(std::string size, std::string difficulty){
 	std::string Size = size;
 	std::transform(Size.begin(), Size.end(), Size.begin(), ::tolower);
+	std::transform(difficulty.begin(), difficulty.end(), difficulty.begin(), ::tolower);
 	if (Size == "small"){
 		dungeonHeight = RandomNumberGenerator(4, 6);
 		dungeonWidth = RandomNumberGenerator(4, 6);
@@ -29,6 +30,12 @@ Dungeon* DungeonGenerator::GenerateDungeon(std::string size){
 	else { // medium size
 		dungeonHeight = RandomNumberGenerator(8, 10);
 		dungeonWidth = RandomNumberGenerator(8, 10);
+	}
+	if (difficulty == "hard"){
+		difficultylvl = 2;
+	}
+	else if (difficulty == "insane"){
+		difficultylvl = 3;
 	}
 	Dungeon* d = new Dungeon();
 
@@ -98,7 +105,7 @@ DungeonLayer* DungeonGenerator::GenerateLayer(int layer){
 		}
 	}
 	//create enemies
-	int amountOfEnemies = layer * 5;
+	int amountOfEnemies = layer * 5 * difficultylvl;
 	for (int i = 0; i < amountOfEnemies; i++){
 		Enemy* e = new Enemy(layer);
 
@@ -111,6 +118,9 @@ DungeonLayer* DungeonGenerator::GenerateLayer(int layer){
 		}
 		levelArray[eRoom.first][eRoom.second]->addEnemy(e);
 
+	}
+	if (layer == 5){
+		levelArray[endRoom.first][endRoom.second]->addEnemy(new Enemy(layer, true));
 	}
 	if (layer == 10){//boss creation
 		levelArray[endRoom.first][endRoom.second]->addEnemy(new Enemy(layer, true));

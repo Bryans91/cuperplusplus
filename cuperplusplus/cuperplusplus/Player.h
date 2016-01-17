@@ -13,7 +13,10 @@ class Player : public Character
 private:
 	Room *currentRoom;
 	int experience;
-	std::map < std::string, Room> inputMap;
+	std::map<int, int> ExperienceMap;
+	double getExperienceNeeded(int);
+	int unspendPoints = 0;
+	void lvlup();
 public:
 	Player(std::string aName);//, Map *map
 	~Player();
@@ -41,6 +44,8 @@ public:
 	void cheat(Map *map);
 	void attack(Character*);
 	std::string getStatus();
+	int getUnspendPoints(){ return unspendPoints; };
+	void save();
 
 
 };

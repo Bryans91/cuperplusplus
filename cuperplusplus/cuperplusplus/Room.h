@@ -62,7 +62,7 @@ public:
 	};
 	void Visited(){ visited = true; };
 	bool isVisited(){ return visited; };
-	bool hasEnemies();
+	int hasEnemies();
 	bool AttackEnemy(int, Character*);
 	void EnemiesAttack(Character* c);
 

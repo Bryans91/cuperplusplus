@@ -96,7 +96,7 @@ std::map<Direction, Room*> Room::getAdjacentRooms() {
 }
 
 std::list<std::string> Room::getPossibleActions() {
-	return std::list < std::string > {"Run", "Fight", "Inv", "Stats", "Quit"};
+	return std::list < std::string > {"Run", "Fight", "Inv", "Stats", "Rest"};
 }
 
 Room::~Room(){
@@ -156,6 +156,14 @@ std::string Room::getEnemyInfo(bool fighting){
 }
 
 bool Room::AttackEnemy(int no, Character* c){
+	if (no == 0){
+		for (int i = 0; i < enemies.size(); i++){
+			if (enemies[i]->checkAlive()){
+				c->attack(enemies[i]);
+				return true;
+			}
+		}
+	}
 	if (enemies[no - 1] != nullptr){
 		c->attack(enemies[no - 1]);
 		return true;
@@ -171,16 +179,12 @@ void Room::EnemiesAttack(Character* c){
 	}
 }
 
-bool Room::hasEnemies(){
-	if (enemies.size() == 0){
-		return false;
-	}
-	else{
-		for (int i = 0; i < enemies.size(); i++){
-			if (enemies[i]->checkAlive()){
-				return true;
-			}
+int Room::hasEnemies(){
+	int enemyCount = 0;
+	for (int i = 0; i < enemies.size(); i++){
+		if (enemies[i]->checkAlive()){
+			enemyCount++;
 		}
-		return false;
 	}
+	return enemyCount;
 }

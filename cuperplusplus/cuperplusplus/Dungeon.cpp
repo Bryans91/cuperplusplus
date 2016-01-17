@@ -18,6 +18,8 @@ void Dungeon::loadLevel(int _level){
 	level = _level;
 }
 
+
+
 Room* Dungeon::getFirstRoom(){
 	if (level != 0){
 		return Levels[level]->getStart();
