@@ -8,8 +8,6 @@ static const char * sizeStrings[] = { "small", "medium", "large" };
 static const char * stateStrings[] = { "neat", "dirty" };
 static const char * furnitureStrings[] = { "There is a table with four chairs in this room.", "There is a bed in the corner.", "There is nothing in this room." };
 static const char * lightStrings[] = { "In the room there burns a single candle which lights the room a bit.", "On the wall there is a torch, which lights the room.", "On the side there is a big fireplace which fills the room with light." };
-static const char * discoveredTrapStrings[] = { "You find a tripwire that leads into the wall, in the wall there are holes cut out. You carefully step over the tripwire so that you don't activate it.", "You find a button that says free cake and decide to look what it leads to before you press it. You find out it was a trap and that the cake was a lie.", "You don't see any traps in this room." };
-static const char * trapStrings[] = { "You trip over a tripwire and with your quick reflexes you manage to dodge the spikes that appear from the holes in the wall to your left. The bad thing is that there were also spikes coming from the right. Hp -10.", "You see a button that says free cake and immedietly press it, suddenly you smell a weird scent. You wake up with a slight headache and blurred sight. attackPower-3", "You don't see any traps in this room." };
 
 Room::Room(){
 	//Size switch
@@ -56,11 +54,11 @@ Room::Room(){
 	}
 	//Trap switch
 	switch (DungeonGenerator::RandomNumberGenerator(1, 10)) {
-	case 1: trap = Trap::TRIPWIRE;
+	case 1: trap = new Tripwire();
 		break;
-	case 2: trap = Trap::FAKEBUTTON;
+	case 2: trap = new FakeButton();
 		break;
-	default: trap = Trap::NONE;
+	default: trap = noTrap;
 		break;
 	}
 }
@@ -82,13 +80,7 @@ const char * Room::getTextForLighting(){
 }
 
 const char * Room::getTextForTrap() {
-	if (DungeonGenerator::RandomNumberGenerator(1, 100) <= 80) {
-		return  discoveredTrapStrings[trap];
-	}
-	else {
-		trap = Trap();
-		return  trapStrings[trap];
-	}
+	return trap->getText();
 }
 
 std::map<Direction, Room*> Room::getAdjacentRooms() {

@@ -3,9 +3,14 @@
 #include "string"
 #include <vector>
 #include <map>
+#include "Trap.h"
+#include "Tripwire.h"
+#include "FakeButton.h"
 
 class Enemy;
 class Character;
+
+
 
 enum Size
 {
@@ -29,11 +34,6 @@ enum Lighting
 enum Direction
 {
 	NORTH, EAST, SOUTH, WEST
-};
-
-enum Trap
-{
-	TRIPWIRE, FAKEBUTTON, NONE
 };
 
 class Room
@@ -72,7 +72,8 @@ private:
 	State state;
 	Furniture furniture;
 	Lighting lighting;
-	Trap trap;
+	Trap* trap;
+	Trap* noTrap = new Trap();
 	std::map<Direction, Room*> adjacentRooms;
 	std::vector<Enemy*> enemies;
 	bool visited = false;
