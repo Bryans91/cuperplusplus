@@ -24,6 +24,6 @@ public:
 		default: return "MissingNo";
 		}
 	}
-	int getRank(){ return rank; };
+	Ranks getRank(){ return rank; };
 	~Enemy();
 };

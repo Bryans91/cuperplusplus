@@ -5,6 +5,7 @@
 #include <map>
 
 class Enemy;
+class Character;
 
 enum Size
 {
@@ -44,7 +45,7 @@ public:
 	~Room();
 	std::list<std::string> getPossibleActions();
 	std::string getRoomInfo();
-	
+	std::string getEnemyInfo(bool);
 	void addEnemy(Enemy* e);
 	std::map<Direction, Room*> getAdjacentRooms();
 	void addAdjacentRoom(Direction d, Room* r);
@@ -58,9 +59,13 @@ public:
 		case Direction::SOUTH: return "South";
 		default: return "MissingNo";
 		}
-	}
+	};
 	void Visited(){ visited = true; };
-	bool isVisited(){ return visited; }
+	bool isVisited(){ return visited; };
+	bool hasEnemies();
+	bool AttackEnemy(int, Character*);
+	void EnemiesAttack(Character* c);
+
 	
 private:
 	Size size;

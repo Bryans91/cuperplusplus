@@ -12,7 +12,7 @@ Game::Game()
 	std::string name = Utils::ReadString();
 	player = new Player(name);
 	playing = true;
-	Utils::PrintLine("What kind of dungeon do you want? small(4-6), medium(8-10) or large(12-14)?");
+	Utils::PrintLine("What kind of dungeon do you want? small(4-6), medium(8-10) or large(12-14)? Info: Typo's or nothing will make a medium dungeon");
 	std::string size = Utils::ReadString();
 	generateDungeon(size);
 	dungeon->loadLevel(1);
@@ -30,12 +30,30 @@ void Game::generateDungeon(std::string size){
 void Game::startGame() {
 	Utils::cClear();
 	while (playing) {
-		
+		//fighting loop
+		while (fighting){
+			if (player->getCurrentRoom()->hasEnemies()){
+				Utils::Print("\n" + player->getCurrentRoom()->getEnemyInfo(true));
+				Utils::PrintLine(player->getStatus());
+				Utils::PrintLine("\nWhat do you want to do?\nAttack | Run | Use Potion | Use Item");
+				std::string choice = Utils::ReadString();
+				handleInput(choice);
+			}
+			else {
+				Utils::PrintLine("You defeated the enemy.");
+				fighting = false;
+			}
+			
 
-		// TODO: Draw map with currentroom
+		}
+		// print map
 		Utils::Print(dungeon->getCurrentLayer()->getDungeonMap(cheat, player->getCurrentRoom()));
 		if (cheat){
-			cheat =  !cheat;
+			cheat = false;
+		}
+		if (showStats){
+			showStats = false;
+			Utils::PrintLine(player->getStatus() + "\n");
 		}
 		// Print all actions
 		if (player->getCurrentRoom() == dungeon->getFirstRoom()) {
@@ -43,7 +61,7 @@ void Game::startGame() {
 		} else if (player->getCurrentRoom() == dungeon->getLastRoom()) {
 			Utils::PrintLine("You have found the last room in this layer! Do you wish to go down, further into the dungeon?");
 		}
-		Utils::PrintLine(player->getCurrentRoom()->getRoomInfo());
+		Utils::Print(player->getCurrentRoom()->getRoomInfo());
 		
 
 		
@@ -64,24 +82,78 @@ void Game::startGame() {
 void Game::handleInput(std::string input) {
 	std::transform(input.begin(), input.end(), input.begin(), ::tolower);
 	if (input == std::string("run")) {
-		map<Direction, Room*>::iterator it;
-		map<Direction, Room*> rooms = player->getCurrentRoom()->getAdjacentRooms();
-
-		Utils::Print("There are exits in the following directions: ");
-		for (it = rooms.begin(); it != rooms.end(); it++)
-		{
-			Utils::Print(it->second->ToString(it->first) + ", ");
+		if (fighting){
+			fighting = false;
+			Utils::cClear();
 		}
+		else {
+			map<Direction, Room*>::iterator it;
+			map<Direction, Room*> rooms = player->getCurrentRoom()->getAdjacentRooms();
 
-		Utils::PrintLine("if you wish to travel type one of these directions below.");
-		std::string direction = Utils::ReadString();
-		player->goDirection(direction);
+			Utils::Print("There are exits in the following directions: ");
+			for (it = rooms.begin(); it != rooms.end(); it++)
+			{
+				Utils::Print(it->second->ToString(it->first) + ", ");
+			}
+
+			Utils::PrintLine("if you wish to travel type one of these directions below.");
+			std::string direction = Utils::ReadString();
+			player->goDirection(direction);
+		}
 	}
-	if (input == std::string("endgame")) {
+	else if (input == std::string("endgame")) {
 		endGame();
 	}
-	if (input == std::string("cheat")){
+	else if (input == std::string("cheat")){
 		cheat = true;
+	}
+	else if (input == std::string("fight")){
+		if (player->getCurrentRoom()->hasEnemies()){
+			fighting = true;
+		}
+		else {
+			Utils::PrintLine("There are no enemies to fight, please select another option");
+			handleInput(Utils::ReadString());
+		}
+	}
+	else if (input == std::string("attack")){
+		// currentroom has more enemies
+		if (player->getCurrentRoom()->hasEnemies() > 1){
+			Utils::PrintLine("Which monster do you wanna attack?");
+			int monsterno = std::stoi(Utils::ReadString());
+
+			while (!player->getCurrentRoom()->AttackEnemy(monsterno, player)){
+				Utils::PrintLine("That monster number isn't existing, Try again.");
+				monsterno = std::stoi(Utils::ReadString());
+			}
+		}
+		else { // only 1;
+
+			player->getCurrentRoom()->AttackEnemy(1, player);
+		}
+		player->getCurrentRoom()->EnemiesAttack(player);
+	}
+	else if (input == std::string("use potion")){
+
+	}
+	else if (input == std::string("use item")){
+
+	}
+	else if (input == std::string("stats")){
+		showStats = true;
+	}
+	else if (input == std::string("quit")){
+		//save player leven and progress on name, in name.txt
+		Utils::PrintLine("Are you sure your wanna quit? Y/N");
+		std::string q = Utils::ReadString();
+		std::transform(q.begin(), q.end(), q.begin(), ::tolower);
+		if (q == "y"){
+			playing = false;
+		}
+	}
+	else {
+		Utils::PrintLine("The input " + input + " is not known, try again.");
+		handleInput(Utils::ReadString());
 	}
 }
 

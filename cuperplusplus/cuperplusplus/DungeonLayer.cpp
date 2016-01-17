@@ -13,8 +13,8 @@ DungeonLayer::~DungeonLayer()
 {
 	roomList.clear();
 	mapLayout.clear();
-	delete start;
-	delete end;
+	start = nullptr;
+	end = nullptr;
 }
 
 void DungeonLayer::setEnd(Room* r){

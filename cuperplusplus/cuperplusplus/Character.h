@@ -29,9 +29,9 @@ public:
 	void increaseDefence(int pDef){ defencePower += pDef; };
 
 	std::string getName() const { return name; }
-	std::string getStatus(){ return std::to_string(healthPoints) + "hp"; };
+	std::string getStatus();
 	void setCreature();
-	bool hit(int dmg);
+	int hit(int dmg);
 	void heal(int amount){
 		healthPoints = (((healthPoints + amount) > maxHealthPoints) ? this->maxHealthPoints : (healthPoints + amount));
 	};
@@ -40,6 +40,8 @@ public:
 
 	virtual void setCurrentRoom(Room* r);
 	virtual Room* getCurrentRoom();
+
+	virtual void attack(Character*);
 };
 
 

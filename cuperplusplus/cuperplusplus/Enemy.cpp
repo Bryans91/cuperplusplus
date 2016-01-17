@@ -17,6 +17,8 @@ Enemy::Enemy(int lvl)
 			rank = DungeonGenerator::RandomNumberGenerator(0, 1);
 			break;
 		case 2:
+			rank = DungeonGenerator::RandomNumberGenerator(0, 2);
+			break;
 		case 3:
 			rank = DungeonGenerator::RandomNumberGenerator(1, 2);
 			break;
@@ -70,7 +72,7 @@ Enemy::Enemy(int lvl, bool isBoss)
 		healthPoints = 200;
 	}
 	attackPower = 30;
-	defencePower = 10;
+	defencePower = 20;
 	level = 0;
 }
 

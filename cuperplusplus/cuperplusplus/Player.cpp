@@ -44,3 +44,20 @@ void Player::goDirection(std::string direction){
 Player::~Player()
 {
 }
+
+void Player::attack(Character* c){
+	experience += c->hit(attackPower);
+}
+
+std::string Player::getStatus(){
+	std::string retString;
+	retString += "Name:         " + this->name;
+	retString += "\nLevel:        " + std::to_string(level);
+	retString += "\nHitpoints:    " + std::to_string(healthPoints);
+	retString += "\nAttack:       " + std::to_string(attackPower);
+	retString += "\nDefence:      " + std::to_string(defencePower);
+	retString += "\nExperience:   " + std::to_string(experience);
+	retString += "\nExp to lvlup: need to calculate this.";
+
+	return retString;
+}

@@ -39,6 +39,8 @@ public:
 	void rest();
 	void stats();
 	void cheat(Map *map);
+	void attack(Character*);
+	std::string getStatus();
 
 
 };

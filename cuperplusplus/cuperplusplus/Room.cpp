@@ -96,12 +96,14 @@ std::map<Direction, Room*> Room::getAdjacentRooms() {
 }
 
 std::list<std::string> Room::getPossibleActions() {
-	return std::list < std::string > {"Run", "Fight", "Inv", "Stats"};
+	return std::list < std::string > {"Run", "Fight", "Inv", "Stats", "Quit"};
 }
 
 Room::~Room(){
 	enemies.clear();
-	adjacentRooms.clear();
+	for (auto it = adjacentRooms.cbegin(); it != adjacentRooms.cend();){
+		adjacentRooms.erase(it++);
+	}
 }
 
 std::string Room::getRoomInfo(){
@@ -114,10 +116,8 @@ std::string Room::getRoomInfo(){
 	temp = getTextForLighting();
 	allInfo += temp + " ";
 	temp = getTextForTrap();
-	allInfo += temp + " ";
-	if (enemies.size() != 0){
-		allInfo += "This room has " + std::to_string(enemies.size()) + " enemies. ";
-	}
+	allInfo += temp + " \n";
+	allInfo += getEnemyInfo(false);
 	return allInfo;
 }
 
@@ -128,4 +128,59 @@ void Room::addAdjacentRoom(Direction d, Room* r){
 void Room::addEnemy(Enemy* e){
 	enemies.push_back(e);
 	e->setCurrentRoom(this);
+}
+
+std::string Room::getEnemyInfo(bool fighting){
+	std::string info, temp;
+	if (enemies.size() != 0){
+		int living = 0;
+
+		temp = "";
+		for (int i = 0; i < enemies.size(); i++){
+			if (enemies[i]->checkAlive()){
+				living++;
+				if (fighting){
+					temp += "Enemy " + std::to_string(i + 1) + "\n";
+				}
+				temp += enemies[i]->getStatus() + "\n\n";
+			}
+		}
+		if (living != 0){
+			if (!fighting){
+				info += "This room has " + std::to_string(living) + " enemies. \n\n";
+			}
+			info += temp;
+		}
+	}
+	return info;
+}
+
+bool Room::AttackEnemy(int no, Character* c){
+	if (enemies[no - 1] != nullptr){
+		c->attack(enemies[no - 1]);
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+void Room::EnemiesAttack(Character* c){
+	for (int i = 0; i < enemies.size(); i++){
+		enemies[i]->attack(c);
+	}
+}
+
+bool Room::hasEnemies(){
+	if (enemies.size() == 0){
+		return false;
+	}
+	else{
+		for (int i = 0; i < enemies.size(); i++){
+			if (enemies[i]->checkAlive()){
+				return true;
+			}
+		}
+		return false;
+	}
 }
