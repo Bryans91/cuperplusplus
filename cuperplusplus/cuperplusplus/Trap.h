@@ -4,8 +4,10 @@ class Trap
 public:
 	Trap();
 	~Trap();
-
-private:
-
+	virtual const char * getText();
+protected:
+	bool dismantled;
+	int discoverChance;
+	bool discoverTrap();
 };
 
