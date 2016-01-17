@@ -7,7 +7,7 @@ class DungeonGenerator
 public:
 	DungeonGenerator();
 	~DungeonGenerator();
-	Dungeon* GenerateDungeon(int height, int width);
+	Dungeon* GenerateDungeon(std::string);
 	static int RandomNumberGenerator(int lowest, int highest);
 	
 

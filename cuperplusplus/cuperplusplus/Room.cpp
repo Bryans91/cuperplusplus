@@ -96,7 +96,7 @@ std::map<Direction, Room*> Room::getAdjacentRooms() {
 }
 
 std::list<std::string> Room::getPossibleActions() {
-	return std::list < std::string > {"Run", "Fight", "Inv", "Map", "Stats"};
+	return std::list < std::string > {"Run", "Fight", "Inv", "Stats"};
 }
 
 Room::~Room(){
@@ -114,9 +114,9 @@ std::string Room::getRoomInfo(){
 	temp = getTextForLighting();
 	allInfo += temp + " ";
 	temp = getTextForTrap();
-	allInfo += temp;
+	allInfo += temp + " ";
 	if (enemies.size() != 0){
-		allInfo += "This room has " + std::to_string(enemies.size()) + " enemies.";
+		allInfo += "This room has " + std::to_string(enemies.size()) + " enemies. ";
 	}
 	return allInfo;
 }

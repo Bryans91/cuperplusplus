@@ -41,7 +41,7 @@ Room* DungeonLayer::getEnd(){
 	return end;
 }
 
-std::string DungeonLayer::getDungeonMap(bool c, Room* location){ // bool cheatmode? zelfde opdracht, alleen geen puntjes maar altijd roominfo.
+std::string DungeonLayer::getDungeonMap(bool c, Room* location){ 
 	bool cheat = c;
 	std::string returnstring;
 	// 2d stringarray voor het 2d te genereren map.

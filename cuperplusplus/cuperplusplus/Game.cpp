@@ -1,6 +1,7 @@
 #pragma once
 #include "stdafx.h"
 #include "Game.h"
+#include <algorithm>
 
 
 
@@ -11,16 +12,18 @@ Game::Game()
 	std::string name = Utils::ReadString();
 	player = new Player(name);
 	playing = true;
-	generateDungeon();
+	Utils::PrintLine("What kind of dungeon do you want? small(4-6), medium(8-10) or large(12-14)?");
+	std::string size = Utils::ReadString();
+	generateDungeon(size);
 	dungeon->loadLevel(1);
 	player->setCurrentRoom(dungeon->getFirstRoom());
 	dungeon->getFirstRoom()->Visited();
 	startGame();
 }
 
-void Game::generateDungeon(){
+void Game::generateDungeon(std::string size){
 	DungeonGenerator* dgen = new DungeonGenerator();
-	dungeon = dgen->GenerateDungeon(dgen->RandomNumberGenerator(4,6), dgen->RandomNumberGenerator(4,6));
+	dungeon = dgen->GenerateDungeon(size);
 	delete(dgen);
 }
 
@@ -30,7 +33,10 @@ void Game::startGame() {
 		
 
 		// TODO: Draw map with currentroom
-		Utils::Print(dungeon->getCurrentLayer()->getDungeonMap(false, player->getCurrentRoom()));
+		Utils::Print(dungeon->getCurrentLayer()->getDungeonMap(cheat, player->getCurrentRoom()));
+		if (cheat){
+			cheat =  !cheat;
+		}
 		// Print all actions
 		if (player->getCurrentRoom() == dungeon->getFirstRoom()) {
 			Utils::PrintLine("This is the first room of this layer.");
@@ -48,16 +54,16 @@ void Game::startGame() {
 		Utils::PrintLine(actions);
 		Utils::PrintLine("Please enter your choice below.");
 		std::string choice = Utils::ReadString();
-		Utils::cClear(); // TODO Find a good place for this one, after handle input it clears the map, here it clears after you typed run, will print the 
 		handleInput(choice);
+		Utils::cClear();
 
 
 	}
 }
 
 void Game::handleInput(std::string input) {
-
-	if (input == std::string("run") || input == std::string("Run")) {
+	std::transform(input.begin(), input.end(), input.begin(), ::tolower);
+	if (input == std::string("run")) {
 		map<Direction, Room*>::iterator it;
 		map<Direction, Room*> rooms = player->getCurrentRoom()->getAdjacentRooms();
 
@@ -75,7 +81,7 @@ void Game::handleInput(std::string input) {
 		endGame();
 	}
 	if (input == std::string("cheat")){
-		Utils::Print(dungeon->getCurrentLayer()->getDungeonMap(true, player->getCurrentRoom()));
+		cheat = true;
 	}
 }
 

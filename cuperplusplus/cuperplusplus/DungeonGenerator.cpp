@@ -5,6 +5,7 @@
 #include "time.h"
 #include "Utils.h"
 #include "Enemy.h"
+#include <algorithm>
 
 DungeonGenerator::DungeonGenerator(){
 	srand(time(NULL));
@@ -14,10 +15,23 @@ DungeonGenerator::~DungeonGenerator(){
 
 }
 
-Dungeon* DungeonGenerator::GenerateDungeon(int height, int width){
+Dungeon* DungeonGenerator::GenerateDungeon(std::string size){
+	std::string Size = size;
+	std::transform(Size.begin(), Size.end(), Size.begin(), ::tolower);
+	if (Size == "small"){
+		dungeonHeight = RandomNumberGenerator(4, 6);
+		dungeonWidth = RandomNumberGenerator(4, 6);
+	}
+	else if (Size == "large"){
+		dungeonHeight = RandomNumberGenerator(12, 14);
+		dungeonWidth = RandomNumberGenerator(12, 14);
+	}
+	else { // medium size
+		dungeonHeight = RandomNumberGenerator(8, 10);
+		dungeonWidth = RandomNumberGenerator(8, 10);
+	}
 	Dungeon* d = new Dungeon();
-	dungeonHeight = height;
-	dungeonWidth = width;
+
 	int level = 1;
 	while (level < 11){
 		d->setLevel(level, GenerateLayer(level));

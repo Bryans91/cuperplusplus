@@ -19,10 +19,11 @@ private:
 	Dungeon* dungeon;
 	bool playing;
 	Player* player;
+	bool cheat = false;
 	std::string actions;
 	void startGame();
 	void handleInput(std::string);
-	void generateDungeon();
+	void generateDungeon(std::string);
 
 };
 

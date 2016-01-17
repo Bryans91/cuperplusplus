@@ -18,23 +18,23 @@ Player::Player(std::string aName)
 
 void Player::goDirection(std::string direction){
 	if (direction == "north") {
-		if (getCurrentRoom()->getAdjacentRooms().find(Direction::NORTH)->second != NULL) {
-			setCurrentRoom(getCurrentRoom()->getAdjacentRooms().find(Direction::NORTH)->second);
+		if (getCurrentRoom()->getAdjacentRooms().count(Direction::NORTH) != 0) {
+			setCurrentRoom(getCurrentRoom()->getAdjacentRooms().at(Direction::NORTH));
 		}
 	}
 	else if (direction == "east") {
-		if (getCurrentRoom()->getAdjacentRooms().find(Direction::EAST)->second != NULL) {
-			setCurrentRoom(getCurrentRoom()->getAdjacentRooms().find(Direction::EAST)->second);
+		if (getCurrentRoom()->getAdjacentRooms().count(Direction::EAST) != 0) {
+			setCurrentRoom(getCurrentRoom()->getAdjacentRooms().at(Direction::EAST));
 		}
 	}
 	else if (direction == "west") {
-		if (getCurrentRoom()->getAdjacentRooms().find(Direction::WEST)->second != NULL) {
-			setCurrentRoom(getCurrentRoom()->getAdjacentRooms().find(Direction::WEST)->second);
+		if (getCurrentRoom()->getAdjacentRooms().count(Direction::WEST) != 0) {
+			setCurrentRoom(getCurrentRoom()->getAdjacentRooms().at(Direction::WEST));
 		}
 	}
 	else if (direction == "south") {
-		if (getCurrentRoom()->getAdjacentRooms().find(Direction::SOUTH)->second != NULL) {
-			setCurrentRoom(getCurrentRoom()->getAdjacentRooms().find(Direction::SOUTH)->second);
+		if (getCurrentRoom()->getAdjacentRooms().count(Direction::SOUTH) != 0) {
+			setCurrentRoom(getCurrentRoom()->getAdjacentRooms().at(Direction::SOUTH));
 		}
 	}
 	getCurrentRoom()->Visited();
