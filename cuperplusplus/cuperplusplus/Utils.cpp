@@ -1,6 +1,8 @@
 #pragma once
 #include "stdafx.h"
 #include "Utils.h"
+#include <iostream>
+#include <fstream>
 
 namespace Utils{
 
@@ -63,9 +65,16 @@ namespace Utils{
 		return inputz;
 	}
 
-	//het idee, lege parameter is onze 'vaste' locatie
-	void SaveFile(std::string path){
-		//{ getCustomPath() + file; }
+
+	void SaveFile(std::string text, std::string name){
+		if (!system("mkdir \"../saves\"")){}
+		
+		std::string path = "../saves/" + name + ".txt";
+		std::ofstream file;
+		file.open(path);
+		file << text;
+		file.close();
+		
 	}
 	void ReadFile(std::string path){
 		//{ getCustomPath() + file; }

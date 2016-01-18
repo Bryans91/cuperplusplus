@@ -38,14 +38,15 @@ public:
 	void fight();
 	void flee();
 	void search();
-	void loot(std::list<Enemy *> enemies);
+	void loot(std::list<Enemy*> enemies);
 	void rest();
 	void stats();
 	void cheat(Map *map);
 	void attack(Character*);
+	void save();
 	std::string getStatus();
 	int getUnspendPoints(){ return unspendPoints; };
-	void save();
+
 
 
 };

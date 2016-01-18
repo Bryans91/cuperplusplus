@@ -37,9 +37,9 @@ public:
 	};
 	void damage(int amount) {
 		healthPoints = (healthPoints - amount);
-	}
-	bool isFullyRestored(){ return (healthPoints == maxHealthPoints); }
-	bool checkAlive(){ return (healthPoints > 0); }
+	};
+	bool isFullyRestored(){ return (healthPoints == maxHealthPoints); };
+	bool checkAlive(){ return (healthPoints > 0); };
 
 	virtual void setCurrentRoom(Room* r);
 	virtual Room* getCurrentRoom();

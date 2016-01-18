@@ -175,6 +175,9 @@ void Game::handleInput(std::string input) {
 		}
 
 	}
+	else if (input == std::string("save")){
+		player->save();
+	}
 	else {
 		Utils::PrintLine("The input " + input + " is not known, try again.");
 		handleInput(Utils::ReadString());

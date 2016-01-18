@@ -84,3 +84,16 @@ std::string Player::getStatus(){
 
 	return retString;
 }
+
+void Player::save(){
+	std::string saveString;
+	saveString += "Name: " + name;
+	saveString += "\nLevel: " + std::to_string(level);
+	saveString += "\nHitpoints: " + std::to_string(healthPoints);
+	saveString += "\nMaxHitpoints: " + std::to_string(maxHealthPoints);
+	saveString += "\nAttack: " + std::to_string(attackPower);
+	saveString += "\nDefence: " + std::to_string(defencePower);
+	saveString += "\nExperience: " + std::to_string(experience);
+	// TODO add items and save those.
+	Utils::SaveFile(saveString, name);
+}

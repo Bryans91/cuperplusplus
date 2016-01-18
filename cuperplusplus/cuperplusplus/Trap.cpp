@@ -2,6 +2,7 @@
 #include "stdafx.h"
 #include "Trap.h"
 #include "DungeonGenerator.h"
+#include "Player.h"
 
 static const char * trapString = "You don't see any traps in this room.";
 
