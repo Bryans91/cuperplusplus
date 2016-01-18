@@ -6,6 +6,7 @@ class Tripwire :
 public:
 	Tripwire();
 	~Tripwire();
+	virtual void activate(Player * p);
 	virtual const char * getText();
 };
 

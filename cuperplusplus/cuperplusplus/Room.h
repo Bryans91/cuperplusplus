@@ -65,7 +65,7 @@ public:
 	int hasEnemies();
 	bool AttackEnemy(int, Character*);
 	void EnemiesAttack(Character* c);
-
+	void checkForTraps(Player * p);
 	
 private:
 	Size size;
@@ -82,5 +82,6 @@ private:
 	const char * getTextForFurniture();
 	const char * getTextForLighting();
 	const char * getTextForTrap();
+
 
 };

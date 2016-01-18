@@ -13,6 +13,10 @@ const char * Trap::getText() {
 	return trapString;
 }
 
+void Trap::activate(Player * p)
+{
+}
+
 bool Trap::discoverTrap()
 {
 	if (!dismantled) {

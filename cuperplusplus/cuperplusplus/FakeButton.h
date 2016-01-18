@@ -6,6 +6,7 @@ class FakeButton :
 public:
 	FakeButton();
 	~FakeButton();
+	virtual void activate(Player * p);
 	virtual const char * getText();
 };
 

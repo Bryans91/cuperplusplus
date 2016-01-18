@@ -83,6 +83,10 @@ const char * Room::getTextForTrap() {
 	return trap->getText();
 }
 
+void Room::checkForTraps(Player* p) {
+	trap->activate(p);
+}
+
 std::map<Direction, Room*> Room::getAdjacentRooms() {
 	return adjacentRooms;
 }

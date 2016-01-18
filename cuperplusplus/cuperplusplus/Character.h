@@ -35,6 +35,9 @@ public:
 	void heal(int amount){
 		healthPoints = (((healthPoints + amount) > maxHealthPoints) ? this->maxHealthPoints : (healthPoints + amount));
 	};
+	void damage(int amount) {
+		healthPoints = (healthPoints - amount);
+	}
 	bool isFullyRestored(){ return (healthPoints == maxHealthPoints); }
 	bool checkAlive(){ return (healthPoints > 0); }
 
