@@ -53,7 +53,7 @@ Room::Room(){
 		break;
 	}
 	//Trap switch
-	switch (DungeonGenerator::RandomNumberGenerator(1, 10)) {
+	switch (DungeonGenerator::RandomNumberGenerator(1, 2)) {
 	case 1: trap = new Tripwire();
 		break;
 	case 2: trap = new FakeButton();

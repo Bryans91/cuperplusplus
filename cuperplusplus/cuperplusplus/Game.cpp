@@ -64,8 +64,8 @@ void Game::startGame() {
 		} else if (player->getCurrentRoom() == dungeon->getLastRoom()) {
 			Utils::PrintLine("You have found the last room in this layer! Do you wish to go down, further into the dungeon?");
 		}
-		player->getCurrentRoom()->checkForTraps(player);
 		Utils::Print(player->getCurrentRoom()->getRoomInfo());
+		player->getCurrentRoom()->checkForTraps(player);
 		
 
 		

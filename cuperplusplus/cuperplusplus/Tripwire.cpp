@@ -17,8 +17,11 @@ Tripwire::~Tripwire()
 }
 
 void Tripwire::activate(Player * p)
-{
-	p->damage(5);
+{ 
+	if (!dismantled) {
+		p->damage(5);
+		dismantled = true;
+	}
 }
 
 const char * Tripwire::getText()
@@ -27,7 +30,6 @@ const char * Tripwire::getText()
 		return discoveredTrapString;
 	}
 	else {
-		dismantled = true;
 		return trapString;
 	}
 }

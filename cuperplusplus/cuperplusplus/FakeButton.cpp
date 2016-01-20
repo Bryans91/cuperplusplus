@@ -19,7 +19,10 @@ FakeButton::~FakeButton()
 
 void FakeButton::activate(Player * p)
 {
-	p->increasePwr(-2);
+	if (!dismantled) {
+		p->increasePwr(-2);
+		dismantled = true;
+	}
 }
 
 const char * FakeButton::getText()
@@ -28,7 +31,6 @@ const char * FakeButton::getText()
 		return discoveredTrapString;
 	}
 	else {
-		dismantled = true;
 		return trapString;
 	}
 }
