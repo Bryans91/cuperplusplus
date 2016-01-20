@@ -93,6 +93,12 @@
     <ClInclude Include="FakeButton.h">
       <Filter>Header Files\Traps</Filter>
     </ClInclude>
+    <ClInclude Include="Beer.h">
+      <Filter>Header Files\Traps</Filter>
+    </ClInclude>
+    <ClInclude Include="Kebab.h">
+      <Filter>Header Files\Traps</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -147,6 +153,12 @@
       <Filter>Source Files\Traps</Filter>
     </ClCompile>
     <ClCompile Include="FakeButton.cpp">
+      <Filter>Source Files\Traps</Filter>
+    </ClCompile>
+    <ClCompile Include="Beer.cpp">
+      <Filter>Source Files\Traps</Filter>
+    </ClCompile>
+    <ClCompile Include="Kebab.cpp">
       <Filter>Source Files\Traps</Filter>
     </ClCompile>
   </ItemGroup>

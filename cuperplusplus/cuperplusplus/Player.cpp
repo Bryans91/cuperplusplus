@@ -77,9 +77,9 @@ std::string Player::getStatus(){
 	retString += "Name:         " + this->name;
 	retString += "\nLevel:        " + std::to_string(level);
 	retString += "\nHitpoints:    " + std::to_string(healthPoints) + "/" + std::to_string(maxHealthPoints);
-	retString += "\nAttack:       " + std::to_string(attackPower);
-	retString += "\nDefence:      " + std::to_string(defencePower);
-	retString += "\nExperience:   " + std::to_string(experience) + "/" + std::to_string((int)getExperienceNeeded(level+1));
+	retString += "\nAttack:       " + std::to_string(attackPower)  + "       (min = 5)";
+	retString += "\nDefence:      " + std::to_string(defencePower) + "       (min = 5)";
+	retString += "\nExperience:   " + std::to_string(experience)   + "/" + std::to_string((int)getExperienceNeeded(level+1));
 
 
 	return retString;

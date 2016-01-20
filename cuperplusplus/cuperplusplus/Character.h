@@ -26,7 +26,7 @@ public:
 
 	void increaseHp(int pHp){ maxHealthPoints += pHp; };
 	void increasePwr(int pAtk){ if (attackPower += pAtk < 5) { attackPower = 5; } };
-	void increaseDefence(int pDef){ defencePower += pDef; };
+	void increaseDefence(int pDef){ if (defencePower += pDef < 5) { defencePower = 5; } };
 
 	std::string getName() const { return name; }
 	std::string getStatus();

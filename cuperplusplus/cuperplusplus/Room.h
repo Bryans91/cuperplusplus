@@ -6,6 +6,8 @@
 #include "Trap.h"
 #include "Tripwire.h"
 #include "FakeButton.h"
+#include "Beer.h"
+#include "Kebab.h"
 
 class Enemy;
 class Character;

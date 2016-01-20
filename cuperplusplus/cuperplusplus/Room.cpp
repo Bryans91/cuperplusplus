@@ -53,10 +53,14 @@ Room::Room(){
 		break;
 	}
 	//Trap switch
-	switch (DungeonGenerator::RandomNumberGenerator(1, 2)) {
+	switch (DungeonGenerator::RandomNumberGenerator(1, 4)) {
 	case 1: trap = new Tripwire();
 		break;
 	case 2: trap = new FakeButton();
+		break;
+	case 3: trap = new Beer();
+		break;
+	case 4: trap = new Kebab();
 		break;
 	default: trap = noTrap;
 		break;

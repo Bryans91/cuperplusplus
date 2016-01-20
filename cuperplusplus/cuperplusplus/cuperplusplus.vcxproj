@@ -79,6 +79,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Beer.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="Dungeon.h" />
     <ClInclude Include="DungeonGenerator.h" />
@@ -87,6 +88,7 @@
     <ClInclude Include="FakeButton.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="Kebab.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Room.h" />
@@ -97,6 +99,7 @@
     <ClInclude Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Beer.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="cuperplusplus.cpp" />
     <ClCompile Include="Dungeon.cpp" />
@@ -106,6 +109,7 @@
     <ClInclude Include="Game.cpp" />
     <ClCompile Include="FakeButton.cpp" />
     <ClCompile Include="Item.cpp" />
+    <ClCompile Include="Kebab.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Room.cpp" />
