@@ -3,7 +3,7 @@
 #include "Player.h"
 
 
-Shield::Shield(Player* p)
+Shield::Shield()
 {
 }
 //increases defencepower
@@ -12,6 +12,6 @@ Shield::~Shield()
 {
 }
 
-virtual void equip() {
+void Shield::equip(Player* p) {
 
 }

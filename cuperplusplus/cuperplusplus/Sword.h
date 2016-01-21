@@ -4,7 +4,8 @@ class Sword :
 	public Equipable
 {
 public:
-	Sword(Player* p);
+	Sword();
 	~Sword();
+	virtual void equip(Player* p);
 };
 

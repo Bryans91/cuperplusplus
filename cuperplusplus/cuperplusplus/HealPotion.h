@@ -4,7 +4,8 @@ class HealPotion :
 	public Useable
 {
 public:
-	HealPotion(Player* p);
+	HealPotion();
 	~HealPotion();
+	virtual void use(Player* p);
 };
 

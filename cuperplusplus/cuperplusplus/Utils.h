@@ -3,6 +3,8 @@
 #include <string>
 #include <thread>
 #include <random>
+class Player;
+
 
 namespace Utils{
 	std::string getCustomPath();
@@ -15,7 +17,8 @@ namespace Utils{
 	int ReadLine();
 	std::string ReadString();
 	void SaveFile(std::string text, std::string name);
-	std::string ReadFile(std::string fileName);
+	void ReadFile(std::string file);
+	void LoadPlayer(std::string name, ::Player* p);
 	struct Vector{
 		int x;
 		int y;

@@ -3,11 +3,14 @@
 #include "Player.h"
 
 
-HealPotion::HealPotion(Player* p)
+HealPotion::HealPotion()
 {
 }
 
-
 HealPotion::~HealPotion()
 {
+}
+
+void HealPotion::use(Player* p) {
+
 }

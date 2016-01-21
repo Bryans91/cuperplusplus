@@ -5,9 +5,8 @@ class Equipable :
 {
 public:
 	Equipable();
-	Equipable(Player* p);
 	~Equipable();
-	virtual void equip() {
+	virtual void equip(Player* p) {
 		equipped = true;
 	};
 	virtual bool isEquipped() {

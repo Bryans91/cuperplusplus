@@ -3,15 +3,14 @@
 #include "Player.h"
 
 
-Useable::Useable(Player* p)
-{
-}
-
 Useable::Useable()
 {
 }
 
-
 Useable::~Useable()
+{
+}
+
+void Useable::use(Player* p)
 {
 }

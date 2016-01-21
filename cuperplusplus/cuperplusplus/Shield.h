@@ -4,7 +4,8 @@ class Shield :
 	public Equipable
 {
 public:
-	Shield(Player* p);
+	Shield();
 	~Shield();
+	virtual void equip(Player* p);
 };
 

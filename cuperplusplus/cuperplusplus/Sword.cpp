@@ -3,12 +3,16 @@
 #include "Player.h"
 
 
-Sword::Sword(Player* p)
+Sword::Sword()
 {
 }
 //increases attackpower
 
 
 Sword::~Sword()
+{
+}
+
+void Sword::equip(Player * p)
 {
 }

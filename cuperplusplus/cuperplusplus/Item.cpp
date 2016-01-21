@@ -3,10 +3,6 @@
 #include "Item.h"
 #include "Player.h"
 
-Item::Item(Player * p){
-
-}
-
 Item::Item(){
 
 }
