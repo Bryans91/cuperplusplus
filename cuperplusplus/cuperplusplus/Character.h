@@ -23,6 +23,11 @@ public:
 	int getHp(){ return healthPoints; };
 	int getPwr(){ return attackPower; };
 	int getDefence(){ return defencePower; };
+	void setHP(int hp){ healthPoints = hp; };
+	void setPwr(int p){ attackPower = p; };
+	void setDefence(int d){ defencePower = d; };
+	void setLevel(int l){ level = l; };
+	void setMaxHP(int mhp){ maxHealthPoints = mhp; }
 
 	void increaseHp(int pHp){ maxHealthPoints += pHp; };
 	void increasePwr(int pAtk){ if (attackPower += pAtk < 5) { attackPower = 5; } };

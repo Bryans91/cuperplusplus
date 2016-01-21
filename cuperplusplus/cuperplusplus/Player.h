@@ -46,7 +46,8 @@ public:
 	void save();
 	std::string getStatus();
 	int getUnspendPoints(){ return unspendPoints; };
-
+	void LoadFromString(std::string);
+	void setExp(int exp){ experience = exp; };
 
 
 };
