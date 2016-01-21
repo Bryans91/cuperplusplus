@@ -44,6 +44,7 @@ public:
 	void cheat(Map *map);
 	void attack(Character*);
 	void save();
+	void load(std::string playerName);
 	std::string getStatus();
 	int getUnspendPoints(){ return unspendPoints; };
 

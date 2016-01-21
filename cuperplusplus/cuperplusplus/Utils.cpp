@@ -76,8 +76,9 @@ namespace Utils{
 		file.close();
 		
 	}
-	void ReadFile(std::string path){
+	std::string ReadFile(std::string path){
 		//{ getCustomPath() + file; }
+		return path;
 	}
 	Vector RandomLocation(int width, int height, int floor)
 	{

@@ -15,7 +15,7 @@ namespace Utils{
 	int ReadLine();
 	std::string ReadString();
 	void SaveFile(std::string text, std::string name);
-	void ReadFile(std::string file);
+	std::string ReadFile(std::string fileName);
 	struct Vector{
 		int x;
 		int y;

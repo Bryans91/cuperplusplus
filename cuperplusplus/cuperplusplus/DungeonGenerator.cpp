@@ -47,7 +47,6 @@ Dungeon* DungeonGenerator::GenerateDungeon(std::string size, std::string difficu
 
 
 	return d;
-
 }
 
 DungeonLayer* DungeonGenerator::GenerateLayer(int layer){

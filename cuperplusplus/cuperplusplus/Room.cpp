@@ -65,6 +65,19 @@ Room::Room(){
 	default: trap = noTrap;
 		break;
 	}
+	//Item switch
+	switch (DungeonGenerator::RandomNumberGenerator(1, 4)) {
+	case 1: item = new Sword();
+		break;
+	case 2: item = new Shield();
+		break;
+	case 3: item = new HealPotion();
+		break;
+	case 4: item = new RandomPotion();
+		break;
+	default: item = noItem;
+		break;
+	}
 }
 
 const char * Room::getTextForSize(){
