@@ -3,11 +3,13 @@
 #include "Utils.h"
 #include <iostream>
 #include <fstream>
+#include "Player.h"
+
 
 namespace Utils{
 
 	std::string getCustomPath(){
-		return "get/rekts/";
+		return "";
 	}
 
 	int Random(){ return Random(0, INT_MAX); }
@@ -79,6 +81,23 @@ namespace Utils{
 	void ReadFile(std::string path){
 		//{ getCustomPath() + file; }
 	}
+
+	void loadPlayer(std::string name, ::Player* p){
+		std::string path = "../saves/" + name + ".txt";
+		std::string text;
+		std::string line;
+		std::ifstream file(path);
+		if (file.is_open()){
+			while (getline(file, line)){
+				text += line;
+			}
+		}
+		else {
+			PrintLine("not existing?");
+		}
+
+	}
+
 	Vector RandomLocation(int width, int height, int floor)
 	{
 		return Location(Random(0, width - 1), Random(0, height - 1), floor);

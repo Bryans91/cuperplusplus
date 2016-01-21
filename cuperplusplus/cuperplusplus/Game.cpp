@@ -11,6 +11,7 @@ Game::Game()
 	Utils::PrintLine("This story is all about you. What was your name again?");
 	std::string name = Utils::ReadString();
 	player = new Player(name);
+	Utils::LoadPlayer(name, player);
 	playing = true;
 	Utils::PrintLine("What kind of dungeon do you want? small(4-6), medium(8-10) or large(12-14)? Info: Typo's or nothing will make a medium dungeon");
 	std::string size = Utils::ReadString();
