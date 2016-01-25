@@ -79,18 +79,48 @@ namespace Utils{
 		
 	}
 
-	void LoadPlayer(std::string name, ::Player* p){
+	void LoadPlayer(std::string name, Player* p){
 		std::string path = "../saves/" + name + ".txt";
-		std::string text;
-		std::string line;
+
 		std::ifstream file(path);
 		if (file.is_open()){
+			char const delimiters[] = ": ";
+			std::string line;
+			std::vector<std::string> lines;
+			std::vector<std::string> tokens;
 			while (getline(file, line)){
-				text += line;
+				lines.push_back(line);
 			}
+			for (int i = 0; i < lines.size(); i++){
+				std::string::size_type pos = lines[i].find(': ');
+				tokens.push_back(lines[i].substr(0, pos-1));
+				tokens.push_back(lines[i].substr(pos + 1, lines[i].size()));
+				
+			}
+			for (int i = 0; i < tokens.size(); i++){
+				if (tokens[i] == "Level"){
+					p->setLevel(atoi(tokens[i + 1].c_str()));
+				}
+				else if (tokens[i] == "Hitpoints"){
+					p->setHP(atoi(tokens[i + 1].c_str()));
+				}
+				else if (tokens[i] == "MaxHitpoints"){
+					p->setMaxHP(atoi(tokens[i + 1].c_str()));
+				}
+				else if (tokens[i] == "Attack"){
+					p->setPwr(atoi(tokens[i + 1].c_str()));
+				}
+				else if (tokens[i] == "Defence"){
+					p->setDefence(atoi(tokens[i + 1].c_str()));
+				}
+				else if (tokens[i] == "Experience"){
+					p->setExp(atoi(tokens[i + 1].c_str()));
+				}
+			}
+			//handle player stuff;
 		}
 		else {
-			PrintLine("not existing?");
+			PrintLine("Welcome " + name + ", Good luck in your dungeon.");
 		}
 
 	}

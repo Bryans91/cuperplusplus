@@ -18,7 +18,7 @@ namespace Utils{
 	std::string ReadString();
 	void SaveFile(std::string text, std::string name);
 	void ReadFile(std::string file);
-	void LoadPlayer(std::string name, ::Player* p);
+	void LoadPlayer(std::string name, Player* p);
 	struct Vector{
 		int x;
 		int y;

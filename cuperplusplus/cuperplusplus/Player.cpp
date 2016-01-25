@@ -97,3 +97,7 @@ void Player::save(){
 	// TODO add items and save those.
 	Utils::SaveFile(saveString, name);
 }
+
+void LoadFromString(std::string input){
+	Utils::PrintLine(input)
+}
