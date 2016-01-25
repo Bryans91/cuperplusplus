@@ -72,7 +72,9 @@ void Game::startGame() {
 		
 		actions = "|";
 		for (std::string actionString : player->getCurrentRoom()->getPossibleActions()) {
-			actions += "  " + actionString + "  |";
+			if (actionString != "") {
+				actions += "  " + actionString + "  |";
+			}
 		}
 		if (player->getCurrentRoom() == dungeon->getLastRoom()){
 			actions += "  Down |";
@@ -167,6 +169,9 @@ void Game::handleInput(std::string input) {
 	else if(input == std::string("rest")){
 		player->heal(5);
 		showStats = true;
+	}
+	else if (input == std::string("item")) {
+		player->getCurrentRoom()->checkForItems(player);
 	}
 	else if (input == std::string("down")){
 		if (player->getCurrentRoom() == dungeon->getLastRoom() && player->getCurrentRoom()->hasEnemies() ==0){

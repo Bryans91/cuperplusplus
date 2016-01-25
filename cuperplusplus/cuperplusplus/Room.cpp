@@ -8,7 +8,7 @@ static const char * sizeStrings[] = { "small", "medium", "large" };
 static const char * stateStrings[] = { "neat", "dirty" };
 static const char * furnitureStrings[] = { "There is a table with four chairs in this room.", "There is a bed in the corner.", "There is nothing in this room." };
 static const char * lightStrings[] = { "In the room there burns a single candle which lights the room a bit.", "On the wall there is a torch, which lights the room.", "On the side there is a big fireplace which fills the room with light." };
-
+static const char * itemString = "";
 Room::Room(){
 	//Size switch
 	switch (DungeonGenerator::RandomNumberGenerator(1, 3)){
@@ -100,8 +100,17 @@ const char * Room::getTextForTrap() {
 	return trap->getText();
 }
 
+const char * Room::getTextForItem() {
+	return item->getText();
+}
+
 void Room::checkForTraps(Player* p) {
 	trap->activate(p);
+}
+
+void Room::checkForItems(Player* p) {
+	item->find(p);
+
 }
 
 std::map<Direction, Room*> Room::getAdjacentRooms() {
@@ -109,7 +118,10 @@ std::map<Direction, Room*> Room::getAdjacentRooms() {
 }
 
 std::list<std::string> Room::getPossibleActions() {
-	return std::list < std::string > {"Run", "Fight", "Inv", "Stats", "Rest"};
+	if (item != noItem) {
+		itemString = "Item";
+	}
+	return std::list < std::string > {"Run", "Fight", "Inv", "Stats", "Rest", itemString};
 }
 
 Room::~Room(){
