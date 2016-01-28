@@ -73,7 +73,8 @@ public:
 	bool AttackEnemy(int, Character*);
 	void EnemiesAttack(Character* c);
 	void checkForTraps(Player * p);
-	void checkForItems(Player * p);
+	void checkForItems();
+	Item* getItem();
 
 	
 private:
@@ -93,7 +94,7 @@ private:
 	const char * getTextForFurniture();
 	const char * getTextForLighting();
 	const char * getTextForTrap();
-	const char * getTextForItem();
+	std::string getTextForItem();
 
 
 

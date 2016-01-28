@@ -12,11 +12,13 @@ public:
 	virtual bool isEquipped() {
 		return equipped;
 	};
-	virtual void unEquip() {
+	virtual void unEquip(Player* p) {
 		equipped = false;
 	};
 protected:
 	bool equipped = false;
+	int equipPower = 0;
+	virtual void getRandomName();
 
 };
 

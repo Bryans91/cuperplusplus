@@ -16,7 +16,7 @@ void Item::find(Player* p)
 
 }
 
-const char * Item::getText()
+std::string Item::getText()
 {
 	return itemDescription;
 }

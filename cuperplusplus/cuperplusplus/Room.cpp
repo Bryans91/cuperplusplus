@@ -53,7 +53,7 @@ Room::Room(){
 		break;
 	}
 	//Trap switch
-	switch (DungeonGenerator::RandomNumberGenerator(1, 4)) {
+	switch (DungeonGenerator::RandomNumberGenerator(1, 20)) {
 	case 1: trap = new Tripwire();
 		break;
 	case 2: trap = new FakeButton();
@@ -100,7 +100,7 @@ const char * Room::getTextForTrap() {
 	return trap->getText();
 }
 
-const char * Room::getTextForItem() {
+std::string Room::getTextForItem() {
 	return item->getText();
 }
 
@@ -108,9 +108,12 @@ void Room::checkForTraps(Player* p) {
 	trap->activate(p);
 }
 
-void Room::checkForItems(Player* p) {
-	item->find(p);
+void Room::checkForItems() {
+	Utils::PrintLine("You find a " + getTextForItem() + " hidden under a layer of dust. Take it or leave it?\n|  Take  |  Leave  |");
+}
 
+Item* Room::getItem() {
+	return item;
 }
 
 std::map<Direction, Room*> Room::getAdjacentRooms() {

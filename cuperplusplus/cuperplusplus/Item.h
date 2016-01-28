@@ -7,9 +7,9 @@ public:
 	Item();
 	~Item();
 	virtual void find(Player* p);
-	virtual const char * getText();
+	virtual std::string getText();
 protected:
-	const char * itemDescription;
+	std::string itemDescription = "";
 
 };
 

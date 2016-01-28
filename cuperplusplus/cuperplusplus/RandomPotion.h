@@ -7,5 +7,6 @@ public:
 	RandomPotion();
 	~RandomPotion();
 	virtual void use(Player* p);
+	int usePower = 0;
 };
 

@@ -5,6 +5,8 @@
 
 Sword::Sword()
 {
+	getRandomName();
+	itemDescription += " sword";
 }
 //increases attackpower
 

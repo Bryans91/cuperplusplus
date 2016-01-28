@@ -154,6 +154,17 @@ void Game::handleInput(std::string input) {
 	else if (input == std::string("use item")){
 
 	}
+	else if (input == std::string("inv")){
+
+		std::string temp = "You don't have any items right now.";
+		if (player->getItems()._Myfirst != nullptr) {
+			temp = "|";
+			for each(Item* i in player->getItems()) {
+				temp += "  " + std::string(i->getText()) + "  |";
+			}
+		}
+		Utils::PrintLine(temp);
+	}
 	else if (input == std::string("stats")){
 		showStats = true;
 	}
@@ -171,7 +182,14 @@ void Game::handleInput(std::string input) {
 		showStats = true;
 	}
 	else if (input == std::string("item")) {
-		player->getCurrentRoom()->checkForItems(player);
+		player->getCurrentRoom()->checkForItems();
+		handleInput(Utils::ReadString());
+	}
+	else if (input == std::string("take")) {
+		player->takeItem(player->getCurrentRoom()->getItem());
+	}
+	else if (input == std::string("leave")) {
+
 	}
 	else if (input == std::string("down")){
 		if (player->getCurrentRoom() == dungeon->getLastRoom() && player->getCurrentRoom()->hasEnemies() ==0){

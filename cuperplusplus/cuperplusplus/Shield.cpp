@@ -2,9 +2,10 @@
 #include "Shield.h"
 #include "Player.h"
 
-
 Shield::Shield()
 {
+	getRandomName();
+	itemDescription += " shield";
 }
 //increases defencepower
 

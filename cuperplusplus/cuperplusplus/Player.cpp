@@ -98,6 +98,38 @@ void Player::save(){
 	Utils::SaveFile(saveString, name);
 }
 
-void LoadFromString(std::string input){
-	Utils::PrintLine(input)
+void Player::LoadFromString(std::string input){
+	Utils::PrintLine(input);
+}
+
+void Player::takeItem(Item* i) {
+	items.push_back(i);
+}
+
+void Player::equipItem(Item* i) {
+	Equipable* eq = (Equipable*)i;
+	eq->equip(this);
+}
+
+void Player::useItem(Item* i) {
+	Useable* us = (Useable*)i;
+	us->use(this);
+}
+
+std::vector<Item*> Player::getItems() {
+	return items;
+}
+
+void Player::removeItem(Item* i) {
+	if (Equipable* eq = (Equipable*)i) {
+		eq->unEquip(this);
+	}
+	for (std::vector<Item*>::iterator iter = items.begin(); iter != items.end(); ++iter)
+	{
+		if (*iter == i)
+		{
+			items.erase(iter);
+			break;
+		}
+	}
 }
