@@ -17,4 +17,12 @@ Sword::~Sword()
 
 void Sword::equip(Player * p)
 {
+	p->increasePwr(equipPower);
+	equipped = true;
+}
+
+void Sword::unEquip(Player * p) 
+{
+	p->increasePwr(-equipPower);
+	equipped = false;
 }

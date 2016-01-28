@@ -7,5 +7,6 @@ public:
 	Shield();
 	~Shield();
 	virtual void equip(Player* p);
+	virtual void unEquip(Player* p);
 };
 

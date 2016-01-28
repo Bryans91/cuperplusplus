@@ -22,6 +22,7 @@ private:
 	bool cheat = false;
 	bool fighting = false;
 	bool showStats = false;
+	bool showInventory = false;
 	std::string actions;
 	void startGame();
 	void handleInput(std::string);

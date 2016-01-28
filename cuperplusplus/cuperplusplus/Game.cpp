@@ -59,6 +59,28 @@ void Game::startGame() {
 			showStats = false;
 			Utils::PrintLine(player->getStatus() + "\n");
 		}
+		if (showInventory) {
+			showInventory = false;
+			std::string temp = "You don't have any items right now.";
+			if (player->getItems()._Myfirst != nullptr) {
+				temp = "|";
+				for each(Item* i in player->getItems()) {
+					if (Equipable* e = (Equipable*)i) {
+						if (e->isEquipped) {
+							temp += "(eq)";
+						}
+						else {
+							temp += "  ";
+						}
+					}
+					else {
+						temp += "  ";
+					}
+					temp += std::string(i->getText()) + "  |";
+				}
+			}
+			Utils::PrintLine(temp + "\n");
+		}
 		// Print all actions
 		if (player->getCurrentRoom() == dungeon->getFirstRoom()) {
 			Utils::PrintLine("This is the first room of this layer.");
@@ -156,14 +178,7 @@ void Game::handleInput(std::string input) {
 	}
 	else if (input == std::string("inv")){
 
-		std::string temp = "You don't have any items right now.";
-		if (player->getItems()._Myfirst != nullptr) {
-			temp = "|";
-			for each(Item* i in player->getItems()) {
-				temp += "  " + std::string(i->getText()) + "  |";
-			}
-		}
-		Utils::PrintLine(temp);
+		showInventory = true;
 	}
 	else if (input == std::string("stats")){
 		showStats = true;
@@ -189,7 +204,7 @@ void Game::handleInput(std::string input) {
 		player->takeItem(player->getCurrentRoom()->getItem());
 	}
 	else if (input == std::string("leave")) {
-
+		
 	}
 	else if (input == std::string("down")){
 		if (player->getCurrentRoom() == dungeon->getLastRoom() && player->getCurrentRoom()->hasEnemies() ==0){

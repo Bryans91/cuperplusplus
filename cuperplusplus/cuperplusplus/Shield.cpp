@@ -13,6 +13,14 @@ Shield::~Shield()
 {
 }
 
-void Shield::equip(Player* p) {
+void Shield::equip(Player* p) 
+{
+	p->increaseDefence(equipPower);
+	equipped = true;
+}
 
+void Sword::unEquip(Player * p)
+{
+	p->increaseDefence(-equipPower);
+	equipped = false;
 }

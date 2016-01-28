@@ -120,6 +120,40 @@ std::vector<Item*> Player::getItems() {
 	return items;
 }
 
+void Player::equipAllItems() {
+	for each(Item* i in items)  {
+		if (Equipable* eq = (Equipable*)i) {
+			eq->equip(this);
+		}
+	}
+}
+
+void Player::unEquipAllItems() {
+	for each(Item* i in items)  {
+		if (Equipable* eq = (Equipable*)i) {
+			eq->unEquip(this);
+		}
+	}
+}
+
+void Player::useAllRandomPotions() {
+	for each(Item* i in items)  {
+		if (RandomPotion* rp = (RandomPotion*)i) {
+			rp->use(this);
+		}
+	}
+}
+
+void Player::useAllHealPotions() {
+	for each(Item* i in items)  {
+		if (HealPotion* hp = (HealPotion*)i) {
+			hp->use(this);
+		}
+	}
+}
+
+
+
 void Player::removeItem(Item* i) {
 	if (Equipable* eq = (Equipable*)i) {
 		eq->unEquip(this);

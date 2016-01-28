@@ -56,6 +56,10 @@ public:
 	void useItem(Item* i);
 	void removeItem(Item* i);
 	std::vector<Item*> getItems();
+	void equipAllItems();
+	void unEquipAllItems();
+	void useAllRandomPotions();
+	void useAllHealPotions();
 
 
 };
