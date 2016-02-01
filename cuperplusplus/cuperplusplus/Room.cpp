@@ -66,7 +66,7 @@ Room::Room(){
 		break;
 	}
 	//Item switch
-	switch (DungeonGenerator::RandomNumberGenerator(1, 16)) {
+	switch (DungeonGenerator::RandomNumberGenerator(1, 12)) {
 	case 1: item = new Sword();
 		break;
 	case 2: item = new Shield();
@@ -113,7 +113,7 @@ void Room::checkForItems() {
 }
 
 Item* Room::getItem() {
-	Item* temp = item;
+	Item* temp = new Item(*item);
 	item = noItem;
 	return temp;
 }
@@ -125,6 +125,9 @@ std::map<Direction, Room*> Room::getAdjacentRooms() {
 std::list<std::string> Room::getPossibleActions() {
 	if (item != noItem) {
 		itemString = "Item";
+	}
+	else {
+		itemString = "";
 	}
 	return std::list < std::string > {"Run", "Fight", "Inv", "Stats", "Rest", itemString};
 }
