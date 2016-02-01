@@ -55,9 +55,39 @@ void Game::startGame() {
 		if (cheat){
 			cheat = false;
 		}
+		if (affected) {
+			affected = false;
+			Utils::PrintLine(effect);
+		}
 		if (showStats){
 			showStats = false;
 			Utils::PrintLine(player->getStatus() + "\n");
+		}
+		if (showInventory) {
+			showInventory = false;
+			std::string temp = "You don't have any items right now.";
+			if (player->getItems()._Myfirst != nullptr) {
+				temp = "|";
+				int counter = 1;
+				for each(Item* i in player->getItems()) {
+					Equipable* e = dynamic_cast<Equipable*>(i);
+					if (e != NULL) {
+						if (e->isEquipped()) {
+							temp += "(eq)";
+						}
+						else {
+							temp += "  ";
+						}
+					}
+					else {
+						temp += "  ";
+					}
+					temp += std::string(i->getText()) + "[";
+					temp += std::to_string(counter) +"]|";
+
+				}
+			}
+			Utils::PrintLine(temp + "\n");
 		}
 		// Print all actions
 		if (player->getCurrentRoom() == dungeon->getFirstRoom()) {
@@ -72,7 +102,9 @@ void Game::startGame() {
 		
 		actions = "|";
 		for (std::string actionString : player->getCurrentRoom()->getPossibleActions()) {
-			actions += "  " + actionString + "  |";
+			if (actionString != "") {
+				actions += "  " + actionString + "  |";
+			}
 		}
 		if (player->getCurrentRoom() == dungeon->getLastRoom()){
 			actions += "  Down |";
@@ -146,11 +178,29 @@ void Game::handleInput(std::string input) {
 		}
 		player->getCurrentRoom()->EnemiesAttack(player);
 	}
-	else if (input == std::string("use potion")){
-
+	else if (input == std::string("use")){
+		int item = handleItemInput(Utils::ReadString());
+		if (player->getItems().at(item - 1) != NULL) {
+			effect = player->useItem(player->getItems().at(item - 1));
+			affect();
+		}
 	}
-	else if (input == std::string("use item")){
-
+	else if (input == std::string("equip")){
+		int item = handleItemInput(Utils::ReadString());
+		if (player->getItems().at(item - 1) != NULL){
+			effect = player->equipItem(player->getItems().at(item - 1));
+			affect();
+		}
+	}
+	else if (input == std::string("unequip")){
+		int item = handleItemInput(Utils::ReadString());
+		if (player->getItems().at(item - 1) != NULL){
+			effect = player->unEquipItem(player->getItems().at(item - 1));
+			affect();
+		}
+	}
+	else if (input == std::string("inv")){
+		showInventory = true;
 	}
 	else if (input == std::string("stats")){
 		showStats = true;
@@ -167,6 +217,16 @@ void Game::handleInput(std::string input) {
 	else if(input == std::string("rest")){
 		player->heal(5);
 		showStats = true;
+	}
+	else if (input == std::string("item")) {
+		player->getCurrentRoom()->checkForItems();
+		handleInput(Utils::ReadString());
+	}
+	else if (input == std::string("take")) {
+		player->takeItem(player->getCurrentRoom()->getItem());
+	}
+	else if (input == std::string("leave")) {
+		
 	}
 	else if (input == std::string("down")){
 		if (player->getCurrentRoom() == dungeon->getLastRoom() && player->getCurrentRoom()->hasEnemies() ==0){
@@ -185,9 +245,20 @@ void Game::handleInput(std::string input) {
 	}
 }
 
+int Game::handleItemInput(std::string input) {
+	if (int i = atoi(input.c_str())) {
+		return i;
+	}
+}
+
 void Game::endGame() {
 	playing = false;
 
+}
+
+void Game::affect() {
+	affected = true;
+	showStats = true;
 }
 
 Game::~Game()

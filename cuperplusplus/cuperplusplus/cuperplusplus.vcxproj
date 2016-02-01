@@ -85,17 +85,23 @@
     <ClInclude Include="DungeonGenerator.h" />
     <ClInclude Include="DungeonLayer.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Equipable.h" />
     <ClInclude Include="FakeButton.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="HealPotion.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Kebab.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="RandomPotion.h" />
     <ClInclude Include="Room.h" />
+    <ClInclude Include="Shield.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Sword.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Trap.h" />
     <ClInclude Include="Tripwire.h" />
+    <ClInclude Include="Useable.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>
@@ -107,18 +113,24 @@
     <ClCompile Include="DungeonLayer.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClInclude Include="Game.cpp" />
+    <ClCompile Include="Equipable.cpp" />
     <ClCompile Include="FakeButton.cpp" />
+    <ClCompile Include="HealPotion.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Kebab.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="RandomPotion.cpp" />
     <ClCompile Include="Room.cpp" />
+    <ClCompile Include="Shield.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Sword.cpp" />
     <ClCompile Include="Trap.cpp" />
     <ClCompile Include="Tripwire.cpp" />
+    <ClCompile Include="Useable.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

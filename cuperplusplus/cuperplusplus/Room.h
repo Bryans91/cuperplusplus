@@ -8,6 +8,11 @@
 #include "FakeButton.h"
 #include "Beer.h"
 #include "Kebab.h"
+#include "Item.h"
+#include "HealPotion.h"
+#include "RandomPotion.h"
+#include "Sword.h"
+#include "Shield.h"
 
 class Enemy;
 class Character;
@@ -68,6 +73,9 @@ public:
 	bool AttackEnemy(int, Character*);
 	void EnemiesAttack(Character* c);
 	void checkForTraps(Player * p);
+	void checkForItems();
+	Item* getItem();
+
 	
 private:
 	Size size;
@@ -76,6 +84,8 @@ private:
 	Lighting lighting;
 	Trap* trap;
 	Trap* noTrap = new Trap();
+	Item* item;
+	Item* noItem = new Item();
 	std::map<Direction, Room*> adjacentRooms;
 	std::vector<Enemy*> enemies;
 	bool visited = false;
@@ -84,6 +94,8 @@ private:
 	const char * getTextForFurniture();
 	const char * getTextForLighting();
 	const char * getTextForTrap();
+	std::string getTextForItem();
+
 
 
 };

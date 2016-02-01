@@ -8,7 +8,7 @@ static const char * sizeStrings[] = { "small", "medium", "large" };
 static const char * stateStrings[] = { "neat", "dirty" };
 static const char * furnitureStrings[] = { "There is a table with four chairs in this room.", "There is a bed in the corner.", "There is nothing in this room." };
 static const char * lightStrings[] = { "In the room there burns a single candle which lights the room a bit.", "On the wall there is a torch, which lights the room.", "On the side there is a big fireplace which fills the room with light." };
-
+static const char * itemString = "";
 Room::Room(){
 	//Size switch
 	switch (DungeonGenerator::RandomNumberGenerator(1, 3)){
@@ -53,7 +53,7 @@ Room::Room(){
 		break;
 	}
 	//Trap switch
-	switch (DungeonGenerator::RandomNumberGenerator(1, 4)) {
+	switch (DungeonGenerator::RandomNumberGenerator(1, 20)) {
 	case 1: trap = new Tripwire();
 		break;
 	case 2: trap = new FakeButton();
@@ -63,6 +63,19 @@ Room::Room(){
 	case 4: trap = new Kebab();
 		break;
 	default: trap = noTrap;
+		break;
+	}
+	//Item switch
+	switch (DungeonGenerator::RandomNumberGenerator(1, 12)) {
+	case 1: item = new Sword();
+		break;
+	case 2: item = new Shield();
+		break;
+	case 3: item = new HealPotion();
+		break;
+	case 4: item = new RandomPotion();
+		break;
+	default: item = noItem;
 		break;
 	}
 }
@@ -87,8 +100,22 @@ const char * Room::getTextForTrap() {
 	return trap->getText();
 }
 
+std::string Room::getTextForItem() {
+	return item->getText();
+}
+
 void Room::checkForTraps(Player* p) {
 	trap->activate(p);
+}
+
+void Room::checkForItems() {
+	Utils::PrintLine("You find a " + getTextForItem() + " hidden under a layer of dust. Take it or leave it?\n|  Take  |  Leave  |");
+}
+
+Item* Room::getItem() {
+	Item* temp = new Item(*item);
+	item = noItem;
+	return temp;
 }
 
 std::map<Direction, Room*> Room::getAdjacentRooms() {
@@ -96,7 +123,13 @@ std::map<Direction, Room*> Room::getAdjacentRooms() {
 }
 
 std::list<std::string> Room::getPossibleActions() {
-	return std::list < std::string > {"Run", "Fight", "Inv", "Stats", "Rest"};
+	if (item != noItem) {
+		itemString = "Item";
+	}
+	else {
+		itemString = "";
+	}
+	return std::list < std::string > {"Run", "Fight", "Inv", "Stats", "Rest", itemString};
 }
 
 Room::~Room(){

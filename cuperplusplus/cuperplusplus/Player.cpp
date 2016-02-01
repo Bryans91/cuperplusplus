@@ -98,6 +98,100 @@ void Player::save(){
 	Utils::SaveFile(saveString, name);
 }
 
-void LoadFromString(std::string input){
-	Utils::PrintLine(input)
+void Player::LoadFromString(std::string input){
+	Utils::PrintLine(input);
+}
+
+void Player::takeItem(Item* i) {
+	items.push_back(i);
+}
+
+std::string Player::equipItem(Item* i) {
+	Equipable* eq = dynamic_cast<Equipable*>(i);
+	if (eq != NULL) {
+		return eq->equip(this);
+	}
+	else {
+		Utils::PrintLine("This item isn't equipable.");
+		return "";
+	}
+}
+
+
+std::string Player::unEquipItem(Item* i) {
+	Equipable* eq = dynamic_cast<Equipable*>(i);
+	if (eq != NULL) {
+		return eq->unEquip(this);
+	}
+	else {
+		Utils::PrintLine("This item isn't equipable.");
+		return "";
+	}
+}
+
+std::string Player::useItem(Item* i) {
+
+	Useable* us = dynamic_cast<Useable*>(i);
+	if (us != NULL) {
+		return us->use(this);
+	}
+	else {
+		Utils::PrintLine("This item isn't useable.");
+		return "";
+	}
+}
+
+std::vector<Item*> Player::getItems() {
+	return items;
+}
+
+void Player::equipAllItems() {
+	for each(Item* i in items)  {
+		Equipable* eq = dynamic_cast<Equipable*>(i);
+		if (eq != NULL) {
+			eq->equip(this);
+		}
+	}
+}
+
+void Player::unEquipAllItems() {
+	for each(Item* i in items)  {
+		Equipable* eq = dynamic_cast<Equipable*>(i);
+		if (eq != NULL) {
+			eq->unEquip(this);
+		}
+	}
+}
+
+void Player::useAllRandomPotions() {
+	for each(Item* i in items)  {
+		if (RandomPotion* rp = (RandomPotion*)i) {
+			rp->use(this);
+		}
+	}
+}
+
+void Player::useAllHealPotions() {
+	for each(Item* i in items)  {
+		if (HealPotion* hp = (HealPotion*)i) {
+			hp->use(this);
+		}
+	}
+}
+
+
+
+void Player::removeItem(Item* i) {
+	Equipable* eq = dynamic_cast<Equipable*>(i);
+	if (eq != NULL) {
+		eq->unEquip(this);
+	}
+	for (std::vector<Item*>::iterator iter = items.begin(); iter != items.end(); ++iter)
+	{
+		if (*iter == i)
+		{
+			items.erase(iter);
+			break;
+		}
+	}
 }
