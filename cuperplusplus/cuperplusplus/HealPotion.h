@@ -6,6 +6,6 @@ class HealPotion :
 public:
 	HealPotion();
 	~HealPotion();
-	virtual void use(Player* p);
+	virtual std::string use(Player* p);
 };
 

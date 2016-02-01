@@ -15,27 +15,27 @@ RandomPotion::~RandomPotion()
 {
 }
 
-void RandomPotion::use(Player* p) {
-	itemDescription = "Used a potion that gave you " + usePower;
+std::string RandomPotion::use(Player* p) {
+	useString = "Used a potion that gave you " + usePower;
 	switch (DungeonGenerator::RandomNumberGenerator(1, 4)){
 	case 1:
 		p->heal(usePower);
-		itemDescription += " health";
+		useString += " health";
 		break;
 	case 2:
 		p->damage(usePower);
-		itemDescription += " damage";
+		useString += " damage";
 		break;
 	case 3:
 		p->increasePwr(usePower);
-		itemDescription += " attack power.";
+		useString += " attack power.";
 		break;
 	case 4:
 		p->increaseDefence(usePower); 
-		itemDescription += " defence power.";
+		useString += " defence power.";
 		break;
 	default:
 		break;
 	}
-
+	return useString;
 }

@@ -15,14 +15,16 @@ Sword::~Sword()
 {
 }
 
-void Sword::equip(Player * p)
+std::string Sword::equip(Player * p)
 {
 	p->increasePwr(equipPower);
 	equipped = true;
+	return effectString;
 }
 
-void Sword::unEquip(Player * p) 
+std::string Sword::unEquip(Player * p)
 {
 	p->increasePwr(-equipPower);
 	equipped = false;
+	return negativeEffectString;
 }

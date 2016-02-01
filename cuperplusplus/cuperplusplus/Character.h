@@ -30,15 +30,28 @@ public:
 	void setMaxHP(int mhp){ maxHealthPoints = mhp; }
 
 	void increaseHp(int pHp){ maxHealthPoints += pHp; };
-	void increasePwr(int pAtk){ if (attackPower += pAtk < 5) { attackPower = 5; } };
-	void increaseDefence(int pDef){ if (defencePower += pDef < 5) { defencePower = 5; } };
+	void increasePwr(int pAtk){
+		attackPower += pAtk;
+		if (attackPower < 5) {
+			attackPower = 5;
+		}
+	};
+	void increaseDefence(int pDef){
+		defencePower += pDef;  
+		if (defencePower < 5) {
+			defencePower = 5;
+		};
+	};
 
 	std::string getName() const { return name; }
 	std::string getStatus();
 	void setCreature();
 	int hit(int dmg);
 	void heal(int amount){
-		healthPoints = (((healthPoints + amount) > maxHealthPoints) ? this->maxHealthPoints : (healthPoints + amount));
+		healthPoints += amount; 
+		if (healthPoints > maxHealthPoints) {
+			healthPoints = maxHealthPoints;
+		}
 	};
 	void damage(int amount) {
 		healthPoints = (healthPoints - amount);

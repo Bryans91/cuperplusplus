@@ -23,8 +23,8 @@ void Equipable::getRandomName() {
 		equipPower = 5;
 		break;
 	case 3:
-		itemDescription = "elven";
-		equipPower = 8;
+		itemDescription = "crystal";
+		equipPower = 7;
 		break;
 	default:
 		itemDescription = "normal";

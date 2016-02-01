@@ -55,6 +55,10 @@ void Game::startGame() {
 		if (cheat){
 			cheat = false;
 		}
+		if (affected) {
+			affected = false;
+			Utils::PrintLine(effect);
+		}
 		if (showStats){
 			showStats = false;
 			Utils::PrintLine(player->getStatus() + "\n");
@@ -64,9 +68,11 @@ void Game::startGame() {
 			std::string temp = "You don't have any items right now.";
 			if (player->getItems()._Myfirst != nullptr) {
 				temp = "|";
+				int counter = 1;
 				for each(Item* i in player->getItems()) {
-					if (Equipable* e = (Equipable*)i) {
-						if (e->isEquipped) {
+					Equipable* e = dynamic_cast<Equipable*>(i);
+					if (e != NULL) {
+						if (e->isEquipped()) {
 							temp += "(eq)";
 						}
 						else {
@@ -76,7 +82,9 @@ void Game::startGame() {
 					else {
 						temp += "  ";
 					}
-					temp += std::string(i->getText()) + "  |";
+					temp += std::string(i->getText()) + "[";
+					temp += std::to_string(counter) +"]|";
+
 				}
 			}
 			Utils::PrintLine(temp + "\n");
@@ -170,14 +178,28 @@ void Game::handleInput(std::string input) {
 		}
 		player->getCurrentRoom()->EnemiesAttack(player);
 	}
-	else if (input == std::string("use potion")){
-
+	else if (input == std::string("use")){
+		int item = handleItemInput(Utils::ReadString());
+		if (player->getItems().at(item - 1) != NULL) {
+			effect = player->useItem(player->getItems().at(item - 1));
+			affect();
+		}
 	}
-	else if (input == std::string("use item")){
-
+	else if (input == std::string("equip")){
+		int item = handleItemInput(Utils::ReadString());
+		if (player->getItems().at(item - 1) != NULL){
+			effect = player->equipItem(player->getItems().at(item - 1));
+			affect();
+		}
+	}
+	else if (input == std::string("unequip")){
+		int item = handleItemInput(Utils::ReadString());
+		if (player->getItems().at(item - 1) != NULL){
+			effect = player->unEquipItem(player->getItems().at(item - 1));
+			affect();
+		}
 	}
 	else if (input == std::string("inv")){
-
 		showInventory = true;
 	}
 	else if (input == std::string("stats")){
@@ -223,9 +245,20 @@ void Game::handleInput(std::string input) {
 	}
 }
 
+int Game::handleItemInput(std::string input) {
+	if (int i = atoi(input.c_str())) {
+		return i;
+	}
+}
+
 void Game::endGame() {
 	playing = false;
 
+}
+
+void Game::affect() {
+	affected = true;
+	showStats = true;
 }
 
 Game::~Game()

@@ -52,8 +52,9 @@ public:
 	void LoadFromString(std::string);
 	void setExp(int exp){ experience = exp; }
 	void takeItem(Item* i);
-	void equipItem(Item* i);
-	void useItem(Item* i);
+	std::string equipItem(Item* i);
+	std::string unEquipItem(Item* i);
+	std::string useItem(Item* i);
 	void removeItem(Item* i);
 	std::vector<Item*> getItems();
 	void equipAllItems();

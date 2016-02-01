@@ -6,7 +6,7 @@ class Shield :
 public:
 	Shield();
 	~Shield();
-	virtual void equip(Player* p);
-	virtual void unEquip(Player* p);
+	virtual std::string equip(Player* p);
+	virtual std::string unEquip(Player* p);
 };
 

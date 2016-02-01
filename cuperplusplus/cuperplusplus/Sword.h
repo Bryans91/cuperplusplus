@@ -6,7 +6,7 @@ class Sword :
 public:
 	Sword();
 	~Sword();
-	virtual void equip(Player* p);
-	virtual void unEquip(Player* p);
+	virtual std::string equip(Player* p);
+	virtual std::string unEquip(Player* p);
 };
 

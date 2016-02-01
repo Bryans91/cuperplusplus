@@ -13,14 +13,16 @@ Shield::~Shield()
 {
 }
 
-void Shield::equip(Player* p) 
+std::string Shield::equip(Player* p) 
 {
 	p->increaseDefence(equipPower);
 	equipped = true;
+	return effectString;
 }
 
-void Sword::unEquip(Player * p)
+std::string Shield::unEquip(Player * p)
 {
 	p->increaseDefence(-equipPower);
 	equipped = false;
+	return negativeEffectString;
 }

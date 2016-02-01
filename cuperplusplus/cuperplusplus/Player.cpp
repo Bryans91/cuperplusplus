@@ -106,14 +106,39 @@ void Player::takeItem(Item* i) {
 	items.push_back(i);
 }
 
-void Player::equipItem(Item* i) {
-	Equipable* eq = (Equipable*)i;
-	eq->equip(this);
+std::string Player::equipItem(Item* i) {
+	Equipable* eq = dynamic_cast<Equipable*>(i);
+	if (eq != NULL) {
+		return eq->equip(this);
+	}
+	else {
+		Utils::PrintLine("This item isn't equipable.");
+		return "";
+	}
 }
 
-void Player::useItem(Item* i) {
-	Useable* us = (Useable*)i;
-	us->use(this);
+
+std::string Player::unEquipItem(Item* i) {
+	Equipable* eq = dynamic_cast<Equipable*>(i);
+	if (eq != NULL) {
+		return eq->unEquip(this);
+	}
+	else {
+		Utils::PrintLine("This item isn't equipable.");
+		return "";
+	}
+}
+
+std::string Player::useItem(Item* i) {
+
+	Useable* us = dynamic_cast<Useable*>(i);
+	if (us != NULL) {
+		return us->use(this);
+	}
+	else {
+		Utils::PrintLine("This item isn't useable.");
+		return "";
+	}
 }
 
 std::vector<Item*> Player::getItems() {
@@ -122,7 +147,8 @@ std::vector<Item*> Player::getItems() {
 
 void Player::equipAllItems() {
 	for each(Item* i in items)  {
-		if (Equipable* eq = (Equipable*)i) {
+		Equipable* eq = dynamic_cast<Equipable*>(i);
+		if (eq != NULL) {
 			eq->equip(this);
 		}
 	}
@@ -130,7 +156,8 @@ void Player::equipAllItems() {
 
 void Player::unEquipAllItems() {
 	for each(Item* i in items)  {
-		if (Equipable* eq = (Equipable*)i) {
+		Equipable* eq = dynamic_cast<Equipable*>(i);
+		if (eq != NULL) {
 			eq->unEquip(this);
 		}
 	}
@@ -155,7 +182,8 @@ void Player::useAllHealPotions() {
 
 
 void Player::removeItem(Item* i) {
-	if (Equipable* eq = (Equipable*)i) {
+	Equipable* eq = dynamic_cast<Equipable*>(i);
+	if (eq != NULL) {
 		eq->unEquip(this);
 	}
 	for (std::vector<Item*>::iterator iter = items.begin(); iter != items.end(); ++iter)

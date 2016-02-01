@@ -6,7 +6,7 @@ class RandomPotion :
 public:
 	RandomPotion();
 	~RandomPotion();
-	virtual void use(Player* p);
+	virtual std::string use(Player* p);
 	int usePower = 0;
 };
 

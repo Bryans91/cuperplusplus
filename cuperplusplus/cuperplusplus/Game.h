@@ -23,10 +23,14 @@ private:
 	bool fighting = false;
 	bool showStats = false;
 	bool showInventory = false;
+	bool affected = false;
 	std::string actions;
+	std::string effect;
 	void startGame();
 	void handleInput(std::string);
+	int handleItemInput(std::string);
 	void generateDungeon(std::string, std::string);
+	void affect();
 
 };
 

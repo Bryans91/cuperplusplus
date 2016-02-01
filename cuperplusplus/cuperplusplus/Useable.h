@@ -6,7 +6,8 @@ class Useable :
 public:
 	Useable();
 	~Useable();
-	virtual void use(Player * p);
+	virtual std::string use(Player * p);
 protected:
+	std::string useString = "";
 };
 

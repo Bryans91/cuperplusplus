@@ -11,6 +11,7 @@ Useable::~Useable()
 {
 }
 
-void Useable::use(Player* p)
+std::string Useable::use(Player* p)
 {
+	return useString;
 }

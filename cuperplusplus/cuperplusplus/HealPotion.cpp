@@ -12,7 +12,8 @@ HealPotion::~HealPotion()
 {
 }
 
-void HealPotion::use(Player* p) {
-	itemDescription = "Used healing potion that heals you for 10 HP";
+std::string HealPotion::use(Player* p) {
+	useString = "Used healing potion that heals you for 10 HP";
 	p->heal(10);
+	return useString;
 }
