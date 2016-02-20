@@ -5,7 +5,7 @@ class Equipable :
 {
 public:
 	Equipable();
-	~Equipable();
+	virtual ~Equipable();
 	virtual std::string equip(Player* p) {
 		equipped = true;
 		return effectString;

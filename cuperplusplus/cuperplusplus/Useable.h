@@ -5,7 +5,7 @@ class Useable :
 {
 public:
 	Useable();
-	~Useable();
+	virtual ~Useable();
 	virtual std::string use(Player * p);
 protected:
 	std::string useString = "";

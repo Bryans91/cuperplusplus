@@ -5,7 +5,7 @@ class Item
 {
 public:
 	Item();
-	~Item();
+	virtual ~Item();
 	virtual void find(Player* p);
 	virtual std::string getText();
 protected:
