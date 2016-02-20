@@ -2,6 +2,7 @@
 #include "map"
 #include "list"
 #include "string"
+#include "vector"
 #include "Map.h"
 #include "Enemy.h"
 #include "Room.h"
@@ -17,6 +18,7 @@ private:
 	double getExperienceNeeded(int);
 	int unspendPoints = 0;
 	void lvlup();
+	std::vector<Item*> items;
 public:
 	Player(std::string aName);//, Map *map
 	~Player();
@@ -44,10 +46,21 @@ public:
 	void cheat(Map *map);
 	void attack(Character*);
 	void save();
+	void load(std::string playerName);
 	std::string getStatus();
 	int getUnspendPoints(){ return unspendPoints; };
 	void LoadFromString(std::string);
-	void setExp(int exp){ experience = exp; };
+	void setExp(int exp){ experience = exp; }
+	void takeItem(Item* i);
+	std::string equipItem(Item* i);
+	std::string unEquipItem(Item* i);
+	std::string useItem(Item* i);
+	void removeItem(Item* i);
+	std::vector<Item*> getItems();
+	void equipAllItems();
+	void unEquipAllItems();
+	void useAllRandomPotions();
+	void useAllHealPotions();
 
 
 };

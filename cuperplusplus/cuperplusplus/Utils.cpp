@@ -78,9 +78,6 @@ namespace Utils{
 		file.close();
 		
 	}
-	void ReadFile(std::string path){
-		//{ getCustomPath() + file; }
-	}
 
 	void LoadPlayer(std::string name, Player* p){
 		std::string path = "../saves/" + name + ".txt";
