@@ -69,7 +69,7 @@ namespace Utils{
 
 
 	void SaveFile(std::string text, std::string name){
-		if (!system("mkdir \"../saves\"")){}
+		if (system("mkdir \"../saves\"")){}
 		
 		std::string path = "../saves/" + name + ".txt";
 		std::ofstream file;

@@ -129,14 +129,33 @@ std::list<std::string> Room::getPossibleActions() {
 	else {
 		itemString = "";
 	}
-	return std::list < std::string > {"Run", "Fight", "Inv", "Stats", "Rest", itemString};
+	return std::list < std::string > {"Run", "Fight", "Inv", "Stats", "Rest", "Save", itemString};
 }
 
 Room::~Room(){
-	enemies.clear();
-	for (auto it = adjacentRooms.cbegin(); it != adjacentRooms.cend();){
-		adjacentRooms.erase(it++);
+	for (int i = 0; i < enemies.size(); i++){
+		delete enemies[i];
 	}
+	enemies.clear();
+	adjacentRooms.clear();
+	if (noTrap != trap){
+		delete noTrap;
+
+	}
+	noTrap = NULL;
+	if (noItem != item){
+		delete noItem;
+
+	}
+	noItem = NULL;
+
+	delete trap;
+	trap = NULL;
+
+	delete item;
+	item = NULL;
+
+
 }
 
 std::string Room::getRoomInfo(){

@@ -12,6 +12,7 @@ public:
 	~Dungeon();
 	void setLevel(int level, DungeonLayer* layer);
 	void loadLevel(int level);
+	int getLevel(){return level;}
 	Room* getFirstRoom();
 	Room* getLastRoom();
 	DungeonLayer* getCurrentLayer();

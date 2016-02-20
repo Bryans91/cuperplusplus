@@ -11,10 +11,13 @@ DungeonLayer::DungeonLayer()
 
 DungeonLayer::~DungeonLayer()
 {
+	for (int i = 0; i < roomList.size(); i++){
+		delete roomList[i];
+	}
 	roomList.clear();
 	mapLayout.clear();
-	start = nullptr;
-	end = nullptr;
+	start = NULL;
+	end = NULL;
 }
 
 void DungeonLayer::setEnd(Room* r){

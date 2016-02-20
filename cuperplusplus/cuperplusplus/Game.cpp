@@ -109,7 +109,7 @@ void Game::startGame() {
 		if (player->getCurrentRoom() == dungeon->getLastRoom()){
 			actions += "  Down |";
 		}
-		else if (player->getCurrentRoom() == dungeon->getFirstRoom()){
+		else if (player->getCurrentRoom() == dungeon->getFirstRoom() && dungeon->getLevel() != 1){
 			actions += "  Up |";
 		}
 		actions += "  Quit |";
@@ -121,6 +121,7 @@ void Game::startGame() {
 
 
 	}
+
 }
 
 void Game::handleInput(std::string input) {
@@ -233,6 +234,13 @@ void Game::handleInput(std::string input) {
 			dungeon->loadNextLevel();
 			player->setCurrentRoom(dungeon->getFirstRoom());
 			player->getCurrentRoom()->Visited();
+		}
+
+	}
+	else if (input == std::string("up")){
+		if (player->getCurrentRoom() == dungeon->getFirstRoom() && dungeon->getLevel() > 1){
+			dungeon->loadLevel(dungeon->getLevel()-1);
+			player->setCurrentRoom(dungeon->getLastRoom());
 		}
 
 	}

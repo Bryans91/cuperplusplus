@@ -14,7 +14,7 @@ protected:
 	int maxHealthPoints;
 	int attackPower;
 	int defencePower;
-	std::list<Item *> items;
+	std::vector<Item*> items;
 	Room* currentRoom;
 
 public:
