@@ -98,6 +98,3 @@ void Player::save(){
 	Utils::SaveFile(saveString, name);
 }
 
-void LoadFromString(std::string input){
-	Utils::PrintLine(input)
-}
