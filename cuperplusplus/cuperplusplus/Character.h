@@ -17,6 +17,7 @@ protected:
 	std::vector<Item*> items;
 	Room* currentRoom;
 
+
 public:
 	Character();
 	~Character();
@@ -46,7 +47,7 @@ public:
 	std::string getName() const { return name; }
 	std::string getStatus();
 	void setCreature();
-	int hit(int dmg);
+	virtual int hit(int dmg);
 	void heal(int amount){
 		healthPoints += amount; 
 		if (healthPoints > maxHealthPoints) {

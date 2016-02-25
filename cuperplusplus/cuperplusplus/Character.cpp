@@ -14,6 +14,7 @@ int Character::hit(int dmg)
 		return 0;
 	}
 	int dmgtodeal = dmg - defencePower;
+
 	if (dmgtodeal < 0){
 		dmgtodeal = 0;
 	}

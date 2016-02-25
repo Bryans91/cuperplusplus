@@ -32,3 +32,30 @@ void Equipable::getRandomName() {
 		break;
 	}
 }
+
+void Equipable::setPower(int p){
+	equipPower = p;
+	switch (p){
+	case 3:
+		itemDescription = "crude";
+		break;
+	case 4:
+		itemDescription = "normal";
+		break;
+	case 5:
+		itemDescription = "decent";
+		break;
+	case 7:
+		itemDescription = "crystal";
+		break;
+	default:
+		itemDescription = "normal";
+		equipPower = 4;
+		break;
+	}
+
+}
+//std::string Equipable::save(ItemVisitor v){
+//	return v.Visit(this);
+//}
+

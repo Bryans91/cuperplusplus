@@ -5,8 +5,10 @@ class RandomPotion :
 {
 public:
 	RandomPotion();
+	RandomPotion(int power);
 	~RandomPotion();
 	virtual std::string use(Player* p);
 	int usePower = 0;
+	std::string save(ItemVisitor v);
 };
 

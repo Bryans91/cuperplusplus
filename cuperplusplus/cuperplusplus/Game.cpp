@@ -65,26 +65,28 @@ void Game::startGame() {
 		}
 		if (showInventory) {
 			showInventory = false;
-			std::string temp = "You don't have any items right now.";
-			if (player->getItems()._Myfirst != nullptr) {
-				temp = "|";
-				int counter = 1;
-				for each(Item* i in player->getItems()) {
-					Equipable* e = dynamic_cast<Equipable*>(i);
-					if (e != NULL) {
-						if (e->isEquipped()) {
-							temp += "(eq)";
-						}
-						else {
-							temp += "  ";
-						}
-					}
-					else {
-						temp += "  ";
-					}
-					temp += std::string(i->getText()) + "[";
-					temp += std::to_string(counter) +"]|";
-
+			std::string temp = "";
+			if (player->getSword() != nullptr || player->getShield() != nullptr){
+				temp += "Equiped:\n";
+				int count = 0;
+				if (player->getSword() != nullptr){
+					count++;
+					temp += "[1]" + player->getSword()->getText() + ": " + std::to_string(player->getSword()->getEquipPower()) + "\n";
+				}
+				if (player->getShield() != nullptr){
+					count++;
+					temp += "[2]" + player->getShield()->getText() + ": " + std::to_string(player->getShield()->getEquipPower()) + "\n";
+				}
+				temp += "\n";
+			}
+			
+			if (player->getItems().size() == 0){
+				temp += "You don't have any items right now.";
+			}
+			else {
+				temp += "Inventory: \n";
+				for (int i = 0; i < player->getItems().size(); i++){
+					temp += "[" + std::to_string(i + 1) + "] " + std::string(player->getItems()[i]->getText()) + "\n";
 				}
 			}
 			Utils::PrintLine(temp + "\n");
@@ -188,17 +190,16 @@ void Game::handleInput(std::string input) {
 	}
 	else if (input == std::string("equip")){
 		int item = handleItemInput(Utils::ReadString());
-		if (player->getItems().at(item - 1) != NULL){
-			effect = player->equipItem(player->getItems().at(item - 1));
-			affect();
+		if (player->getItems()[item - 1] != nullptr){
+			Equipable* e = (Equipable*)player->getItems()[item - 1];
+			e->equip(player); //TODO fix deletion of this item, just removing it from the vector, nothing more.
+			std::swap(player->getItems()[item - 1], player->getItems().back());
+			player->getItems().pop_back();
 		}
 	}
 	else if (input == std::string("unequip")){
 		int item = handleItemInput(Utils::ReadString());
-		if (player->getItems().at(item - 1) != NULL){
-			effect = player->unEquipItem(player->getItems().at(item - 1));
-			affect();
-		}
+		player->unEquipItem(item);
 	}
 	else if (input == std::string("inv")){
 		showInventory = true;

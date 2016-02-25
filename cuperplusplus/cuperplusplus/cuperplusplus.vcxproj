@@ -90,8 +90,10 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="HealPotion.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="ItemVisitor.h" />
     <ClInclude Include="Kebab.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="NoItem.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RandomPotion.h" />
     <ClInclude Include="Room.h" />
@@ -117,8 +119,10 @@
     <ClCompile Include="FakeButton.cpp" />
     <ClCompile Include="HealPotion.cpp" />
     <ClCompile Include="Item.cpp" />
+    <ClCompile Include="ItemVisitor.cpp" />
     <ClCompile Include="Kebab.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="NoItem.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RandomPotion.cpp" />
     <ClCompile Include="Room.cpp" />

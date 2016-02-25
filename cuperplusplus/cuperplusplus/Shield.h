@@ -5,8 +5,10 @@ class Shield :
 {
 public:
 	Shield();
+	Shield(int power);
 	~Shield();
 	virtual std::string equip(Player* p);
 	virtual std::string unEquip(Player* p);
+	std::string save(ItemVisitor v);
 };
 

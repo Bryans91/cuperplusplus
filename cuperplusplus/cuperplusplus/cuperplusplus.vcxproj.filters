@@ -129,6 +129,12 @@
     <ClInclude Include="Useable.h">
       <Filter>Header Files\Items</Filter>
     </ClInclude>
+    <ClInclude Include="ItemVisitor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NoItem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -208,6 +214,12 @@
     </ClCompile>
     <ClCompile Include="Equipable.cpp">
       <Filter>Source Files\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemVisitor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NoItem.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -7,6 +7,11 @@ Shield::Shield()
 	getRandomName();
 	itemDescription += " shield";
 }
+
+Shield::Shield(int power){
+	setPower(power);
+	itemDescription += " shield";
+}
 //increases defencepower
 
 Shield::~Shield()
@@ -15,8 +20,7 @@ Shield::~Shield()
 
 std::string Shield::equip(Player* p) 
 {
-	p->increaseDefence(equipPower);
-	equipped = true;
+	p->equip(this);
 	return effectString;
 }
 
@@ -25,4 +29,8 @@ std::string Shield::unEquip(Player * p)
 	p->increaseDefence(-equipPower);
 	equipped = false;
 	return negativeEffectString;
+}
+
+std::string Shield::save(ItemVisitor v){
+	return v.Visit(this);
 }

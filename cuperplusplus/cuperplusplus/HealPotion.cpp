@@ -17,3 +17,7 @@ std::string HealPotion::use(Player* p) {
 	p->heal(10);
 	return useString;
 }
+
+std::string HealPotion::save(ItemVisitor v){
+	return v.Visit(this);
+}

@@ -13,6 +13,7 @@
 #include "RandomPotion.h"
 #include "Sword.h"
 #include "Shield.h"
+#include "NoItem.h"
 
 class Enemy;
 class Character;
@@ -85,7 +86,7 @@ private:
 	Trap* trap;
 	Trap* noTrap = new Trap();
 	Item* item;
-	Item* noItem = new Item();
+	Item* noItem = new NoItem();
 	std::map<Direction, Room*> adjacentRooms;
 	std::vector<Enemy*> enemies;
 	bool visited = false;

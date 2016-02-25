@@ -113,7 +113,7 @@ void Room::checkForItems() {
 }
 
 Item* Room::getItem() {
-	Item* temp = new Item(*item);
+	Item* temp = item;
 	item = noItem;
 	return temp;
 }
