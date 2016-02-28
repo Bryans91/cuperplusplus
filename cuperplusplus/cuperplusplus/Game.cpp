@@ -193,8 +193,8 @@ void Game::handleInput(std::string input) {
 		if (player->getItems()[item - 1] != nullptr){
 			Equipable* e = (Equipable*)player->getItems()[item - 1];
 			e->equip(player); //TODO fix deletion of this item, just removing it from the vector, nothing more.
-			std::swap(player->getItems()[item - 1], player->getItems().back());
-			player->getItems().pop_back();
+			//player->getItems().erase(std::remove(player->getItems().begin(), player->getItems().end(), player->getItems()[item - 1]), player->getItems().end());
+			//player->getItems().erase(player->getItems().begin()+item-1);
 		}
 	}
 	else if (input == std::string("unequip")){

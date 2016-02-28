@@ -6,7 +6,7 @@
 #include <crtdbg.h>
 #include <windows.h>
 #include "Game.cpp"
-#include <vld.h>
+//#include <vld.h>
 #define _CRTDBG_MAP_ALLOC
 
 
