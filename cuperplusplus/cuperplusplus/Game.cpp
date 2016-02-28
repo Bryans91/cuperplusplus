@@ -65,31 +65,34 @@ void Game::startGame() {
 		}
 		if (showInventory) {
 			showInventory = false;
-			std::string temp = "";
-			if (player->getSword() != nullptr || player->getShield() != nullptr){
-				temp += "Equiped:\n";
-				int count = 0;
-				if (player->getSword() != nullptr){
-					count++;
-					temp += "[1]" + player->getSword()->getText() + ": " + std::to_string(player->getSword()->getEquipPower()) + "\n";
-				}
-				if (player->getShield() != nullptr){
-					count++;
-					temp += "[2]" + player->getShield()->getText() + ": " + std::to_string(player->getShield()->getEquipPower()) + "\n";
-				}
-				temp += "\n";
-			}
+			std::string equipped = "";
+			std::string inventory = "";
 			
-			if (player->getItems().size() == 0){
-				temp += "You don't have any items right now.";
+
+			if (player->getItems().size() == 0 && player->getSword() == nullptr && player->getShield() == nullptr){
+				inventory += "You don't have any items right now.";
 			}
 			else {
-				temp += "Inventory: \n";
+				if (player->getSword() != nullptr || player->getShield() != nullptr) {
+					equipped += "Equipped:\n";
+				}
+				inventory += "Inventory: \n";
 				for (int i = 0; i < player->getItems().size(); i++){
-					temp += "[" + std::to_string(i + 1) + "] " + std::string(player->getItems()[i]->getText()) + "\n";
+					if (player->getItems()[i] != player->getSword() && player->getItems()[i] != player->getShield()) {
+						inventory += "[" + std::to_string(i + 1) + "] " + std::string(player->getItems()[i]->getText()) + "\n";
+					}
+					else if (player->getItems()[i] == player->getSword()) {
+						equipped += "[" + std::to_string(i + 1) + "]" + player->getSword()->getText() + ": " + std::to_string(player->getSword()->getEquipPower()) + "\n";
+					}
+					else if (player->getItems()[i] == player->getShield()) {
+						equipped += "[" + std::to_string(i + 1) + "]" + player->getShield()->getText() + ": " + std::to_string(player->getShield()->getEquipPower()) + "\n";
+					}
+				}
+				if (player->getSword() != nullptr || player->getShield() != nullptr) {
+					equipped += "\n";
 				}
 			}
-			Utils::PrintLine(temp + "\n");
+			Utils::PrintLine(equipped + inventory + "\n");
 		}
 		// Print all actions
 		if (player->getCurrentRoom() == dungeon->getFirstRoom()) {
@@ -225,7 +228,9 @@ void Game::handleInput(std::string input) {
 		handleInput(Utils::ReadString());
 	}
 	else if (input == std::string("take")) {
-		player->takeItem(player->getCurrentRoom()->getItem());
+		//if (player->getCurrentRoom()->getItem() != player->getCurrentRoom()->getNoItem()) {
+			player->takeItem(player->getCurrentRoom()->getItem());
+		//}
 	}
 	else if (input == std::string("leave")) {
 		

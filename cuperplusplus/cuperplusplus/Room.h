@@ -76,7 +76,9 @@ public:
 	void checkForTraps(Player * p);
 	void checkForItems();
 	Item* getItem();
-
+	Item* getNoItem() {
+		return noItem;
+	};
 	
 private:
 	Size size;

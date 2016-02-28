@@ -127,16 +127,16 @@ void Player::takeItem(Item* i) {
 	items.push_back(i);
 }
 void Player::equip(Sword* s){
-	if (sword != NULL && sword != s){
+	/*if (sword != NULL && sword != s){
 		items.push_back(sword);
-	}
+	}*/
 	sword = s;
 }
 
 void Player::equip(Shield* s){
-	if (shield != NULL && shield != s){
+	/*if (shield != NULL && shield != s){
 		items.push_back(shield);
-	}
+	}*/
 	shield = s;
 }
 
