@@ -24,6 +24,8 @@ private:
 	bool showStats = false;
 	bool showInventory = false;
 	bool affected = false;
+	bool compass = false;
+	bool talisman = false;
 	std::string actions;
 	std::string effect;
 	void startGame();

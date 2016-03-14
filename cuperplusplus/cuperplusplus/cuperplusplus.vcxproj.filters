@@ -135,6 +135,9 @@
     <ClInclude Include="NoItem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Talisman.h">
+      <Filter>Header Files\Items</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -220,6 +223,9 @@
     </ClCompile>
     <ClCompile Include="NoItem.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Talisman.cpp">
+      <Filter>Source Files\Items</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

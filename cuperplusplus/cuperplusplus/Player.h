@@ -8,6 +8,7 @@
 #include "Room.h"
 #include "Character.h"
 #include <iostream>
+#include "Talisman.h"
 
 class Player : public Character
 {
@@ -21,6 +22,7 @@ private:
 	std::vector<Item*> items;
 	Equipable* shield = nullptr;
 	Equipable* sword = nullptr;
+	Talisman* talisman = new Talisman();
 public:
 	Player(std::string aName);//, Map *map
 	~Player();
@@ -66,6 +68,9 @@ public:
 	void useAllRandomPotions();
 	void useAllHealPotions();
 	int hit(int dmg);
+	int useTalisman(Room* s, Room* e){
+		return talisman->shortestPath(s, e);
+	}
 
 
 };

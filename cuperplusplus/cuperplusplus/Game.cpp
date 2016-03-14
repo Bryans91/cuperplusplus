@@ -94,6 +94,19 @@ void Game::startGame() {
 			}
 			Utils::PrintLine(equipped + inventory + "\n");
 		}
+		if (compass){
+			compass = false;
+			std::string compassString = "You take the compass out of your pocket. It lights up and shows you your path: \n\n";
+			//TODO shortest path with least amount of enemies.
+			compassString += "Output from shortest path stuffs";
+			Utils::PrintLine(compassString);
+		}
+		if (talisman){
+			talisman = false;
+			std::string talismanString = "You take out the talisman. It whispers to you that the ladder down is ";
+			talismanString += std::to_string(player->useTalisman(player->getCurrentRoom(), dungeon->getLastRoom())) + " rooms away"; //TODO bfs for path.
+			Utils::PrintLine(talismanString);
+		}
 		// Print all actions
 		if (player->getCurrentRoom() == dungeon->getFirstRoom()) {
 			Utils::PrintLine("This is the first room of this layer.");
@@ -252,6 +265,12 @@ void Game::handleInput(std::string input) {
 	}
 	else if (input == std::string("save")){
 		player->save();
+	}
+	else if (input == std::string("compass")){
+		compass = true;
+	}
+	else if (input == std::string("talisman")){
+		talisman = true;
 	}
 	else {
 		Utils::PrintLine("The input " + input + " is not known, try again.");

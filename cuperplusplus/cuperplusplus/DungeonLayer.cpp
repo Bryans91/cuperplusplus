@@ -108,6 +108,28 @@ std::string DungeonLayer::getDungeonMap(bool c, Room* location){
 						break;
 					}
 				}
+				std::map<Direction, Room*>::iterator it;
+				std::map<Direction, Room*>collapsedRooms = mapLayout[i][j]->getCollapsedRooms();
+				for (it = collapsedRooms.begin(); it != collapsedRooms.end(); it++)
+				{
+					switch (it->first)
+					{
+					case Direction::NORTH:
+						mapArray[2 * i - 1][j * 2] = '~';
+						break;
+					case Direction::EAST:
+						mapArray[2 * i][j * 2 + 1] = '~';
+						break;
+					case Direction::SOUTH:
+						mapArray[2 * i + 1][j * 2] = '~';
+						break;
+					case Direction::WEST:
+						mapArray[2 * i][j * 2 - 1] = '~';
+						break;
+					default:
+						break;
+					}
+				}
 
 
 

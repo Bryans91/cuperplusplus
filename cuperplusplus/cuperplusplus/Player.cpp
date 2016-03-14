@@ -63,6 +63,8 @@ Player::~Player()
 		delete sword;
 	}
 	sword = NULL;
+	delete talisman;
+	talisman = NULL;
 }
 
 void Player::attack(Character* c){
