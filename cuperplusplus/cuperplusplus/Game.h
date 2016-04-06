@@ -24,9 +24,10 @@ private:
 	bool showStats = false;
 	bool showInventory = false;
 	bool affected = false;
-	std::string actions;
+	std::string actions, size, difficulty;
 	std::string effect;
 	void startGame();
+	void checkHP();
 	void handleInput(std::string);
 	int handleItemInput(std::string);
 	void generateDungeon(std::string, std::string);

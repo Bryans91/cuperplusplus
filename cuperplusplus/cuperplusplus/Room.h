@@ -71,6 +71,10 @@ public:
 	bool isVisited(){ return visited; };
 	int hasEnemies();
 	bool AttackEnemy(int, Character*);
+	bool hasItem(){
+		if (item != noItem) { return true; }
+		else { return false; }
+	};
 	void EnemiesAttack(Character* c);
 	void checkForTraps(Player * p);
 	void checkForItems();

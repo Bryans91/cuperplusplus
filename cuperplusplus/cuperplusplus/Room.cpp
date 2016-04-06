@@ -113,6 +113,9 @@ void Room::checkForItems() {
 }
 
 Item* Room::getItem() {
+	if (item == noItem) {
+		return nullptr;
+	}
 	Item* temp = new Item(*item);
 	item = noItem;
 	return temp;

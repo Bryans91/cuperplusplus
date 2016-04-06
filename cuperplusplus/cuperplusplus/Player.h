@@ -57,6 +57,7 @@ public:
 	std::string useItem(Item* i);
 	void removeItem(Item* i);
 	std::vector<Item*> getItems();
+	bool hasItems();
 	void equipAllItems();
 	void unEquipAllItems();
 	void useAllRandomPotions();
