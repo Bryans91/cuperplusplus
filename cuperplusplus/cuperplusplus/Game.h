@@ -26,9 +26,9 @@ private:
 	bool affected = false;
 	bool compass = false;
 	bool talisman = false;
-	std::string actions;
-	std::string effect;
+	std::string actions, size, difficulty, effect;
 	void startGame();
+	void checkHP();
 	void handleInput(std::string);
 	int handleItemInput(std::string);
 	void generateDungeon(std::string, std::string);

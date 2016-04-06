@@ -22,6 +22,6 @@ std::string Item::getText()
 	return itemDescription;
 }
 
-//std::string Item::save(ItemVisitor v){
-//	return v.Visit(this);
-//}
+std::string Item::save(ItemVisitor v){
+	return v.Visit(this);
+}

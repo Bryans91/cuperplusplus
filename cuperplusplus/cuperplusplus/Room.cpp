@@ -113,9 +113,14 @@ void Room::checkForItems() {
 }
 
 Item* Room::getItem() {
-	Item* temp = item;
-	item = noItem;
-	return temp;
+	if (!hasItem()) {
+		return nullptr;
+	}
+	else {
+		Item* temp = new Item(*item);
+		item = noItem;
+		return temp;
+	}
 }
 
 std::map<Direction, Room*> Room::getAdjacentRooms() {

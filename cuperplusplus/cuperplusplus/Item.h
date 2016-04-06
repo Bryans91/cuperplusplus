@@ -9,7 +9,7 @@ public:
 	virtual ~Item();
 	virtual void find(Player* p);
 	virtual std::string getText();
-	virtual std::string save(ItemVisitor v) = 0;
+	virtual std::string save(ItemVisitor v);
 protected:
 	std::string itemDescription = "";
 

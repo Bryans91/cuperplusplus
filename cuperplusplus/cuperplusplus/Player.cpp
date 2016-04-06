@@ -172,6 +172,15 @@ std::vector<Item*> Player::getItems() {
 	return items;
 }
 
+bool Player::hasItems() {
+	if (items.size() > 0) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
 void Player::equipAllItems() {
 	for each(Item* i in items)  {
 		Equipable* eq = dynamic_cast<Equipable*>(i);
