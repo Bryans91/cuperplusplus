@@ -69,7 +69,7 @@ namespace Utils{
 
 
 	void SaveFile(std::string text, std::string name){
-		if (!system("mkdir \"../saves\"")){}
+		if (system("mkdir \"../saves\"")){}
 		
 		std::string path = "../saves/" + name + ".txt";
 		std::ofstream file;
@@ -86,15 +86,34 @@ namespace Utils{
 		if (file.is_open()){
 			char const delimiters[] = ": ";
 			std::string line;
-			std::vector<std::string> lines;
-			std::vector<std::string> tokens;
+			std::vector<std::string> lines, tokens, equipeditems, inventory;
+			
 			while (getline(file, line)){
 				lines.push_back(line);
 			}
+			bool equiped = false;
+			bool items = false;
 			for (int i = 0; i < lines.size(); i++){
+				if (lines[i] == "Equiped:"){
+					equiped = true;
+				}
+				else if (lines[i] == "Items:"){
+					equiped = false;
+					items = true;
+				}
 				std::string::size_type pos = lines[i].find(': ');
-				tokens.push_back(lines[i].substr(0, pos-1));
-				tokens.push_back(lines[i].substr(pos + 1, lines[i].size()));
+				if (items){
+					inventory.push_back(lines[i].substr(0, pos - 1));
+					inventory.push_back(lines[i].substr(pos + 1, lines[i].size()));
+				}
+				else if (equiped){
+					equipeditems.push_back(lines[i].substr(0, pos - 1));
+					equipeditems.push_back(lines[i].substr(pos + 1, lines[i].size()));
+				}
+				else{
+					tokens.push_back(lines[i].substr(0, pos - 1));
+					tokens.push_back(lines[i].substr(pos + 1, lines[i].size()));
+				}
 				
 			}
 			for (int i = 0; i < tokens.size(); i++){
@@ -118,6 +137,34 @@ namespace Utils{
 				}
 			}
 			//handle player stuff;
+
+			for (int i = 0; i < equipeditems.size(); i++){
+				if (equipeditems[i] == "Type"){
+					if (equipeditems[i + 1] == "Shield"){
+						p->equip(new Shield(atoi(equipeditems[i + 3].c_str())));
+					}
+					else if (equipeditems[i + 1] == "Sword"){
+						p->equip(new Sword(atoi(equipeditems[i + 3].c_str())));
+					}
+				}
+			}
+
+			for (int i = 0; i < inventory.size(); i++){
+				if (inventory[i] == "Type"){
+					if (inventory[i + 1] == "Shield"){
+						p->takeItem(new Shield(atoi(inventory[i + 3].c_str())));
+					}
+					else if (inventory[i + 1] == "Sword"){
+						p->takeItem(new Sword(atoi(inventory[i + 3].c_str())));
+					}
+					else if (inventory[i + 1] == "HealPotion"){
+						p->takeItem(new HealPotion());
+					}
+					else if (inventory[i + 1] == "RandomPotion"){
+						p->takeItem(new RandomPotion(atoi(inventory[i + 3].c_str())));
+					}
+				}
+			}
 		}
 		else {
 			PrintLine("Welcome " + name + ", Good luck in your dungeon.");

@@ -9,6 +9,11 @@ RandomPotion::RandomPotion()
 	itemDescription = "Random potion";
 	usePower = DungeonGenerator::RandomNumberGenerator(-3, 5);
 }
+
+RandomPotion::RandomPotion(int power){
+	itemDescription = "Random potion";
+	usePower = power;
+}
 //random effect(use system as in room with the randomgenerator)
 
 RandomPotion::~RandomPotion()
@@ -16,7 +21,7 @@ RandomPotion::~RandomPotion()
 }
 
 std::string RandomPotion::use(Player* p) {
-	useString = "Used a potion that gave you " + usePower;
+	useString = "Used a potion that gave you " + std::to_string(usePower);
 	switch (DungeonGenerator::RandomNumberGenerator(1, 4)){
 	case 1:
 		p->heal(usePower);
@@ -38,4 +43,8 @@ std::string RandomPotion::use(Player* p) {
 		break;
 	}
 	return useString;
+}
+
+std::string RandomPotion::save(ItemVisitor v){
+	return v.Visit(this);
 }

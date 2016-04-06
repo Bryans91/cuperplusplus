@@ -78,5 +78,5 @@ Enemy::Enemy(int lvl, bool isBoss)
 
 Enemy::~Enemy()
 {
-
+	
 }

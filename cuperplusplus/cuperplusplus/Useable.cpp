@@ -15,3 +15,6 @@ std::string Useable::use(Player* p)
 {
 	return useString;
 }
+//std::string Useable::save(ItemVisitor v){
+//	return v.Visit(this);
+//}

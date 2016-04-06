@@ -66,29 +66,47 @@ void Game::startGame() {
 		}
 		if (showInventory) {
 			showInventory = false;
-			std::string temp = "You don't have any items right now.";
-			if (player->getItems()._Myfirst != nullptr) {
-				temp = "|";
-				int counter = 1;
-				for each(Item* i in player->getItems()) {
-					Equipable* e = dynamic_cast<Equipable*>(i);
-					if (e != NULL) {
-						if (e->isEquipped()) {
-							temp += "(eq)";
-						}
-						else {
-							temp += "  ";
-						}
-					}
-					else {
-						temp += "  ";
-					}
-					temp += std::string(i->getText()) + "[";
-					temp += std::to_string(counter) +"]|";
+			std::string equipped = "";
+			std::string inventory = "";
+			
 
+			if (player->getItems().size() == 0 && player->getSword() == nullptr && player->getShield() == nullptr){
+				inventory += "You don't have any items right now.";
+			}
+			else {
+				if (player->getSword() != nullptr || player->getShield() != nullptr) {
+					equipped += "Equipped:\n";
+				}
+				inventory += "Inventory: \n";
+				for (int i = 0; i < player->getItems().size(); i++){
+					if (player->getItems()[i] != player->getSword() && player->getItems()[i] != player->getShield()) {
+						inventory += "[" + std::to_string(i + 1) + "] " + std::string(player->getItems()[i]->getText()) + "\n";
+					}
+					else if (player->getItems()[i] == player->getSword()) {
+						equipped += "[" + std::to_string(i + 1) + "]" + player->getSword()->getText() + ": " + std::to_string(player->getSword()->getEquipPower()) + "\n";
+					}
+					else if (player->getItems()[i] == player->getShield()) {
+						equipped += "[" + std::to_string(i + 1) + "]" + player->getShield()->getText() + ": " + std::to_string(player->getShield()->getEquipPower()) + "\n";
+					}
+				}
+				if (player->getSword() != nullptr || player->getShield() != nullptr) {
+					equipped += "\n";
 				}
 			}
-			Utils::PrintLine(temp + "\n");
+			Utils::PrintLine(equipped + inventory + "\n");
+		}
+		if (compass){
+			compass = false;
+			std::string compassString = "You take the compass out of your pocket. It lights up and shows you your path: \n\n";
+			//TODO shortest path with least amount of enemies.
+			compassString += "Output from shortest path stuffs";
+			Utils::PrintLine(compassString);
+		}
+		if (talisman){
+			talisman = false;
+			std::string talismanString = "You take out the talisman. It whispers to you that the ladder down is ";
+			talismanString += std::to_string(player->useTalisman(player->getCurrentRoom(), dungeon->getLastRoom())) + " rooms away"; //TODO bfs for path.
+			Utils::PrintLine(talismanString);
 		}
 		// Print all actions
 		if (player->getCurrentRoom() == dungeon->getFirstRoom()) {
@@ -110,7 +128,7 @@ void Game::startGame() {
 		if (player->getCurrentRoom() == dungeon->getLastRoom()){
 			actions += "  Down |";
 		}
-		else if (player->getCurrentRoom() == dungeon->getFirstRoom()){
+		else if (player->getCurrentRoom() == dungeon->getFirstRoom() && dungeon->getLevel() != 1){
 			actions += "  Up |";
 		}
 		actions += "  Quit |";
@@ -122,6 +140,7 @@ void Game::startGame() {
 
 
 	}
+
 }
 
 void Game::handleInput(std::string input) {
@@ -272,8 +291,21 @@ void Game::handleInput(std::string input) {
 		}
 
 	}
+	else if (input == std::string("up")){
+		if (player->getCurrentRoom() == dungeon->getFirstRoom() && dungeon->getLevel() > 1){
+			dungeon->loadLevel(dungeon->getLevel()-1);
+			player->setCurrentRoom(dungeon->getLastRoom());
+		}
+
+	}
 	else if (input == std::string("save")){
 		player->save();
+	}
+	else if (input == std::string("compass")){
+		compass = true;
+	}
+	else if (input == std::string("talisman")){
+		talisman = true;
 	}
 	else {
 		Utils::PrintLine("The input " + input + " is not known, try again.");

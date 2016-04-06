@@ -14,6 +14,7 @@ int Character::hit(int dmg)
 		return 0;
 	}
 	int dmgtodeal = dmg - defencePower;
+
 	if (dmgtodeal < 0){
 		dmgtodeal = 0;
 	}
@@ -26,6 +27,11 @@ int Character::hit(int dmg)
 
 Character::~Character()
 {
+	currentRoom = NULL;
+	for (int i = 0; i < items.size(); i++){
+		delete items[i];
+	}
+	items.clear();
 }
 
 void Character::setCurrentRoom(Room* r){

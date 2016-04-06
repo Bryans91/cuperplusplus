@@ -5,11 +5,8 @@ class Equipable :
 {
 public:
 	Equipable();
-	~Equipable();
-	virtual std::string equip(Player* p) {
-		equipped = true;
-		return effectString;
-	};
+	virtual ~Equipable();
+	virtual std::string equip(Player* p) = 0;
 	virtual bool isEquipped() {
 		return equipped;
 	};
@@ -17,6 +14,9 @@ public:
 		equipped = false;
 		return negativeEffectString;
 	};
+	virtual int getEquipPower(){ return equipPower; }
+	virtual std::string save(ItemVisitor v) = 0;
+	virtual void setPower(int p);
 protected:
 	bool equipped = false;
 	int equipPower = 0;

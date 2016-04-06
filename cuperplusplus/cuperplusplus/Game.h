@@ -24,8 +24,9 @@ private:
 	bool showStats = false;
 	bool showInventory = false;
 	bool affected = false;
-	std::string actions, size, difficulty;
-	std::string effect;
+	bool compass = false;
+	bool talisman = false;
+	std::string actions, size, difficulty, effect;
 	void startGame();
 	void checkHP();
 	void handleInput(std::string);

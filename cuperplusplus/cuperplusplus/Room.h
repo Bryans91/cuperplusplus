@@ -13,6 +13,7 @@
 #include "RandomPotion.h"
 #include "Sword.h"
 #include "Shield.h"
+#include "NoItem.h"
 
 class Enemy;
 class Character;
@@ -55,6 +56,9 @@ public:
 	std::string getEnemyInfo(bool);
 	void addEnemy(Enemy* e);
 	std::map<Direction, Room*> getAdjacentRooms();
+	std::map<Direction, Room*> getCollapsedRooms(){
+		return collapsedRooms;
+	}
 	void addAdjacentRoom(Direction d, Room* r);
 	inline std::string ToString(Direction d)
 	{
@@ -79,7 +83,9 @@ public:
 	void checkForTraps(Player * p);
 	void checkForItems();
 	Item* getItem();
-
+	Item* getNoItem() {
+		return noItem;
+	};
 	
 private:
 	Size size;
@@ -89,8 +95,9 @@ private:
 	Trap* trap;
 	Trap* noTrap = new Trap();
 	Item* item;
-	Item* noItem = new Item();
+	Item* noItem = new NoItem();
 	std::map<Direction, Room*> adjacentRooms;
+	std::map<Direction, Room*> collapsedRooms;
 	std::vector<Enemy*> enemies;
 	bool visited = false;
 	const char * getTextForSize();

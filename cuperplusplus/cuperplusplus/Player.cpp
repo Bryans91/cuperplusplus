@@ -1,6 +1,7 @@
 #pragma once
 #include "stdafx.h"
 #include "Player.h"
+#include "ItemVisitor.h"
 
 Player::Player(std::string aName)
 {
@@ -54,6 +55,16 @@ void Player::goDirection(std::string direction){
 
 Player::~Player()
 {
+	if (shield != nullptr){
+		delete shield;
+	}
+	shield = NULL;
+	if (sword != nullptr){
+		delete sword;
+	}
+	sword = NULL;
+	delete talisman;
+	talisman = NULL;
 }
 
 void Player::attack(Character* c){
@@ -77,8 +88,8 @@ std::string Player::getStatus(){
 	retString += "Name:         " + this->name;
 	retString += "\nLevel:        " + std::to_string(level);
 	retString += "\nHitpoints:    " + std::to_string(healthPoints) + "/" + std::to_string(maxHealthPoints);
-	retString += "\nAttack:       " + std::to_string(attackPower)  + "       (min = 5)";
-	retString += "\nDefence:      " + std::to_string(defencePower) + "       (min = 5)";
+	retString += "\nAttack:       " + std::to_string(attackPower) + " + " + std::to_string(sword != nullptr ? sword->getEquipPower() : 0);
+	retString += "\nDefence:      " + std::to_string(defencePower) + " + " + std::to_string(shield != nullptr? shield->getEquipPower() : 0);
 	retString += "\nExperience:   " + std::to_string(experience)   + "/" + std::to_string((int)getExperienceNeeded(level+1));
 
 
@@ -95,37 +106,53 @@ void Player::save(){
 	saveString += "\nDefence: " + std::to_string(defencePower);
 	saveString += "\nExperience: " + std::to_string(experience);
 	// TODO add items and save those.
+	saveString += "\n\nEquiped:";
+	ItemVisitor iv = ItemVisitor();
+	if (sword != nullptr){
+		saveString += "\nSword:\n";
+		saveString += sword->save(iv);
+	}
+	if (shield != nullptr){
+		saveString += "\nShield:\n";
+		saveString += shield->save(iv);
+	}
+	saveString += "\n\nItems:\n";
+	for (int i = 0; i < items.size(); i++){
+		saveString += items[i]->save(iv);
+	}
+
 	Utils::SaveFile(saveString, name);
 }
 
-void Player::LoadFromString(std::string input){
-	Utils::PrintLine(input);
-}
 
 void Player::takeItem(Item* i) {
 	items.push_back(i);
 }
+void Player::equip(Sword* s){
+	/*if (sword != NULL && sword != s){
+		items.push_back(sword);
+	}*/
+	sword = s;
+}
 
-std::string Player::equipItem(Item* i) {
-	Equipable* eq = dynamic_cast<Equipable*>(i);
-	if (eq != NULL) {
-		return eq->equip(this);
-	}
-	else {
-		Utils::PrintLine("This item isn't equipable.");
-		return "";
-	}
+void Player::equip(Shield* s){
+	/*if (shield != NULL && shield != s){
+		items.push_back(shield);
+	}*/
+	shield = s;
 }
 
 
-std::string Player::unEquipItem(Item* i) {
-	Equipable* eq = dynamic_cast<Equipable*>(i);
-	if (eq != NULL) {
-		return eq->unEquip(this);
+
+
+void Player::unEquipItem(int i) {
+	if (i == 1){
+		items.push_back(sword);
+		sword = nullptr;
 	}
-	else {
-		Utils::PrintLine("This item isn't equipable.");
-		return "";
+	else if (i == 2){
+		items.push_back(shield);
+		shield == nullptr;
 	}
 }
 
@@ -204,3 +231,26 @@ void Player::removeItem(Item* i) {
 		}
 	}
 }
+
+int Player::hit(int dmg){
+	if (!checkAlive()){
+		return 0;
+	}
+	int dmgtodeal;
+	if (shield == nullptr){
+		dmgtodeal = dmg - defencePower;
+	}
+	else {
+		dmgtodeal = dmg - defencePower - shield->getEquipPower();
+	}
+
+	if (dmgtodeal < 0){
+		dmgtodeal = 0;
+	}
+	healthPoints -= (dmgtodeal);
+	if (healthPoints <= 0)
+		healthPoints = 0;
+	return dmgtodeal;
+	
+}
+

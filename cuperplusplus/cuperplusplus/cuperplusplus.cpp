@@ -14,7 +14,7 @@
 int _tmain(int argc, _TCHAR* argv[])
 {
 	MoveWindow(GetConsoleWindow(), 0, 0, 660, 660, TRUE);
-	Game *currentGame = new Game();
+	Game* currentGame = new Game();
 	delete currentGame;
 	return 0;
 }

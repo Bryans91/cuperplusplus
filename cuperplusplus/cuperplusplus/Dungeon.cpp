@@ -7,6 +7,10 @@ Dungeon::Dungeon(){
 }
 
 Dungeon::~Dungeon(){
+	for (std::map<int, DungeonLayer*>::iterator itr = Levels.begin(); itr != Levels.end(); itr++)
+	{
+		delete (itr->second);
+	}
 	Levels.clear();
 }
 

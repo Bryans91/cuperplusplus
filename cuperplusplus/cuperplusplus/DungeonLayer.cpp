@@ -11,10 +11,13 @@ DungeonLayer::DungeonLayer()
 
 DungeonLayer::~DungeonLayer()
 {
+	for (int i = 0; i < roomList.size(); i++){
+		delete roomList[i];
+	}
 	roomList.clear();
 	mapLayout.clear();
-	start = nullptr;
-	end = nullptr;
+	start = NULL;
+	end = NULL;
 }
 
 void DungeonLayer::setEnd(Room* r){
@@ -100,6 +103,28 @@ std::string DungeonLayer::getDungeonMap(bool c, Room* location){
 						break;
 					case Direction::WEST:
 						mapArray[2 * i][j * 2 - 1] = '-';
+						break;
+					default:
+						break;
+					}
+				}
+				std::map<Direction, Room*>::iterator it;
+				std::map<Direction, Room*>collapsedRooms = mapLayout[i][j]->getCollapsedRooms();
+				for (it = collapsedRooms.begin(); it != collapsedRooms.end(); it++)
+				{
+					switch (it->first)
+					{
+					case Direction::NORTH:
+						mapArray[2 * i - 1][j * 2] = '~';
+						break;
+					case Direction::EAST:
+						mapArray[2 * i][j * 2 + 1] = '~';
+						break;
+					case Direction::SOUTH:
+						mapArray[2 * i + 1][j * 2] = '~';
+						break;
+					case Direction::WEST:
+						mapArray[2 * i][j * 2 - 1] = '~';
 						break;
 					default:
 						break;
