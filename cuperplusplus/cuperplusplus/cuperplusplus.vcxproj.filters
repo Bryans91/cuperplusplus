@@ -34,7 +34,7 @@
     <Filter Include="Header Files\Items">
       <UniqueIdentifier>{4e266f9f-840a-495f-8267-d433aa826ccc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Items">
+    <Filter Include="Source Files\Items">
       <UniqueIdentifier>{ffb91458-78c7-4c33-817a-7e5a4cef9ffb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -198,33 +198,33 @@
       <Filter>Source Files\Dungeon</Filter>
     </ClCompile>
     <ClCompile Include="HealPotion.cpp">
-      <Filter>Items</Filter>
+      <Filter>Source Files\Items</Filter>
     </ClCompile>
     <ClCompile Include="Item.cpp">
-      <Filter>Items</Filter>
+      <Filter>Source Files\Items</Filter>
     </ClCompile>
     <ClCompile Include="RandomPotion.cpp">
-      <Filter>Items</Filter>
+      <Filter>Source Files\Items</Filter>
     </ClCompile>
     <ClCompile Include="Shield.cpp">
-      <Filter>Items</Filter>
+      <Filter>Source Files\Items</Filter>
     </ClCompile>
     <ClCompile Include="Sword.cpp">
-      <Filter>Items</Filter>
+      <Filter>Source Files\Items</Filter>
     </ClCompile>
     <ClCompile Include="Useable.cpp">
-      <Filter>Items</Filter>
+      <Filter>Source Files\Items</Filter>
     </ClCompile>
     <ClCompile Include="Equipable.cpp">
-      <Filter>Items</Filter>
+      <Filter>Source Files\Items</Filter>
     </ClCompile>
-    <ClCompile Include="ItemVisitor.cpp">
+    <ClCompile Include="Talisman.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="NoItem.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Items</Filter>
     </ClCompile>
-    <ClCompile Include="Talisman.cpp">
+    <ClCompile Include="ItemVisitor.cpp">
       <Filter>Source Files\Items</Filter>
     </ClCompile>
   </ItemGroup>

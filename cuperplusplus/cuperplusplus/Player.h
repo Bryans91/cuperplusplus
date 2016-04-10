@@ -13,15 +13,14 @@
 class Player : public Character
 {
 private:
-	Room *currentRoom;
 	int experience;
 	std::map<int, int> ExperienceMap;
 	double getExperienceNeeded(int);
 	int unspendPoints = 0;
 	void lvlup();
 	std::vector<Item*> items;
-	Equipable* shield = nullptr;
-	Equipable* sword = nullptr;
+	Shield* shield = new Shield();
+	Sword* sword = new Sword();
 	Talisman* talisman = new Talisman();
 public:
 	Player(std::string aName);//, Map *map
@@ -40,10 +39,10 @@ public:
 	};
 
 	Action chooseAction();
-	void equip(Shield* s);
-	void equip(Sword* s);
-	Equipable* getSword(){ return sword; }
-	Equipable* getShield(){ return shield; }
+	virtual void equip(Shield* s);
+	virtual void equip(Sword* s);
+	Sword* getSword(){ return sword; }
+	Shield* getShield(){ return shield; }
 	void fight();
 	void flee();
 	void search();
@@ -59,6 +58,7 @@ public:
 	void LoadFromString(std::string);
 	void setExp(int exp){ experience = exp; }
 	void takeItem(Item* i);
+	void equipItem(int i);
 	void unEquipItem(int i);
 	std::string useItem(Item* i);
 	void removeItem(Item* i);

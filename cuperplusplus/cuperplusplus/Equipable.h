@@ -6,7 +6,7 @@ class Equipable :
 public:
 	Equipable();
 	virtual ~Equipable();
-	virtual std::string equip(Player* p) = 0;
+	virtual std::string equip(Player* p);
 	virtual bool isEquipped() {
 		return equipped;
 	};

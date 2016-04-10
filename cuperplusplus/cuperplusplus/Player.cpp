@@ -128,6 +128,7 @@ void Player::save(){
 void Player::takeItem(Item* i) {
 	items.push_back(i);
 }
+
 void Player::equip(Sword* s){
 	/*if (sword != NULL && sword != s){
 		items.push_back(sword);
@@ -152,7 +153,7 @@ void Player::unEquipItem(int i) {
 	}
 	else if (i == 2){
 		items.push_back(shield);
-		shield == nullptr;
+		shield = nullptr;
 	}
 }
 
@@ -171,6 +172,10 @@ std::string Player::useItem(Item* i) {
 std::vector<Item*> Player::getItems() {
 	return items;
 }
+
+//Item* Player::getItems(int i) {
+//	return items.at(i);
+//}
 
 bool Player::hasItems() {
 	if (items.size() > 0) {

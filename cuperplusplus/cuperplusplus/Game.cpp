@@ -125,10 +125,10 @@ void Game::startGame() {
 				actions += "  " + actionString + "  |";
 			}
 		}
-		if (player->getCurrentRoom() == dungeon->getLastRoom()){
+		if (player->getCurrentRoom() == dungeon->getLastRoom()) {
 			actions += "  Down |";
 		}
-		else if (player->getCurrentRoom() == dungeon->getFirstRoom() && dungeon->getLevel() != 1){
+		else if (player->getCurrentRoom() == dungeon->getFirstRoom() && dungeon->getLevel() != 1) {
 			actions += "  Up |";
 		}
 		actions += "  Quit |";
@@ -146,7 +146,7 @@ void Game::startGame() {
 void Game::handleInput(std::string input) {
 	std::transform(input.begin(), input.end(), input.begin(), ::tolower);
 	if (input == std::string("run")) {
-		if (fighting){
+		if (fighting) {
 			fighting = false;
 			Utils::cClear();
 		}
@@ -168,11 +168,11 @@ void Game::handleInput(std::string input) {
 	else if (input == std::string("endgame")) {
 		endGame();
 	}
-	else if (input == std::string("cheat")){
+	else if (input == std::string("cheat")) {
 		cheat = true;
 	}
-	else if (input == std::string("fight")){
-		if (player->getCurrentRoom()->hasEnemies()){
+	else if (input == std::string("fight")) {
+		if (player->getCurrentRoom()->hasEnemies()) {
 			fighting = true;
 		}
 		else {
@@ -180,15 +180,15 @@ void Game::handleInput(std::string input) {
 			handleInput(Utils::ReadString());
 		}
 	}
-	else if (input == std::string("attack")){
+	else if (input == std::string("attack")) {
 		// currentroom has more enemies
-		
-		if (player->getCurrentRoom()->hasEnemies()){
-			if (player->getCurrentRoom()->hasEnemies() > 1 && fighting){
+
+		if (player->getCurrentRoom()->hasEnemies()) {
+			if (player->getCurrentRoom()->hasEnemies() > 1 && fighting) {
 				Utils::PrintLine("Which monster do you want to attack?");
 				int monsterno = std::stoi(Utils::ReadString());
 
-				while (!player->getCurrentRoom()->AttackEnemy(monsterno, player)){
+				while (!player->getCurrentRoom()->AttackEnemy(monsterno, player)) {
 					Utils::PrintLine("That monster number isn't existing, try again.");
 					monsterno = std::stoi(Utils::ReadString());
 				}
@@ -204,9 +204,9 @@ void Game::handleInput(std::string input) {
 			handleInput(Utils::ReadString());
 		}
 	}
-	else if (input == std::string("use")){
+	else if (input == std::string("use")) {
 		int item = handleItemInput(Utils::ReadString());
-		if (player->hasItems()){
+		if (player->hasItems()) {
 			if (player->getItems().at(item - 1) != NULL) {
 				effect = player->useItem(player->getItems().at(item - 1));
 				affect();
@@ -217,31 +217,42 @@ void Game::handleInput(std::string input) {
 			handleInput(Utils::ReadString());
 		}
 	}
-	else if (input == std::string("equip")){
+	else if (input == std::string("equip")) {
 		int item = handleItemInput(Utils::ReadString());
-		if (player->hasItems()){
-			if (player->getItems().at(item - 1) != NULL){
-				effect = player->equipItem(player->getItems().at(item - 1));
-				affect();
+		if (player->hasItems()) {
+			if (player->getItems().size() >= item) {
+				if (player->getItems().at(item - 1) != NULL) {
+					Sword* sword = dynamic_cast<Sword*>(player->getItems().at(item - 1));
+					Shield* shield = dynamic_cast<Shield*>(player->getItems().at(item - 1));
+					if (sword != NULL) {
+						sword->equip(player);
+					}
+					else if (shield != NULL) {
+						shield->equip(player);
+					}
+					else {
+						Utils::PrintLine("You can't equip any of these items.");
+						handleInput(Utils::ReadString());
+					}
+				}
+				else {
+					Utils::PrintLine("You don't seem to have any items to equip.");
+					handleInput(Utils::ReadString());
+				}
+			}
+			else {
+				Utils::PrintLine("This item doesn't exist.");
+				handleInput(Utils::ReadString());
 			}
 		}
 		else {
-			Utils::PrintLine("You don't seem to have any items to equip");
+			Utils::PrintLine("You don't seem to have any items.");
 			handleInput(Utils::ReadString());
 		}
 	}
-	else if (input == std::string("unequip")){
+	else if (input == std::string("unequip")) {
 		int item = handleItemInput(Utils::ReadString());
-		if (player->hasItems()){
-			if (player->getItems().at(item - 1) != NULL){
-				effect = player->unEquipItem(player->getItems().at(item - 1));
-				affect();
-			}
-		}
-		else {
-			Utils::PrintLine("You don't seem to have any items to unequip");
-			handleInput(Utils::ReadString());
-		}
+		player->unEquipItem(item);
 	}
 	else if (input == std::string("inv")){
 		showInventory = true;
@@ -267,13 +278,14 @@ void Game::handleInput(std::string input) {
 			player->getCurrentRoom()->checkForItems();
 		}
 		else {
-			Utils::PrintLine("There isn't any item in this room, please select another option.");x
+			Utils::PrintLine("There isn't any item in this room, please select another option.");
 		}
 		handleInput(Utils::ReadString());
 	}
 	else if (input == std::string("take")) {
 		if (player->getCurrentRoom()->hasItem()) {
 			player->takeItem(player->getCurrentRoom()->getItem());
+			player->getCurrentRoom()->removeItem();
 		}
 		else {
 			Utils::PrintLine("There isn't any item in this room, please select another option.");

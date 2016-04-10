@@ -66,7 +66,7 @@ Room::Room(){
 		break;
 	}
 	//Item switch
-	switch (DungeonGenerator::RandomNumberGenerator(1, 12)) {
+	switch (DungeonGenerator::RandomNumberGenerator(1, 2)) {//12
 	case 1: item = new Sword();
 		break;
 	case 2: item = new Shield();
@@ -117,10 +117,12 @@ Item* Room::getItem() {
 		return nullptr;
 	}
 	else {
-		Item* temp = new Item(*item);
-		item = noItem;
-		return temp;
+		return item;
 	}
+}
+
+void Room::removeItem() {
+	item = noItem;
 }
 
 std::map<Direction, Room*> Room::getAdjacentRooms() {

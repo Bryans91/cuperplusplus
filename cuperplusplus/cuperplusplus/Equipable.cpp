@@ -55,6 +55,11 @@ void Equipable::setPower(int p){
 	}
 
 }
+
+
+std::string Equipable::equip(Player* p){
+	return "";
+}
 //std::string Equipable::save(ItemVisitor v){
 //	return v.Visit(this);
 //}

@@ -23,5 +23,6 @@ std::string Item::getText()
 }
 
 std::string Item::save(ItemVisitor v){
-	return v.Visit(this);
+	return "";
+	//return v.Visit(this);
 }

@@ -82,6 +82,7 @@ public:
 	void EnemiesAttack(Character* c);
 	void checkForTraps(Player * p);
 	void checkForItems();
+	void removeItem();
 	Item* getItem();
 	Item* getNoItem() {
 		return noItem;

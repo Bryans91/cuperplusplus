@@ -108,7 +108,6 @@ std::string DungeonLayer::getDungeonMap(bool c, Room* location){
 						break;
 					}
 				}
-				std::map<Direction, Room*>::iterator it;
 				std::map<Direction, Room*>collapsedRooms = mapLayout[i][j]->getCollapsedRooms();
 				for (it = collapsedRooms.begin(); it != collapsedRooms.end(); it++)
 				{
