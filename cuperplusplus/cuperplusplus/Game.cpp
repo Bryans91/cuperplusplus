@@ -33,7 +33,6 @@ void Game::generateDungeon(std::string size, std::string difficulty){
 void Game::startGame() {
 	Utils::cClear();
 	while (playing) {
-		checkHP();
 		//fighting loop
 		while (fighting){
 			if (player->getCurrentRoom()->hasEnemies()){
@@ -137,8 +136,7 @@ void Game::startGame() {
 		std::string choice = Utils::ReadString();
 		handleInput(choice);
 		Utils::cClear();
-
-
+		checkHP();
 	}
 
 }
@@ -206,9 +204,10 @@ void Game::handleInput(std::string input) {
 	}
 	else if (input == std::string("use")) {
 		int item = handleItemInput(Utils::ReadString());
-		if (player->hasItems()) {
-			if (player->getItems().at(item - 1) != NULL) {
-				effect = player->useItem(player->getItems().at(item - 1));
+		if (player->hasItems() && item != NULL) {
+			Useable* us = dynamic_cast<Useable*>(player->getItems().at(item - 1));
+			if (us != NULL) {
+				effect = player->useItem(us);
 				affect();
 			}
 		}
@@ -349,6 +348,7 @@ void Game::checkHP() {
 		player->setCurrentRoom(dungeon->getFirstRoom());
 		dungeon->getFirstRoom()->Visited();
 		playing = true;
+		player->setHP(player->getMaxHP());
 		startGame();
 	}
 }

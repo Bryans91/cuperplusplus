@@ -53,7 +53,7 @@ Room::Room(){
 		break;
 	}
 	//Trap switch
-	switch (DungeonGenerator::RandomNumberGenerator(1, 20)) {
+	switch (DungeonGenerator::RandomNumberGenerator(1, 1)) {//20
 	case 1: trap = new Tripwire();
 		break;
 	case 2: trap = new FakeButton();
@@ -66,7 +66,7 @@ Room::Room(){
 		break;
 	}
 	//Item switch
-	switch (DungeonGenerator::RandomNumberGenerator(1, 2)) {//12
+	switch (DungeonGenerator::RandomNumberGenerator(1, 12)) {
 	case 1: item = new Sword();
 		break;
 	case 2: item = new Shield();

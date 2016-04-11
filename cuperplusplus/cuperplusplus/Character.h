@@ -24,6 +24,7 @@ public:
 	int getHp(){ return healthPoints; };
 	int getPwr(){ return attackPower; };
 	int getDefence(){ return defencePower; };
+	int getMaxHP() { return maxHealthPoints; };
 	void setHP(int hp){ healthPoints = hp; };
 	void setPwr(int p){ attackPower = p; };
 	void setDefence(int d){ defencePower = d; };

@@ -19,6 +19,7 @@ Player::Player(std::string aName)
 	//items.push_back();
 }
 
+
 double Player::getExperienceNeeded(int level){
 	if (ExperienceMap.find(level) == ExperienceMap.end()){
 		int exp = std::round(getExperienceNeeded(level - 1) + (getExperienceNeeded(level - 1) - getExperienceNeeded(level - 2))*1.1);

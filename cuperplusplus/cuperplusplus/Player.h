@@ -19,8 +19,8 @@ private:
 	int unspendPoints = 0;
 	void lvlup();
 	std::vector<Item*> items;
-	Shield* shield = new Shield();
-	Sword* sword = new Sword();
+	Shield* shield;
+	Sword* sword;
 	Talisman* talisman = new Talisman();
 public:
 	Player(std::string aName);//, Map *map
@@ -37,19 +37,10 @@ public:
 		esave = 7,
 		eAdmin = 8
 	};
-
-	Action chooseAction();
 	virtual void equip(Shield* s);
 	virtual void equip(Sword* s);
 	Sword* getSword(){ return sword; }
 	Shield* getShield(){ return shield; }
-	void fight();
-	void flee();
-	void search();
-	void loot(std::list<Enemy*> enemies);
-	void rest();
-	void stats();
-	void cheat(Map *map);
 	void attack(Character*);
 	void save();
 	void load(std::string playerName);
@@ -58,7 +49,6 @@ public:
 	void LoadFromString(std::string);
 	void setExp(int exp){ experience = exp; }
 	void takeItem(Item* i);
-	void equipItem(int i);
 	void unEquipItem(int i);
 	std::string useItem(Item* i);
 	void removeItem(Item* i);
