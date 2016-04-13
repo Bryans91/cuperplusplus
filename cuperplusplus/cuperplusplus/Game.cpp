@@ -9,7 +9,7 @@
 Game::Game()
 {
 	Utils::PrintLine("This story is all about you. What was your name again?");
-	std::string name = Utils::ReadString();
+	name = Utils::ReadString();
 	player = new Player(name);
 	Utils::LoadPlayer(name, player);
 	playing = true;
@@ -343,12 +343,13 @@ void Game::affect() {
 void Game::checkHP() {
 	if (player->getHp() <= 0) {
 		playing = false;
+		player->setHP(player->getMaxHP());
+		Utils::LoadPlayer(name, player);
 		generateDungeon(size, difficulty);
 		dungeon->loadLevel(1);
 		player->setCurrentRoom(dungeon->getFirstRoom());
 		dungeon->getFirstRoom()->Visited();
 		playing = true;
-		player->setHP(player->getMaxHP());
 		startGame();
 	}
 }

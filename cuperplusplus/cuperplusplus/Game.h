@@ -17,7 +17,8 @@ public:
 private:
 
 	Dungeon* dungeon;
-	bool playing;
+	bool playing; 
+	std::string name;
 	Player* player;
 	bool cheat = false;
 	bool fighting = false;
