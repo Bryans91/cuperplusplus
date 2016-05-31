@@ -60,9 +60,6 @@
     <ClInclude Include="Enemy.h">
       <Filter>Header Files\Characters</Filter>
     </ClInclude>
-    <ClInclude Include="DungeonLayer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -129,16 +126,19 @@
     <ClInclude Include="Useable.h">
       <Filter>Header Files\Items</Filter>
     </ClInclude>
-    <ClInclude Include="ItemVisitor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NoItem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Talisman.h">
       <Filter>Header Files\Items</Filter>
     </ClInclude>
     <ClInclude Include="Grenade.h">
+      <Filter>Header Files\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="DungeonLayer.h">
+      <Filter>Header Files\Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemVisitor.h">
+      <Filter>Header Files\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="NoItem.h">
       <Filter>Header Files\Items</Filter>
     </ClInclude>
   </ItemGroup>

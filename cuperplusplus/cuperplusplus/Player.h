@@ -65,7 +65,9 @@ public:
 		return talisman->shortestPath(s, e);
 	}
 	int useGrenade(Room* s, Room* e) {
-		return grenade->shortestPath(s, e);
+		//return grenade->shortestPath(s, e);
+		// TODO
+		return 0;
 	}
 
 

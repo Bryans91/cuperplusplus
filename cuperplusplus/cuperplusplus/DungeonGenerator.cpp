@@ -53,6 +53,8 @@ DungeonLayer* DungeonGenerator::GenerateLayer(int layer){
 	DungeonLayer* dlevel = new DungeonLayer();
 	std::vector<std::vector<Room*>> levelArray;
 	std::vector<Room*> allRooms;
+	std::map<Room*, Room*> connectedRooms;
+	int connections = 0;
 	std::pair<int, int> startRoom;
 	std::pair<int, int> endRoom;
 	startRoom.first = RandomNumberGenerator(0, dungeonHeight-1);
@@ -82,6 +84,7 @@ DungeonLayer* DungeonGenerator::GenerateLayer(int layer){
 
 			if (j > 0){ // room to left
 				levelArray[i][j]->addAdjacentRoom(Direction::WEST, levelArray[i][j - 1]);
+				connectedRooms.insert(std::pair<Room*, Room*>(levelArray[i][j], levelArray[i][j - 1]));
 			}
 			if (j < dungeonWidth - 1){ // room to the right
 				levelArray[i][j]->addAdjacentRoom(Direction::EAST, levelArray[i][j + 1]);
@@ -91,12 +94,15 @@ DungeonLayer* DungeonGenerator::GenerateLayer(int layer){
 				if (downLinksCreated < downLinksNeeded && j==dungeonWidth-(downLinksNeeded-downLinksCreated)){// room to bottom needed
 					levelArray[i][j]->addAdjacentRoom(Direction::SOUTH, levelArray[i + 1][j]);
 					levelArray[i + 1][j]->addAdjacentRoom(Direction::NORTH, levelArray[i][j]);
+					connectedRooms.insert(std::pair<Room*, Room*>(levelArray[i][j], levelArray[i + 1][j]));
 					downLinksCreated++;
 				}
 				else{
 					if (RandomNumberGenerator(1, 2) == 1){// 1/2 chance of getting room to top
 						levelArray[i][j]->addAdjacentRoom(Direction::SOUTH, levelArray[i + 1][j]);
 						levelArray[i + 1][j]->addAdjacentRoom(Direction::NORTH, levelArray[i][j]);
+						connectedRooms.insert(std::pair<Room*, Room*>(levelArray[i][j], levelArray[i + 1][j]));
+
 						downLinksCreated++;
 					}
 				}
