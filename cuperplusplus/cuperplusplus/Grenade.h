@@ -1,11 +1,11 @@
 #pragma once
 #include "Room.h"
-#include <vector>
+#include <map>
 class Grenade
 {
 public:
 	Grenade();
 	~Grenade();
-	int minSpanningTree(std::vector<Room*>, Room*);
+	int minSpanningTree(std::map<Room*, Room*>, Room*);
 };
 

@@ -2,7 +2,6 @@
 #include "Grenade.h"
 #include "Room.h"
 #include "Player.h"
-#include <queue>
 
 
 Grenade::Grenade()
@@ -14,31 +13,35 @@ Grenade::~Grenade()
 {
 }
 
-int Grenade::minSpanningTree(std::vector<Room*> rooms, Room* start) {
+int Grenade::minSpanningTree(std::map<Room*, Room*> allConnectedRooms, Room* start) {
 	int returnval = 0;
-	bool allConnected = false;
 	// individual distances need to be set.
-	std::deque<Room*> q;
-	std::vector<Room*> visited;
 	std::vector<Room*> connected;
-	std::map<Room*, int> distances;
-
-	distances.insert(std::pair<Room*, int>(start, 0));
-
-	q.push_back(start);
-
-	while (!q.empty() && !allConnected) {
-		Room* r = q.front();
-		q.pop_front();
-
-		visited.push_back(r);
-		connected.push_back(r);
-
-		for (std::pair<Direction, Room*> adj : r->getAdjacentRooms()) {
+	std::map<Room*, Room*> tree;
+	std::map<Room*, Room*>::iterator it = allConnectedRooms.begin();
+	for (it = allConnectedRooms.begin(); it != allConnectedRooms.end(); ++it) {
+		if (std::find(connected.begin(), connected.end(), it->first) != connected.end() && std::find(connected.begin(), connected.end(), it->second) != connected.end()) {
+			//contains both rooms
+			//collapsewall?
+			break;
+		}
+		else if (std::find(connected.begin(), connected.end(), it->first) != connected.end()) {
+			//contains first room
+			connected.push_back(it->second);
+			tree.insert(*it);
+		}
+		else if (std::find(connected.begin(), connected.end(), it->second) != connected.end()) {
+			//contains second room
+			connected.push_back(it->first);
+			tree.insert(*it);
+		}
+		else {
+			connected.push_back(it->first);
+			connected.push_back(it->second);
+			tree.insert(*it);
 		}
 	}
-	q.clear();
-	visited.clear();
+
 	connected.clear();
 
 
