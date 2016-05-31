@@ -138,6 +138,9 @@
     <ClInclude Include="Talisman.h">
       <Filter>Header Files\Items</Filter>
     </ClInclude>
+    <ClInclude Include="Grenade.h">
+      <Filter>Header Files\Items</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -218,13 +221,16 @@
     <ClCompile Include="Equipable.cpp">
       <Filter>Source Files\Items</Filter>
     </ClCompile>
-    <ClCompile Include="Talisman.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="NoItem.cpp">
       <Filter>Source Files\Items</Filter>
     </ClCompile>
     <ClCompile Include="ItemVisitor.cpp">
+      <Filter>Source Files\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Talisman.cpp">
+      <Filter>Source Files\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Grenade.cpp">
       <Filter>Source Files\Items</Filter>
     </ClCompile>
   </ItemGroup>

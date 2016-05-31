@@ -27,6 +27,7 @@ private:
 	bool affected = false;
 	bool compass = false;
 	bool talisman = false;
+	bool grenadeUsed = false;
 	std::string actions, size, difficulty, effect = "";
 	void startGame();
 	void checkHP();

@@ -9,6 +9,7 @@
 #include "Character.h"
 #include <iostream>
 #include "Talisman.h"
+#include "Grenade.h"
 
 class Player : public Character
 {
@@ -22,6 +23,7 @@ private:
 	Shield* shield;
 	Sword* sword;
 	Talisman* talisman = new Talisman();
+	Grenade* grenade = new Grenade();
 public:
 	Player(std::string aName);//, Map *map
 	~Player();
@@ -61,6 +63,9 @@ public:
 	int hit(int dmg);
 	int useTalisman(Room* s, Room* e){
 		return talisman->shortestPath(s, e);
+	}
+	int useGrenade(Room* s, Room* e) {
+		return grenade->shortestPath(s, e);
 	}
 
 
