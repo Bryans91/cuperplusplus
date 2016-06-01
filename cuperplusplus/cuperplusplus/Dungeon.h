@@ -15,6 +15,7 @@ public:
 	int getLevel(){return level;}
 	Room* getFirstRoom();
 	Room* getLastRoom();
+	std::map<Room*, Room*> getConnectedRooms();
 	DungeonLayer* getCurrentLayer();
 	void loadNextLevel(){
 		level++;

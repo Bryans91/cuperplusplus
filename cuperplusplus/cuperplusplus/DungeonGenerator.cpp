@@ -133,6 +133,7 @@ DungeonLayer* DungeonGenerator::GenerateLayer(int layer){
 
 	dlevel->setEnd(levelArray[endRoom.first][endRoom.second]);
 	dlevel->setStart(levelArray[startRoom.first][startRoom.second]);
+	dlevel->setConnectedRooms(connectedRooms);
 	dlevel->setRooms(allRooms);
 	dlevel->setMap(levelArray);
 

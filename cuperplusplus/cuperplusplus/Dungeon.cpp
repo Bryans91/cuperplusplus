@@ -42,6 +42,15 @@ Room* Dungeon::getLastRoom(){
 	}
 }
 
+std::map<Room*, Room*> Dungeon::getConnectedRooms() {
+	if (level != 0) {
+		return Levels[level]->getConnectedRooms();
+	}
+	else {
+		return std::map<Room*,Room*>();
+	}
+}
+
 DungeonLayer* Dungeon::getCurrentLayer(){
 	return Levels[level];
 }

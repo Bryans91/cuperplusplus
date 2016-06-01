@@ -28,6 +28,10 @@ void DungeonLayer::setStart(Room* r){
 	start = r;
 }
 
+void DungeonLayer::setConnectedRooms(std::map<Room*, Room*> rooms) {
+	connectedRooms = rooms;
+}
+
 void DungeonLayer::setMap(std::vector<std::vector<Room*>> map){
 	mapLayout = map;
 }
@@ -42,6 +46,10 @@ Room* DungeonLayer::getStart(){
 
 Room* DungeonLayer::getEnd(){
 	return end;
+}
+
+std::map<Room*, Room*> DungeonLayer::getConnectedRooms() {
+	return connectedRooms;
 }
 
 std::string DungeonLayer::getDungeonMap(bool c, Room* location){ 

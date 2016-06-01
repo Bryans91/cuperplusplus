@@ -22,7 +22,7 @@ int Grenade::minSpanningTree(std::map<Room*, Room*> allConnectedRooms, Room* sta
 	for (it = allConnectedRooms.begin(); it != allConnectedRooms.end(); ++it) {
 		if (std::find(connected.begin(), connected.end(), it->first) != connected.end() && std::find(connected.begin(), connected.end(), it->second) != connected.end()) {
 			//contains both rooms
-			//collapsewall?
+			//collapsepath?
 			break;
 		}
 		else if (std::find(connected.begin(), connected.end(), it->first) != connected.end()) {
