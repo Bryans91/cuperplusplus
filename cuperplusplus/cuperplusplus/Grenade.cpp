@@ -13,7 +13,31 @@ Grenade::~Grenade()
 {
 }
 
-int Grenade::minSpanningTree(std::map<Room*, Room*> allConnectedRooms, Room* start) {
+std::map<Room*, Room*> Grenade::sortByRoomWeigths(std::map<Room*, Room*> allConnectedRooms) {
+	std::map<Room*, Room*> sorted;
+	std::map<std::map< Room*, Room* >, int > sortingMap;
+	std::map<Room*, Room*>::iterator it = allConnectedRooms.begin();
+	int weight = 0;
+	for (it = allConnectedRooms.begin(); it != allConnectedRooms.end(); ++it) {
+		weight = 0;
+		if (it->first->hasEnemies()) {
+			weight++;
+		}
+		if (it->second->hasEnemies()) {
+			weight++;
+		}
+		if (it->first->hasTrap()) {
+			weight++;
+		}
+		if (it->second->hasTrap()) {
+			weight++;
+		}
+		sortingMap[it->first][it->second] = weigth;
+	}
+}
+
+int Grenade::minSpanningTree(std::map<Room*, Room*> allConnectedRooms) {
+	allConnectedRooms = sortByRoomWeigths(allConnectedRooms);
 	int returnval = 0;
 	// individual distances need to be set.
 	std::vector<Room*> connected;

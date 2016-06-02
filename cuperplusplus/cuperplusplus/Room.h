@@ -81,6 +81,10 @@ public:
 	};
 	void EnemiesAttack(Character* c);
 	void checkForTraps(Player * p);
+	bool hasTrap() {
+		if (trap != noTrap && trap != nullptr) { return true; }
+		else { return false; };
+	}
 	void checkForItems();
 	void removeItem();
 	Item* getItem();

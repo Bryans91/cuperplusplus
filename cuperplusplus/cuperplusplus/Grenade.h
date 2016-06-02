@@ -6,6 +6,8 @@ class Grenade
 public:
 	Grenade();
 	~Grenade();
-	int minSpanningTree(std::map<Room*, Room*>, Room*);
+	int minSpanningTree(std::map<Room*, Room*>);
+private:
+	std::map<Room*, Room*> sortByRoomWeigths(std::map<Room*, Room*>);
 };
 
