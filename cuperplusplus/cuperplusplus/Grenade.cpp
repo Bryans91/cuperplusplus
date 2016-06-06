@@ -13,9 +13,14 @@ Grenade::~Grenade()
 {
 }
 
-std::map<Room*, Room*> Grenade::sortByRoomWeigths(std::map<Room*, Room*> allConnectedRooms) {
-	std::map<Room*, Room*> sorted;
-	std::map<std::map< Room*, Room* >, int > sortingMap;
+bool compare(const std::pair<std::pair<Room*, Room*>, int>&i, const std::pair<std::pair<Room*, Room*>, int>&j)
+{
+	return i.second < j.second;
+}
+
+std::vector<std::pair<Room*, Room*>> Grenade::sortByRoomWeigths(std::map<Room*, Room*> allConnectedRooms) {
+	std::vector<std::pair<Room*, Room*>> sorted; 
+	std::vector<std::pair<std::pair<Room*, Room*>, int>> sortingVector;
 	std::map<Room*, Room*>::iterator it = allConnectedRooms.begin();
 	int weight = 0;
 	for (it = allConnectedRooms.begin(); it != allConnectedRooms.end(); ++it) {
@@ -32,18 +37,26 @@ std::map<Room*, Room*> Grenade::sortByRoomWeigths(std::map<Room*, Room*> allConn
 		if (it->second->hasTrap()) {
 			weight++;
 		}
-		sortingMap[it->first][it->second] = weigth;
+		sortingVector.push_back(std::make_pair(std::make_pair(it->first, it->second), weight));
 	}
+	std::sort(sortingVector.begin(), sortingVector.end(), compare);
+
+	std::vector<std::pair<std::pair<Room*, Room*>, int>>::iterator it2 = sortingVector.begin();
+	for (it2 = sortingVector.begin(); it2 != sortingVector.end(); ++it2) {
+		sorted.push_back(it2->first);
+	}
+	return sorted;
 }
 
 int Grenade::minSpanningTree(std::map<Room*, Room*> allConnectedRooms) {
-	allConnectedRooms = sortByRoomWeigths(allConnectedRooms);
+
+	std::vector<std::pair < Room*, Room* >> sortedRooms = sortByRoomWeigths(allConnectedRooms);
 	int returnval = 0;
 	// individual distances need to be set.
 	std::vector<Room*> connected;
-	std::map<Room*, Room*> tree;
-	std::map<Room*, Room*>::iterator it = allConnectedRooms.begin();
-	for (it = allConnectedRooms.begin(); it != allConnectedRooms.end(); ++it) {
+	std::vector<std::pair<Room*, Room*>> tree;
+	std::vector<std::pair<Room*, Room*>>::iterator it = sortedRooms.begin();
+	for (it = sortedRooms.begin(); it != sortedRooms.end(); ++it) {
 		if (std::find(connected.begin(), connected.end(), it->first) != connected.end() && std::find(connected.begin(), connected.end(), it->second) != connected.end()) {
 			//contains both rooms
 			//collapsepath?
@@ -52,17 +65,17 @@ int Grenade::minSpanningTree(std::map<Room*, Room*> allConnectedRooms) {
 		else if (std::find(connected.begin(), connected.end(), it->first) != connected.end()) {
 			//contains first room
 			connected.push_back(it->second);
-			tree.insert(*it);
+			tree.push_back(std::pair<Room*, Room*>(it->first, it->second));
 		}
 		else if (std::find(connected.begin(), connected.end(), it->second) != connected.end()) {
 			//contains second room
 			connected.push_back(it->first);
-			tree.insert(*it);
+			tree.push_back(std::pair<Room*, Room*>(it->first, it->second));
 		}
 		else {
 			connected.push_back(it->first);
 			connected.push_back(it->second);
-			tree.insert(*it);
+			tree.push_back(std::pair<Room*, Room*>(it->first, it->second));
 		}
 	}
 
