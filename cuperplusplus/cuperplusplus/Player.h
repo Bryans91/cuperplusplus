@@ -64,7 +64,7 @@ public:
 	int useTalisman(Room* s, Room* e){
 		return talisman->shortestPath(s, e);
 	}
-	int useGrenade(std::map<Room*, Room*> s) {
+	int useGrenade(DungeonLayer* s) {
 		return grenade->minSpanningTree(s);
 	}
 
