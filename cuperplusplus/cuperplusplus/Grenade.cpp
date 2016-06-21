@@ -4,6 +4,7 @@
 #include "Player.h"
 
 
+
 Grenade::Grenade()
 {
 }
@@ -18,12 +19,12 @@ bool compare(const std::pair<std::pair<Room*, Room*>, int>&i, const std::pair<st
 	return i.second < j.second;
 }
 
-std::vector<std::pair<Room*, Room*>> Grenade::sortByRoomWeigths(std::map<Room*, Room*> allConnectedRooms) {
+std::vector<std::pair<Room*, Room*>> Grenade::sortByRoomWeigths(std::vector<std::pair<Room*, Room*>> allConnectedRooms) {
 	std::vector<std::pair<Room*, Room*>> sorted; 
 	std::vector<std::pair<std::pair<Room*, Room*>, int>> sortingVector;
-	std::map<Room*, Room*>::iterator it = allConnectedRooms.begin();
+	std::vector<std::pair<Room*, Room*>>::iterator it = allConnectedRooms.begin();
 	int weight = 0;
-	for (it = allConnectedRooms.begin(); it != allConnectedRooms.end(); ++it) {
+	for (it; it != allConnectedRooms.end(); ++it) {
 		weight = 0;
 		if (it->first->hasEnemies()) {
 			weight++;
@@ -48,39 +49,35 @@ std::vector<std::pair<Room*, Room*>> Grenade::sortByRoomWeigths(std::map<Room*, 
 	return sorted;
 }
 
-int Grenade::minSpanningTree(std::map<Room*, Room*> allConnectedRooms) {
+int Grenade::minSpanningTree(DungeonLayer* old) {
+	//std::vector<std::pair<Room*, Room*>> sortedRooms = old->getConnectedRooms();
+	std::vector<std::pair < Room*, Room* >> sortedRooms = sortByRoomWeigths(old->getConnectedRooms());
+	old->removeRoomConnections();
+	Talisman* t = new Talisman();
 
-	std::vector<std::pair < Room*, Room* >> sortedRooms = sortByRoomWeigths(allConnectedRooms);
 	int returnval = 0;
 	// individual distances need to be set.
-	std::vector<Room*> connected;
-	std::vector<std::pair<Room*, Room*>> tree;
+	// remove all connections, then rebuild the layer.
+
 	std::vector<std::pair<Room*, Room*>>::iterator it = sortedRooms.begin();
 	for (it = sortedRooms.begin(); it != sortedRooms.end(); ++it) {
-		if (std::find(connected.begin(), connected.end(), it->first) != connected.end() && std::find(connected.begin(), connected.end(), it->second) != connected.end()) {
-			//contains both rooms
-			//collapsepath?
-			break;
-		}
-		else if (std::find(connected.begin(), connected.end(), it->first) != connected.end()) {
-			//contains first room
-			connected.push_back(it->second);
-			tree.push_back(std::pair<Room*, Room*>(it->first, it->second));
-		}
-		else if (std::find(connected.begin(), connected.end(), it->second) != connected.end()) {
-			//contains second room
-			connected.push_back(it->first);
-			tree.push_back(std::pair<Room*, Room*>(it->first, it->second));
+		int path = t->shortestPath(it->first, it->second);
+		if (path != 0){//
+			it->first->addCollapsedRoom(it->second);
+			it->second->addCollapsedRoom(it->first);
+
 		}
 		else {
-			connected.push_back(it->first);
-			connected.push_back(it->second);
-			tree.push_back(std::pair<Room*, Room*>(it->first, it->second));
+			it->first->addAdjacentRoom(null, it->second);
+			it->second->addAdjacentRoom(null, it->first);
+			//add connection
 		}
+
+
 	}
 
-	connected.clear();
 
+	delete t;
 
 
 

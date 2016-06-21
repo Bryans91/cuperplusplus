@@ -28,7 +28,7 @@ void DungeonLayer::setStart(Room* r){
 	start = r;
 }
 
-void DungeonLayer::setConnectedRooms(std::map<Room*, Room*> rooms) {
+void DungeonLayer::setConnectedRooms(std::vector<std::pair<Room*, Room*>> rooms) {
 	connectedRooms = rooms;
 }
 
@@ -48,9 +48,11 @@ Room* DungeonLayer::getEnd(){
 	return end;
 }
 
-std::map<Room*, Room*> DungeonLayer::getConnectedRooms() {
+std::vector<std::pair<Room*, Room*>> DungeonLayer::getConnectedRooms() {
 	return connectedRooms;
 }
+
+
 
 std::string DungeonLayer::getDungeonMap(bool c, Room* location){ 
 	bool cheat = c;
@@ -156,3 +158,9 @@ std::string DungeonLayer::getDungeonMap(bool c, Room* location){
 }
 
 
+void DungeonLayer::removeRoomConnections(){
+	for (int i = 0; i < roomList.size(); i++){
+
+		roomList[i]->clearRooms();
+	}
+}

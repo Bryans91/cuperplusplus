@@ -320,7 +320,7 @@ void Game::handleInput(std::string input) {
 	}
 	else if (input == std::string("grenade")) {
 		if (grenadeUsed == false) {
-			player->useGrenade(dungeon->getConnectedRooms());
+			player->useGrenade(dungeon->getCurrentLayer());
 				grenadeUsed = true;
 		}
 	}
