@@ -81,6 +81,7 @@
   <ItemGroup>
     <ClInclude Include="Beer.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="Compass.h" />
     <ClInclude Include="Dungeon.h" />
     <ClInclude Include="DungeonGenerator.h" />
     <ClInclude Include="DungeonLayer.h" />
@@ -111,6 +112,7 @@
   <ItemGroup>
     <ClCompile Include="Beer.cpp" />
     <ClCompile Include="Character.cpp" />
+    <ClCompile Include="Compass.cpp" />
     <ClCompile Include="cuperplusplus.cpp" />
     <ClCompile Include="Dungeon.cpp" />
     <ClCompile Include="DungeonGenerator.cpp" />

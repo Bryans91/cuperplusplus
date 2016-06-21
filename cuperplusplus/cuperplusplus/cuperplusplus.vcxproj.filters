@@ -141,6 +141,9 @@
     <ClInclude Include="NoItem.h">
       <Filter>Header Files\Items</Filter>
     </ClInclude>
+    <ClInclude Include="Compass.h">
+      <Filter>Header Files\Items</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -231,6 +234,9 @@
       <Filter>Source Files\Items</Filter>
     </ClCompile>
     <ClCompile Include="Grenade.cpp">
+      <Filter>Source Files\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Compass.cpp">
       <Filter>Source Files\Items</Filter>
     </ClCompile>
   </ItemGroup>
