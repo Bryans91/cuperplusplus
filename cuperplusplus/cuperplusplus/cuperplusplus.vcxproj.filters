@@ -60,9 +60,6 @@
     <ClInclude Include="Enemy.h">
       <Filter>Header Files\Characters</Filter>
     </ClInclude>
-    <ClInclude Include="DungeonLayer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -129,13 +126,19 @@
     <ClInclude Include="Useable.h">
       <Filter>Header Files\Items</Filter>
     </ClInclude>
+    <ClInclude Include="Talisman.h">
+      <Filter>Header Files\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Grenade.h">
+      <Filter>Header Files\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="DungeonLayer.h">
+      <Filter>Header Files\Dungeon</Filter>
+    </ClInclude>
     <ClInclude Include="ItemVisitor.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Items</Filter>
     </ClInclude>
     <ClInclude Include="NoItem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Talisman.h">
       <Filter>Header Files\Items</Filter>
     </ClInclude>
   </ItemGroup>
@@ -218,13 +221,16 @@
     <ClCompile Include="Equipable.cpp">
       <Filter>Source Files\Items</Filter>
     </ClCompile>
-    <ClCompile Include="Talisman.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="NoItem.cpp">
       <Filter>Source Files\Items</Filter>
     </ClCompile>
     <ClCompile Include="ItemVisitor.cpp">
+      <Filter>Source Files\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Talisman.cpp">
+      <Filter>Source Files\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Grenade.cpp">
       <Filter>Source Files\Items</Filter>
     </ClCompile>
   </ItemGroup>

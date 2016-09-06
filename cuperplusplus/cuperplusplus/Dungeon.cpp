@@ -42,6 +42,15 @@ Room* Dungeon::getLastRoom(){
 	}
 }
 
+std::vector<std::pair<Room*, Room*>> Dungeon::getConnectedRooms() {
+	if (level != 0) {
+		return Levels[level]->getConnectedRooms();
+	}
+	else {
+		return std::vector<std::pair<Room*,Room*>>();
+	}
+}
+
 DungeonLayer* Dungeon::getCurrentLayer(){
 	return Levels[level];
 }

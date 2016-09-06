@@ -319,6 +319,12 @@ void Game::handleInput(std::string input) {
 	else if (input == std::string("talisman")){
 		talisman = true;
 	}
+	else if (input == std::string("grenade")) {
+		if (grenadeUsed == false) {
+			player->useGrenade(dungeon->getCurrentLayer());
+				grenadeUsed = true;
+		}
+	}
 	else {
 		Utils::PrintLine("The input " + input + " is not known, try again.");
 		handleInput(Utils::ReadString());

@@ -41,14 +41,12 @@ enum Lighting
 };
 enum Direction
 {
-	NORTH, EAST, SOUTH, WEST
+	null, NORTH, EAST, SOUTH, WEST
 };
 
 class Room
 {
 public:
-
-
 	Room();
 	~Room();
 	std::list<std::string> getPossibleActions();
@@ -60,6 +58,7 @@ public:
 		return collapsedRooms;
 	}
 	void addAdjacentRoom(Direction d, Room* r);
+	void addCollapsedRoom(Room* r);
 	inline std::string ToString(Direction d)
 	{
 		switch (d)
@@ -81,12 +80,17 @@ public:
 	};
 	void EnemiesAttack(Character* c);
 	void checkForTraps(Player * p);
+	bool hasTrap() {
+		if (trap != noTrap && trap != nullptr) { return true; }
+		else { return false; };
+	}
 	void checkForItems();
 	void removeItem();
 	Item* getItem();
 	Item* getNoItem() {
 		return noItem;
 	};
+	void clearRooms();
 	
 private:
 	Size size;
@@ -99,6 +103,7 @@ private:
 	Item* noItem = new NoItem();
 	std::map<Direction, Room*> adjacentRooms;
 	std::map<Direction, Room*> collapsedRooms;
+	std::map<Direction, Room*> oldRooms;
 	std::vector<Enemy*> enemies;
 	bool visited = false;
 	const char * getTextForSize();
@@ -107,6 +112,7 @@ private:
 	const char * getTextForLighting();
 	const char * getTextForTrap();
 	std::string getTextForItem();
+	bool copied = false;
 
 
 

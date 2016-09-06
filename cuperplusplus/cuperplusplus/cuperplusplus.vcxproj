@@ -88,6 +88,7 @@
     <ClInclude Include="Equipable.h" />
     <ClInclude Include="FakeButton.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Grenade.h" />
     <ClInclude Include="HealPotion.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemVisitor.h" />
@@ -118,6 +119,7 @@
     <ClInclude Include="Game.cpp" />
     <ClCompile Include="Equipable.cpp" />
     <ClCompile Include="FakeButton.cpp" />
+    <ClCompile Include="Grenade.cpp" />
     <ClCompile Include="HealPotion.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemVisitor.cpp" />

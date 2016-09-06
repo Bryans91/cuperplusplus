@@ -140,19 +140,12 @@ std::list<std::string> Room::getPossibleActions() {
 }
 
 Room::~Room(){
-	for (int i = 0; i < enemies.size(); i++){
-		delete enemies[i];
-	}
-	enemies.clear();
-	adjacentRooms.clear();
 	if (noTrap != trap){
 		delete noTrap;
-
 	}
 	noTrap = NULL;
 	if (noItem != item){
 		delete noItem;
-
 	}
 	noItem = NULL;
 
@@ -161,6 +154,13 @@ Room::~Room(){
 
 	delete item;
 	item = NULL;
+	for (int i = 0; i < enemies.size(); i++){
+		delete enemies[i];
+	}
+
+	enemies.clear();
+	adjacentRooms.clear();
+
 
 
 }
@@ -181,7 +181,32 @@ std::string Room::getRoomInfo(){
 }
 
 void Room::addAdjacentRoom(Direction d, Room* r){
-	adjacentRooms.insert(std::pair<Direction, Room*>(d,r));
+	if (d == null){
+		for (std::map<Direction, Room*>::iterator it = oldRooms.begin(); it != oldRooms.end(); ++it){
+			if (it->second == r){
+				adjacentRooms.insert(std::pair<Direction, Room*>(it->first, r));
+			}
+		}
+		
+	}
+	else {
+		adjacentRooms.insert(std::pair<Direction, Room*>(d, r));
+	}
+
+}
+
+void Room::clearRooms(){
+	oldRooms = adjacentRooms;
+	adjacentRooms.clear();
+}
+
+void Room::addCollapsedRoom(Room* r){
+	for (std::map<Direction, Room*>::iterator it = oldRooms.begin(); it != oldRooms.end(); ++it){
+		if (it->second == r){
+			collapsedRooms.insert(std::pair<Direction, Room*>(it->first, r));
+		}
+	}
+
 }
 
 void Room::addEnemy(Enemy* e){
