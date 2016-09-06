@@ -42,6 +42,7 @@ void Game::startGame() {
 				std::string choice = Utils::ReadString();
 				handleInput(choice);
 				Utils::cClear();
+				checkHP();
 			}
 			else {
 				Utils::PrintLine("You defeated the enemy.");
@@ -342,6 +343,7 @@ void Game::affect() {
 
 void Game::checkHP() {
 	if (player->getHp() <= 0) {
+		fighting = false;
 		playing = false;
 		player->setHP(player->getMaxHP());
 		Utils::LoadPlayer(name, player);
