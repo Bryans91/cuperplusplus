@@ -99,7 +99,7 @@ void Game::startGame() {
 			compass = false;
 			std::string compassString = "You take the compass out of your pocket. It lights up and shows you your path: \n\n";
 			//TODO shortest path with least amount of enemies.
-			compassString += "Output from shortest path stuffs";
+			compassString += "Your compass seems to be broken and won't show you anything untill you fix the bugs.";
 			Utils::PrintLine(compassString);
 		}
 		if (talisman){

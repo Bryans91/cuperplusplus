@@ -136,7 +136,7 @@ std::list<std::string> Room::getPossibleActions() {
 	else {
 		itemString = "";
 	}
-	return std::list < std::string > {"Run", "Fight", "Inv", "Stats", "Rest", "Save", itemString};
+	return std::list < std::string > {"Run", "Fight", "Inv", "Stats", "Rest", "Save", "Grenade", "Talisman", itemString};
 }
 
 Room::~Room(){
